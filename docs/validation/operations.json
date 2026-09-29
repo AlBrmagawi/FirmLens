@@ -1,0 +1,9 @@
+{
+  "restart_preserved_scan": "27775fae-5aad-413e-8e9a-14f268da45fe",
+  "recovered_scan": "8deaf17f-c8fc-4e1c-b100-7212be327fad",
+  "recovery_attempts": 2,
+  "cancelled_running_scan": "8fa02e0d-15ad-485a-ae8e-1a46a55a7c30",
+  "container_removed": true,
+  "threshold_scan": "01c32fca-d748-48bd-994d-f939ac074ded",
+  "threshold_exit": 3
+}

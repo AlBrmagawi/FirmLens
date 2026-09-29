@@ -1,0 +1,75 @@
+{
+  "project_id": "7c861706-0064-4a8e-bc04-1f13d65b38f5",
+  "url": "http://localhost:8080/#/7c861706-0064-4a8e-bc04-1f13d65b38f5",
+  "scans": {
+    "lab": {
+      "id": "27775fae-5aad-413e-8e9a-14f268da45fe",
+      "status": "complete",
+      "summary": {
+        "files": 18,
+        "components": 1,
+        "findings": 19,
+        "severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 8,
+          "low": 2,
+          "info": 0
+        }
+      },
+      "measurement": {
+        "duration_ms": 11743,
+        "peak_rss_kib": 39416,
+        "child_peak_rss_kib": 180628
+      }
+    },
+    "revised": {
+      "id": "ddbdcae2-63b4-490d-822c-8a5013e706e4",
+      "status": "complete",
+      "summary": {
+        "files": 17,
+        "components": 1,
+        "findings": 3,
+        "severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 2,
+          "info": 0
+        }
+      },
+      "measurement": {
+        "duration_ms": 10609,
+        "peak_rss_kib": 39108,
+        "child_peak_rss_kib": 180692
+      }
+    }
+  },
+  "comparison_findings": {
+    "new": [],
+    "persistent": [
+      "50b868ab0cdd595277573cbd5f90cace",
+      "5453b39de5a0f9d6c6b87daaef333fe4",
+      "dcad5b6e36fa3f9380815c5b25a1d2a0"
+    ],
+    "no_longer_detected": [
+      "103c78ee9e4adc0e183541ea6cc16a23",
+      "1d9146ee5ca7556717036494b0ca16a1",
+      "2407242d94c8b4ee1ee7cc674fde44d2",
+      "27fb48c9e48ffb4e75df43249eae6d3d",
+      "5eb31340a4cf78ba8a2c30d7ed8d47b4",
+      "777e19ccd76af880d7eb8a7363d0d7bd",
+      "a1e9cace15efc0fa0d58e239060d951d",
+      "a3774917de7d96ec74922ab8ffc34fe6",
+      "ab76c3bebe9a8f5607a874b3bb11a751",
+      "c57dc28304f86a0a58772cbe8cc94358",
+      "d28d87dac4d9d5a14174b8515a3452d5",
+      "d321e7f43687f3d6d084089e302f5ebc",
+      "d6fe64deea5bfa051cf8de6d6e37b798",
+      "ec3c0b3dca2d4daab526b52663b27615",
+      "f29060826fd29cb42006de6f4540a50f",
+      "f5299cc489a9a76dbd9fc24fe596b404"
+    ],
+    "unknown_due_to_coverage": []
+  }
+}

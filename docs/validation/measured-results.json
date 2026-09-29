@@ -1,0 +1,493 @@
+{
+  "recorded_at": "2026-09-29T09:07:01.881Z",
+  "synthetic": {
+    "lab": {
+      "scan_id": "5453b43e-a129-4bf5-a703-92eefb7d108e",
+      "artifact_sha256": "7e96c460488dd03c237f60a181aa14fdd3e7a2d68c68cda39ab8ed2acf833c0f",
+      "status": "complete",
+      "summary": {
+        "files": 18,
+        "components": 1,
+        "findings": 19,
+        "severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 8,
+          "low": 2,
+          "info": 0
+        }
+      },
+      "started_at": "2026-09-29T08:47:45.059205+00:00",
+      "stages": [
+        {
+          "id": "extraction",
+          "state": "success",
+          "message": "Extracted 18 filesystem entries"
+        },
+        {
+          "id": "inventory",
+          "state": "success",
+          "message": "Inventoried 18 entries; text previews bounded to 16 KiB and redacted"
+        },
+        {
+          "id": "configuration",
+          "state": "success",
+          "message": "Produced 9 configuration and credential findings"
+        },
+        {
+          "id": "elf",
+          "state": "success",
+          "message": "Inspected 1 ELF files; absent canary symbols are reported as unknown"
+        },
+        {
+          "id": "components",
+          "state": "success",
+          "message": "Syft identified 1 components; binary cataloger hints remain heuristic"
+        },
+        {
+          "id": "vulnerabilities",
+          "state": "success",
+          "message": "Grype completed advisory matching; database freshness: fresh"
+        }
+      ],
+      "measurements": {
+        "duration_ms": 15252,
+        "peak_rss_kib": 39172,
+        "child_peak_rss_kib": 175992
+      },
+      "tools": {
+        "firmwarelens": "0.1.0",
+        "python": "3.12.12",
+        "pyelftools": "0.33",
+        "rules": "1.0.0",
+        "syft": "1.52.0",
+        "grype": "0.119.0",
+        "intelligence": {
+          "available": true,
+          "status": {
+            "schemaVersion": "v6.1.9",
+            "from": "https://grype.anchore.io/databases/v6/vulnerability-db_v6.1.9_2026-09-29T00:34:00Z_1790663551.tar.zst?checksum=sha256%3A1e88821121dd3ec9bef68b4eb7c5524997f62da37215113ec256179d4e6da8cf",
+            "built": "2026-09-29T06:32:31Z",
+            "path": "/intelligence/6/vulnerability.db",
+            "valid": true
+          },
+          "sha256": "89d80b3df8f320b4e828fa708ce729f297ee95b601521e33753794d8e4255497",
+          "freshness": "fresh",
+          "age_days": 0.09
+        },
+        "sandbox": {
+          "checks": {
+            "linux": true,
+            "memory_limit": true,
+            "cpu_limit": true,
+            "pids_limit": true,
+            "seccomp": true,
+            "cgroup_v2": true,
+            "sandbox_image": true,
+            "isolation_probe": true
+          },
+          "ready": true,
+          "engine": "29.6.2",
+          "image": "sha256:8c4acf82633f2eed9e8a3f93912b454425614bf9c5f714619c3ac92a1a57084c",
+          "tools": {
+            "syft": "1.52.0",
+            "grype": "0.119.0",
+            "unsquashfs": "unsquashfs version 4.5.1 (2022/03/17)"
+          },
+          "probe": "non-root, read-only root, empty capabilities, no-new-privileges, network-none verified",
+          "network": "none",
+          "uid": 65532,
+          "memory_mib": 1536,
+          "scratch_mib": 768,
+          "cpus": 1,
+          "pids": 64,
+          "wall_seconds": 17.975
+        }
+      }
+    },
+    "revised": {
+      "scan_id": "67093f3b-bb89-4d5e-bb71-f2bca985a220",
+      "artifact_sha256": "710125c8485b2499f3f576f990cbc5c7c69878a5a8b4b046520ec3f41754cb97",
+      "status": "complete",
+      "summary": {
+        "files": 17,
+        "components": 1,
+        "findings": 3,
+        "severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 2,
+          "info": 0
+        }
+      },
+      "started_at": "2026-09-29T08:48:12.509405+00:00",
+      "stages": [
+        {
+          "id": "extraction",
+          "state": "success",
+          "message": "Extracted 17 filesystem entries"
+        },
+        {
+          "id": "inventory",
+          "state": "success",
+          "message": "Inventoried 17 entries; text previews bounded to 16 KiB and redacted"
+        },
+        {
+          "id": "configuration",
+          "state": "success",
+          "message": "Produced 0 configuration and credential findings"
+        },
+        {
+          "id": "elf",
+          "state": "success",
+          "message": "Inspected 1 ELF files; absent canary symbols are reported as unknown"
+        },
+        {
+          "id": "components",
+          "state": "success",
+          "message": "Syft identified 1 components; binary cataloger hints remain heuristic"
+        },
+        {
+          "id": "vulnerabilities",
+          "state": "success",
+          "message": "Grype completed advisory matching; database freshness: fresh"
+        }
+      ],
+      "measurements": {
+        "duration_ms": 10052,
+        "peak_rss_kib": 39204,
+        "child_peak_rss_kib": 187528
+      },
+      "tools": {
+        "firmwarelens": "0.1.0",
+        "python": "3.12.12",
+        "pyelftools": "0.33",
+        "rules": "1.0.0",
+        "syft": "1.52.0",
+        "grype": "0.119.0",
+        "intelligence": {
+          "available": true,
+          "status": {
+            "schemaVersion": "v6.1.9",
+            "from": "https://grype.anchore.io/databases/v6/vulnerability-db_v6.1.9_2026-09-29T00:34:00Z_1790663551.tar.zst?checksum=sha256%3A1e88821121dd3ec9bef68b4eb7c5524997f62da37215113ec256179d4e6da8cf",
+            "built": "2026-09-29T06:32:31Z",
+            "path": "/intelligence/6/vulnerability.db",
+            "valid": true
+          },
+          "sha256": "89d80b3df8f320b4e828fa708ce729f297ee95b601521e33753794d8e4255497",
+          "freshness": "fresh",
+          "age_days": 0.09
+        },
+        "sandbox": {
+          "checks": {
+            "linux": true,
+            "memory_limit": true,
+            "cpu_limit": true,
+            "pids_limit": true,
+            "seccomp": true,
+            "cgroup_v2": true,
+            "sandbox_image": true,
+            "isolation_probe": true
+          },
+          "ready": true,
+          "engine": "29.6.2",
+          "image": "sha256:8c4acf82633f2eed9e8a3f93912b454425614bf9c5f714619c3ac92a1a57084c",
+          "tools": {
+            "syft": "1.52.0",
+            "grype": "0.119.0",
+            "unsquashfs": "unsquashfs version 4.5.1 (2022/03/17)"
+          },
+          "probe": "non-root, read-only root, empty capabilities, no-new-privileges, network-none verified",
+          "network": "none",
+          "uid": 65532,
+          "memory_mib": 1536,
+          "scratch_mib": 768,
+          "cpus": 1,
+          "pids": 64,
+          "wall_seconds": 13.254
+        }
+      }
+    }
+  },
+  "comparison_counts": {
+    "new": 0,
+    "persistent": 3,
+    "no_longer_detected": 16,
+    "unknown_due_to_coverage": 0
+  },
+  "formats": [
+    {
+      "input": "lab.tar",
+      "scan_id": "4576b4ca-8b26-437d-985a-02849dcd70f9",
+      "format": "tar",
+      "summary": {
+        "files": 18,
+        "components": 1,
+        "findings": 12,
+        "severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "duration_ms": 1264
+    },
+    {
+      "input": "lab.tar.gz",
+      "scan_id": "cfddf991-4382-484b-9984-4c61b9f872e6",
+      "format": "gzip",
+      "summary": {
+        "files": 18,
+        "components": 1,
+        "findings": 12,
+        "severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "duration_ms": 1254
+    },
+    {
+      "input": "lab-gzip.squashfs",
+      "scan_id": "0d133b5d-b01e-44d6-8b57-f6bd3308b6d8",
+      "format": "squashfs",
+      "summary": {
+        "files": 18,
+        "components": 1,
+        "findings": 12,
+        "severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "duration_ms": 1375
+    },
+    {
+      "input": "lab-xz.squashfs",
+      "scan_id": "d6c8d6cc-84cd-4f09-9042-49250925b592",
+      "format": "squashfs",
+      "summary": {
+        "files": 18,
+        "components": 1,
+        "findings": 12,
+        "severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "duration_ms": 1337
+    },
+    {
+      "input": "lab-zstd.squashfs",
+      "scan_id": "272f2767-9841-4e87-ac94-4cc50f6a4ad0",
+      "format": "squashfs",
+      "summary": {
+        "files": 18,
+        "components": 1,
+        "findings": 12,
+        "severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "duration_ms": 1381
+    },
+    {
+      "input": "lab-embedded.bin",
+      "scan_id": "210a5d15-7697-427e-97f4-5b9003f1c878",
+      "format": "embedded-squashfs",
+      "summary": {
+        "files": 18,
+        "components": 1,
+        "findings": 12,
+        "severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "duration_ms": 1346
+    },
+    {
+      "input": "lab.zip",
+      "scan_id": "5660a865-c17d-4326-82b1-a03925ae0173",
+      "format": "zip",
+      "summary": {
+        "files": 18,
+        "components": 1,
+        "findings": 12,
+        "severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "duration_ms": 1383
+    }
+  ],
+  "openwrt": {
+    "scan_id": "28cfa751-0607-4b3d-ba46-22578fe7b3de",
+    "artifact_sha256": "c27bb3ab1f955b46940b9752a546bede813c9324b73be004202027091065a806",
+    "status": "partial",
+    "summary": {
+      "files": 1398,
+      "components": 368,
+      "findings": 143,
+      "severity": {
+        "critical": 1,
+        "high": 10,
+        "medium": 36,
+        "low": 96,
+        "info": 0
+      }
+    },
+    "started_at": "2026-09-29T08:56:27.047786+00:00",
+    "stages": [
+      {
+        "id": "extraction",
+        "state": "partial",
+        "message": "Extracted 1398 filesystem entries"
+      },
+      {
+        "id": "inventory",
+        "state": "success",
+        "message": "Inventoried 1398 entries; text previews bounded to 16 KiB and redacted"
+      },
+      {
+        "id": "configuration",
+        "state": "success",
+        "message": "Produced 10 configuration and credential findings"
+      },
+      {
+        "id": "elf",
+        "state": "success",
+        "message": "Inspected 161 ELF files; absent canary symbols are reported as unknown"
+      },
+      {
+        "id": "components",
+        "state": "success",
+        "message": "Syft identified 368 components; binary cataloger hints remain heuristic"
+      },
+      {
+        "id": "vulnerabilities",
+        "state": "success",
+        "message": "Grype completed advisory matching; database freshness: fresh"
+      }
+    ],
+    "measurements": {
+      "duration_ms": 13715,
+      "peak_rss_kib": 150188,
+      "child_peak_rss_kib": 195444
+    },
+    "tools": {
+      "firmwarelens": "0.1.0",
+      "python": "3.12.12",
+      "pyelftools": "0.33",
+      "rules": "1.0.0",
+      "syft": "1.52.0",
+      "grype": "0.119.0",
+      "intelligence": {
+        "available": true,
+        "status": {
+          "schemaVersion": "v6.1.9",
+          "from": "https://grype.anchore.io/databases/v6/vulnerability-db_v6.1.9_2026-09-29T00:34:00Z_1790663551.tar.zst?checksum=sha256%3A1e88821121dd3ec9bef68b4eb7c5524997f62da37215113ec256179d4e6da8cf",
+          "built": "2026-09-29T06:32:31Z",
+          "path": "/intelligence/6/vulnerability.db",
+          "valid": true
+        },
+        "sha256": "89d80b3df8f320b4e828fa708ce729f297ee95b601521e33753794d8e4255497",
+        "freshness": "fresh",
+        "age_days": 0.1
+      },
+      "sandbox": {
+        "checks": {
+          "linux": true,
+          "memory_limit": true,
+          "cpu_limit": true,
+          "pids_limit": true,
+          "seccomp": true,
+          "cgroup_v2": true,
+          "sandbox_image": true,
+          "isolation_probe": true
+        },
+        "ready": true,
+        "engine": "29.6.2",
+        "image": "sha256:06c0d34bf0644793af341a635306c5dc5a1ea62925b7f95f1c4e4beb7553d5ae",
+        "tools": {
+          "syft": "1.52.0",
+          "grype": "0.119.0",
+          "unsquashfs": "unsquashfs version 4.5.1 (2022/03/17)"
+        },
+        "probe": "non-root, read-only root, empty capabilities, no-new-privileges, network-none verified",
+        "network": "none",
+        "uid": 65532,
+        "memory_mib": 1536,
+        "scratch_mib": 768,
+        "cpus": 1,
+        "pids": 64,
+        "wall_seconds": 21.167
+      }
+    }
+  },
+  "browser": {
+    "views": [
+      {
+        "name": "dashboard",
+        "violations": 0
+      },
+      {
+        "name": "overview",
+        "violations": 0
+      },
+      {
+        "name": "findings",
+        "violations": 0
+      },
+      {
+        "name": "components",
+        "violations": 0
+      },
+      {
+        "name": "files",
+        "violations": 0
+      },
+      {
+        "name": "comparison",
+        "violations": 0
+      },
+      {
+        "name": "assistant",
+        "violations": 0
+      },
+      {
+        "name": "reports",
+        "violations": 0
+      },
+      {
+        "name": "settings",
+        "violations": 0
+      }
+    ],
+    "viewport": 390,
+    "document_width": 390
+  }
+}

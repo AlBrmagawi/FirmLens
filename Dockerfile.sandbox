@@ -1,0 +1,34 @@
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim@sha256:e5b65587bce7de595f299855d7385fe7fca39b8a74baa261ba1b7147afa78e58 AS dependencies
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_LINK_MODE=copy
+WORKDIR /app
+COPY pyproject.toml uv.lock README.md ./
+RUN uv sync --frozen --no-dev --no-install-project
+ENV PATH="/app/.venv/bin:$PATH"
+
+FROM dependencies AS analyzers
+RUN apt-get update && apt-get install -y --no-install-recommends squashfs-tools ca-certificates && rm -rf /var/lib/apt/lists/*
+COPY scripts/install_analyzers.py /app/install_analyzers.py
+RUN python /app/install_analyzers.py && touch /etc/firmwarelens-sandbox && mkdir /work /input /intelligence
+
+FROM analyzers AS sandbox
+COPY src ./src
+RUN uv pip install --no-deps -e .
+USER 65532:65532
+WORKDIR /work
+ENTRYPOINT ["python", "-m", "firmwarelens.pipeline"]
+
+FROM analyzers AS demo
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libc6-dev && rm -rf /var/lib/apt/lists/*
+COPY demo /demo
+ENTRYPOINT ["python", "/demo/build.py"]
+
+FROM dependencies AS checks
+RUN uv sync --frozen --no-install-project
+COPY src ./src
+RUN uv pip install --no-deps -e .
+COPY tests ./tests
+COPY demo ./demo
+COPY scripts ./scripts
+COPY alembic ./alembic
+COPY alembic.ini ./
+ENTRYPOINT ["uv", "run"]

@@ -1,0 +1,9 @@
+title = "FirmwareLens secret scan"
+[extend]
+useDefault = true
+[[allowlists]]
+description = "Generated local files and installed dependencies are never committed"
+paths = ['''(^|/)\.env$''', '''(^|/)(\.git|\.venv|\.tools|node_modules|dist|public/vendor|exports|intelligence-import|generated|playwright-report|test-results)/''']
+[[allowlists]]
+description = "Intentionally nonfunctional private-key fixture, narrowly identified"
+regexes = ['''SYNTHETIC-NONFUNCTIONAL-FIXTURE''']

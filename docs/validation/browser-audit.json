@@ -1,0 +1,214 @@
+{
+  "results": [
+    {
+      "view": "dashboard",
+      "violations": []
+    },
+    {
+      "view": "overview",
+      "violations": []
+    },
+    {
+      "view": "findings",
+      "violations": []
+    },
+    {
+      "view": "components",
+      "violations": []
+    },
+    {
+      "view": "files",
+      "violations": []
+    },
+    {
+      "view": "comparison",
+      "violations": []
+    },
+    {
+      "view": "assistant",
+      "violations": []
+    },
+    {
+      "view": "reports",
+      "violations": []
+    },
+    {
+      "view": "settings",
+      "violations": []
+    }
+  ],
+  "overflow": {
+    "width": 390,
+    "scrollWidth": 390,
+    "elements": [
+      {
+        "tag": "TABLE",
+        "class": "",
+        "right": 717.25,
+        "width": 699.25
+      },
+      {
+        "tag": "THEAD",
+        "class": "",
+        "right": 717.25,
+        "width": 699.25
+      },
+      {
+        "tag": "TR",
+        "class": "",
+        "right": 717.25,
+        "width": 699.25
+      },
+      {
+        "tag": "TH",
+        "class": "",
+        "right": 449.34375,
+        "width": 89.484375
+      },
+      {
+        "tag": "TH",
+        "class": "",
+        "right": 560.484375,
+        "width": 111.140625
+      },
+      {
+        "tag": "TH",
+        "class": "",
+        "right": 645.25,
+        "width": 84.765625
+      },
+      {
+        "tag": "TH",
+        "class": "",
+        "right": 717.25,
+        "width": 72
+      },
+      {
+        "tag": "TBODY",
+        "class": "",
+        "right": 717.25,
+        "width": 699.25
+      },
+      {
+        "tag": "TR",
+        "class": "",
+        "right": 717.25,
+        "width": 699.25
+      },
+      {
+        "tag": "TD",
+        "class": "",
+        "right": 449.34375,
+        "width": 89.484375
+      },
+      {
+        "tag": "TD",
+        "class": "",
+        "right": 560.484375,
+        "width": 111.140625
+      },
+      {
+        "tag": "TD",
+        "class": "muted small",
+        "right": 645.25,
+        "width": 84.765625
+      },
+      {
+        "tag": "TD",
+        "class": "",
+        "right": 717.25,
+        "width": 72
+      },
+      {
+        "tag": "A",
+        "class": "icon-button",
+        "right": 697.25,
+        "width": 32
+      },
+      {
+        "tag": "svg",
+        "class": {},
+        "right": 689.75,
+        "width": 17
+      },
+      {
+        "tag": "path",
+        "class": {},
+        "right": 686.2083129882812,
+        "width": 9.9166259765625
+      },
+      {
+        "tag": "path",
+        "class": {},
+        "right": 686.2083129882812,
+        "width": 4.95831298828125
+      },
+      {
+        "tag": "TR",
+        "class": "",
+        "right": 717.25,
+        "width": 699.25
+      },
+      {
+        "tag": "TD",
+        "class": "",
+        "right": 449.34375,
+        "width": 89.484375
+      },
+      {
+        "tag": "STRONG",
+        "class": "",
+        "right": 393.671875,
+        "width": 13.8125
+      },
+      {
+        "tag": "SPAN",
+        "class": "small high-label",
+        "right": 429.34375,
+        "width": 49.484375
+      },
+      {
+        "tag": "TD",
+        "class": "",
+        "right": 560.484375,
+        "width": 111.140625
+      },
+      {
+        "tag": "TD",
+        "class": "muted small",
+        "right": 645.25,
+        "width": 84.765625
+      },
+      {
+        "tag": "TD",
+        "class": "",
+        "right": 717.25,
+        "width": 72
+      },
+      {
+        "tag": "A",
+        "class": "icon-button",
+        "right": 697.25,
+        "width": 32
+      },
+      {
+        "tag": "svg",
+        "class": {},
+        "right": 689.75,
+        "width": 17
+      },
+      {
+        "tag": "path",
+        "class": {},
+        "right": 686.2083129882812,
+        "width": 9.9166259765625
+      },
+      {
+        "tag": "path",
+        "class": {},
+        "right": 686.2083129882812,
+        "width": 4.95831298828125
+      }
+    ]
+  }
+}

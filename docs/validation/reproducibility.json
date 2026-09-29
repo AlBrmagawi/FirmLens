@@ -1,0 +1,45 @@
+{
+  "builder_image": "sha256:ff0e9810892a7642bbd0bdc6e0939ee52ef07d68240776ee66ec56d1c5cf557d",
+  "identical_artifacts": 14,
+  "manifest": {
+    "source_date_epoch": 1700000000,
+    "releases": {
+      "lab": {
+        "compiler_flags": [
+          "-fno-stack-protector",
+          "-no-pie",
+          "-Wl,-z,norelro",
+          "-Wl,-z,execstack"
+        ],
+        "file_count": 10
+      },
+      "revised": {
+        "compiler_flags": [
+          "-fstack-protector-all",
+          "-fPIE",
+          "-pie",
+          "-Wl,-z,relro,-z,now",
+          "-Wl,-z,noexecstack",
+          "-s"
+        ],
+        "file_count": 9
+      }
+    },
+    "sha256": {
+      "lab-embedded.bin": "681610dd08a971bf52a8d866ff8cf096972cd5aef2758d0e0e5438b629a82a28",
+      "lab-gzip.squashfs": "7e96c460488dd03c237f60a181aa14fdd3e7a2d68c68cda39ab8ed2acf833c0f",
+      "lab-xz.squashfs": "517c60271df9cefe1e881cff2fb6afd92d53dd4ed22f854d9ca8c8128d1eb047",
+      "lab-zstd.squashfs": "2d046da37590943517a12d3a7ed1cb84ad60d67afbc7e9419a70b2a6bd4998de",
+      "lab.tar": "2341def9a66ba8be777f5742d75a2de7cfc225d38263c2cdc6f50660f76c2c87",
+      "lab.tar.gz": "c48dc2bba97c630fbf816e36fa44b9af308157ead1177fa97937968185e7d6fa",
+      "lab.zip": "08e07fe922d3a1a70646f852c88386c47e7c72f627c9b4979e142e7bc292a701",
+      "revised-embedded.bin": "83c9426f4f2f734a952c294e69542d6cd97bb1473c8c45248bb3b4ee29565175",
+      "revised-gzip.squashfs": "710125c8485b2499f3f576f990cbc5c7c69878a5a8b4b046520ec3f41754cb97",
+      "revised-xz.squashfs": "f17ed34d092cd4d29c3d260f7b747ae1d152f6cba7ffbc7976da1de5698e6876",
+      "revised-zstd.squashfs": "41ce921c83e326de90336ff6d3265bceafc3bfb5af4c8b665b814710fae60925",
+      "revised.tar": "9db2771780acba944b247eb202ea28aa57af497b64995c15bbdc4d3659f351b0",
+      "revised.tar.gz": "7ec9ded4b3fd1efb3b81629e459bd90255a35839811bc4aec138feea002bbb05",
+      "revised.zip": "d91a6226ed3bcbcd27acff731a068cfb6f68f237fabd58fce575db6d4bbabebb"
+    }
+  }
+}

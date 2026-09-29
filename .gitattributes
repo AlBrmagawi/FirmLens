@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.png binary
+PROJECT_SPEC.md -text -whitespace
+tests/schemas/** -whitespace

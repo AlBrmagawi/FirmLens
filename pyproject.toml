@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "firmwarelens"
+version = "0.1.0"
+description = "Evidence-first, local firmware security research workbench"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "pydantic>=2.10,<3",
+  "pydantic-settings>=2.7,<3", "sqlalchemy>=2.0,<3", "alembic>=1.14,<2",
+  "psycopg[binary]>=3.2,<4", "typer>=0.15,<1", "httpx>=0.28,<1",
+  "docker>=7.1,<8", "pyelftools>=0.32,<1", "openai>=2,<3"
+]
+
+[project.scripts]
+firmwarelens = "firmwarelens.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1", "mypy>=1.15,<2", "types-docker>=7,<8", "jsonschema>=4.23,<5", "pip-audit>=2.9,<3"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/firmwarelens"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "S"]
+ignore = ["E501", "S101", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "B"]
+"demo/*" = ["S"]
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+ignore_missing_imports = true
+exclude = ["demo", "alembic"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: requires built sandbox and running application"]

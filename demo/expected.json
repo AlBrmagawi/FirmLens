@@ -1,0 +1,8 @@
+{
+  "lab_rules": ["AUTH-001", "SSH-001", "SVC-001", "CRED-001", "CRED-002", "PERM-001", "PERM-002", "ELF-001", "ELF-002", "ELF-003"],
+  "revised_absent_rules": ["AUTH-001", "SSH-001", "SVC-001", "CRED-001", "CRED-002", "PERM-001", "PERM-002", "ELF-001", "ELF-002", "ELF-003"],
+  "expected_component": "busybox",
+  "component_version_change": ["1.36.1-r15", "1.36.1-r29"],
+  "embedded_offset": 4096,
+  "note": "Assertions about deterministic static rules only. Real advisory results depend on the prepared Grype database; no CVEs are invented."
+}

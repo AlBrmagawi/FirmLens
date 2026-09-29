@@ -1,0 +1,130 @@
+name: firmwarelens
+
+services:
+  db:
+    image: postgres:17.9-bookworm
+    environment:
+      POSTGRES_USER: firmwarelens
+      POSTGRES_DB: firmwarelens
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run node scripts/setup.mjs first}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U firmwarelens -d firmwarelens"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+    mem_limit: 512m
+
+  init:
+    image: firmwarelens-app:0.1.0
+    build: {context: ., dockerfile: Dockerfile}
+    user: "0:0"
+    command: ["python", "scripts/init_storage.py"]
+    volumes:
+      - data:/data
+      - intelligence:/intelligence
+      - exports:/exports
+    network_mode: none
+    cap_drop: [ALL]
+    cap_add: [CHOWN, FOWNER, DAC_OVERRIDE]
+    security_opt: [no-new-privileges:true]
+
+  api:
+    image: firmwarelens-app:0.1.0
+    build: {context: ., dockerfile: Dockerfile}
+    user: "10001:10001"
+    command: ["sh", "-c", "alembic upgrade head && uvicorn firmwarelens.api:app --host 0.0.0.0 --port 8080 --no-access-log"]
+    environment:
+      FL_DATABASE_URL: postgresql+psycopg://firmwarelens:${POSTGRES_PASSWORD}@db/firmwarelens
+      FL_ORIGIN: ${FL_ORIGIN:-http://localhost:8080}
+      FL_AI_PROVIDER: ${FL_AI_PROVIDER:-disabled}
+      FL_AI_MODEL: ${FL_AI_MODEL:-}
+      FL_CLOUD_AI_ENABLED: ${FL_CLOUD_AI_ENABLED:-false}
+      FL_OPENAI_API_KEY: ${FL_OPENAI_API_KEY:-}
+      FL_OLLAMA_URL: ${FL_OLLAMA_URL:-http://host.docker.internal:11434}
+      FL_SECURE_COOKIE: ${FL_SECURE_COOKIE:-false}
+      FL_UPLOAD_LIMIT: ${FL_UPLOAD_LIMIT:-134217728}
+      FL_JOB_TIMEOUT: ${FL_JOB_TIMEOUT:-600}
+    ports: ["127.0.0.1:${FL_PORT:-8080}:8080"]
+    volumes:
+      - data:/data
+      - ./demo/generated:/demo:ro
+      - exports:/exports
+    depends_on:
+      init: {condition: service_completed_successfully}
+      db: {condition: service_healthy}
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=32m,uid=10001,gid=10001"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health', timeout=3)"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+    restart: unless-stopped
+    mem_limit: 768m
+
+  supervisor:
+    image: firmwarelens-app:0.1.0
+    user: "0:0"
+    command: ["python", "-m", "firmwarelens.worker"]
+    environment:
+      FL_DATABASE_URL: postgresql+psycopg://firmwarelens:${POSTGRES_PASSWORD}@db/firmwarelens
+      FL_DATA_VOLUME: firmwarelens_data
+      FL_INTELLIGENCE_VOLUME: firmwarelens_intelligence
+      FL_JOB_TIMEOUT: ${FL_JOB_TIMEOUT:-600}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      api: {condition: service_healthy}
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=32m"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+    stop_grace_period: 30s
+    mem_limit: 512m
+
+  sandbox:
+    image: firmwarelens-sandbox:0.1.0
+    build: {context: ., dockerfile: Dockerfile.sandbox, target: sandbox}
+    profiles: [tools]
+    network_mode: none
+
+  demo:
+    image: firmwarelens-demo:0.1.0
+    build: {context: ., dockerfile: Dockerfile.sandbox, target: demo}
+    profiles: [tools]
+    volumes: ["./demo/generated:/out"]
+    network_mode: none
+
+  intelligence:
+    image: firmwarelens-sandbox:0.1.0
+    profiles: [tools]
+    entrypoint: ["firmwarelens", "intelligence"]
+    command: ["status"]
+    user: "65532:65532"
+    volumes:
+      - intelligence:/intelligence
+      - ./intelligence-import:/imports:ro
+    read_only: true
+    tmpfs: ["/work:rw,noexec,nosuid,size=128m,uid=65532,gid=65532", "/tmp:rw,noexec,nosuid,size=512m,uid=65532,gid=65532"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 1536m
+    pids_limit: 64
+
+  intelligence-offline:
+    extends: intelligence
+    profiles: [tools]
+    network_mode: none
+
+volumes:
+  data: {name: firmwarelens_data}
+  intelligence: {name: firmwarelens_intelligence}
+  postgres: {name: firmwarelens_postgres}
+  exports: {name: firmwarelens_exports}
