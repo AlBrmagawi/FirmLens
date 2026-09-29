@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Center all shared dialogs after the CSS reset, including project creation, firmware uploads and evidence popups. Keep tall dialogs within the viewport with internal scrolling, prevent background scrolling and preserve the close button on narrow screens.
+- Extend browser checks to verify dialog placement, reachable controls and focus restoration across desktop, tablet, phone and landscape viewports.
+
 ## Release audit fixes
 
 - Reject non-ASCII authentication tokens, CSRF values and upload digests without server errors.

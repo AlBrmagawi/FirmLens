@@ -2,7 +2,28 @@ import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
 import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
+import type { Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+
+async function expectCenteredDialog(page: Page) {
+  const dialog = page.getByRole("dialog");
+  await expect(dialog).toBeVisible();
+  const box = (await dialog.boundingBox())!;
+  const viewport = page.viewportSize()!;
+  expect(Math.abs(box.x + box.width / 2 - viewport.width / 2)).toBeLessThan(1);
+  expect(Math.abs(box.y + box.height / 2 - viewport.height / 2)).toBeLessThan(
+    1,
+  );
+  expect(box.x).toBeGreaterThanOrEqual(15);
+  expect(box.y).toBeGreaterThanOrEqual(15);
+  expect(box.x + box.width).toBeLessThanOrEqual(viewport.width - 15);
+  expect(box.y + box.height).toBeLessThanOrEqual(viewport.height - 15);
+  expect(
+    await dialog.evaluate(
+      (element) => element.scrollWidth <= element.clientWidth,
+    ),
+  ).toBe(true);
+}
 
 test("API documentation loads its schema and assets locally", async ({
   page,
@@ -88,6 +109,18 @@ test("upload → inspect → triage → compare → export, with accessible navi
   await expect(
     page.getByRole("cell", { name: /busybox/ }).first(),
   ).toBeVisible();
+  const evidenceOpener = page.getByRole("button", { name: "Record 1" }).first();
+  await evidenceOpener.focus();
+  await page.keyboard.press("Enter");
+  await expect(
+    page.getByRole("dialog").locator(".evidence-meta"),
+  ).toBeVisible();
+  await expectCenteredDialog(page);
+  await page.setViewportSize({ width: 320, height: 568 });
+  await expectCenteredDialog(page);
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  await expect(evidenceOpener).toBeFocused();
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page.getByRole("link", { name: "Files", exact: true }).click();
   await page
     .getByRole("button", { name: "etc/device.conf", exact: true })
@@ -97,6 +130,7 @@ test("upload → inspect → triage → compare → export, with accessible navi
     "SYNTHETIC_LAB_ONLY_DO_NOT_USE",
   );
   await page.getByRole("button", { name: "Analyze another release" }).click();
+  await expectCenteredDialog(page);
   await page
     .locator("#firmware")
     .setInputFiles(resolve("../demo/generated/revised.tar"));
@@ -176,12 +210,27 @@ test("keyboard dialogs preserve uploads and recover from upload errors", async (
   await page.getByLabel("Local access token").fill(token);
   await page.getByRole("button", { name: "Open workbench" }).click();
   const opener = page.getByRole("button", { name: "New project", exact: true });
-  await opener.focus();
-  await page.keyboard.press("Enter");
-  await expect(page.getByRole("dialog")).toBeVisible();
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).toHaveCount(0);
-  await expect(opener).toBeFocused();
+  for (const viewport of [
+    { width: 1920, height: 960 },
+    { width: 1440, height: 1000 },
+    { width: 768, height: 1024 },
+    { width: 390, height: 844 },
+    { width: 320, height: 568 },
+    { width: 844, height: 390 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await opener.focus();
+    await page.keyboard.press("Enter");
+    await expectCenteredDialog(page);
+    await page
+      .getByRole("button", { name: "Create project", exact: true })
+      .scrollIntoViewIfNeeded();
+    await expectCenteredDialog(page);
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await expect(opener).toBeFocused();
+  }
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await opener.click();
   await page
     .getByLabel("Project name", { exact: true })
@@ -190,6 +239,21 @@ test("keyboard dialogs preserve uploads and recover from upload errors", async (
     .getByRole("button", { name: "Create project", exact: true })
     .click();
   await page.getByRole("button", { name: "New analysis", exact: true }).click();
+  await expectCenteredDialog(page);
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  await page
+    .getByRole("button", { name: "Analyze firmware", exact: true })
+    .click();
+  await expectCenteredDialog(page);
+  await page.setViewportSize({ width: 320, height: 568 });
+  await page.getByText("Analysis configuration", { exact: true }).click();
+  await expectCenteredDialog(page);
+  await page.getByLabel("Maximum filesystem entries").fill("8000");
+  await page
+    .getByRole("button", { name: "Start analysis" })
+    .scrollIntoViewIfNeeded();
+  await expectCenteredDialog(page);
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page
     .locator("#firmware")
     .setInputFiles(resolve("../demo/generated/lab.tar"));

@@ -1512,14 +1512,22 @@ tbody tr:hover {
   place-items: center;
   margin: 0 auto;
 }
+html:has(dialog[open]) {
+  overflow: hidden;
+}
 dialog {
+  position: fixed;
+  inset: 0;
+  /* Preflight clears the native dialog margins that center the top layer. */
+  margin: auto;
   border: 1px solid #d6e0d2;
   border-radius: 12px;
   box-shadow: 0 30px 90px #142d2e45;
   padding: 26px;
   width: min(560px, calc(100vw - 32px));
-  max-height: 90vh;
+  max-height: min(90dvh, calc(100dvh - 32px));
   overflow: auto;
+  overscroll-behavior: contain;
   background: #fff;
   color: #2c4434;
 }
@@ -1529,12 +1537,16 @@ dialog::backdrop {
 }
 .dialog-head {
   display: flex;
+  gap: 12px;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
 }
 .dialog-head h2 {
   font-size: 21px;
+}
+.dialog-head .icon-button {
+  flex-shrink: 0;
 }
 .drop-zone {
   border: 1px dashed #9bb390;
