@@ -2,7 +2,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
-import { resolve } from "node:path";
 import {
   disposition,
   verifyAnalyzerScope,
@@ -115,7 +114,7 @@ for (const [name, target] of [
     target,
   ]);
   evidence.installed_zlib_regression = "passed";
-  run([
+  const rawReport = run([
     "run",
     "--rm",
     "--network",
@@ -139,8 +138,6 @@ for (const [name, target] of [
     "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock",
     "--mount",
     "type=volume,source=firmwarelens_intelligence,target=/intelligence,readonly",
-    "--mount",
-    `type=bind,source=${resolve("exports")},target=/reports`,
     "--env",
     "GRYPE_DB_CACHE_DIR=/intelligence",
     "--env",
@@ -157,9 +154,9 @@ for (const [name, target] of [
     `docker:${target}`,
     "--output",
     "json",
-    "--file",
-    `/reports/${name}-image-audit.json`,
   ]);
+  // Write as the invoking host user, with no writable host mount in the scanner.
+  writeFileSync(`exports/${name}-image-audit.json`, rawReport);
   const report = JSON.parse(
     readFileSync(`exports/${name}-image-audit.json`, "utf8"),
   );
