@@ -1,14 +1,26 @@
-# FirmwareLens
+<picture>
+  <source media="(max-width: 480px)" srcset="docs/assets/firmwarelens-banner-mobile.svg">
+  <img src="docs/assets/firmwarelens-banner.svg" alt="FirmwareLens — from firmware bytes to traceable findings" width="100%">
+</picture>
 
-[![Validate FirmwareLens](https://github.com/AlBrmagawi/FirmLens/actions/workflows/ci.yml/badge.svg)](https://github.com/AlBrmagawi/FirmLens/actions/workflows/ci.yml) [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-167a68.svg)](LICENSE) [![Python 3.14](https://img.shields.io/badge/Python-3.14-3776ab.svg)](pyproject.toml) [![Docker Compose](https://img.shields.io/badge/Runs_with-Docker_Compose-2496ed.svg)](compose.yaml)
+# FirmwareLens
 
 **From firmware bytes to findings you can verify.**
 
 A local workbench for authorized Linux IoT firmware research, with an optional AI assistant. Upload a filesystem, follow the evidence behind each finding, compare releases, and export a report that records both the results and the analysis gaps.
 
-[Quickstart](#quickstart) · [Demo](#run-the-source-built-demo) · [Documentation](docs/README.md) · [QA results](docs/RELEASE_READINESS.md) · [Contribute](CONTRIBUTING.md)
+[Quickstart](#quickstart) · [Demo](#run-the-source-built-demo) · [Documentation](docs/README.md) · [CI checks](https://github.com/AlBrmagawi/FirmLens/actions/workflows/ci.yml)
 
-![FirmwareLens dashboard showing two synthetic firmware releases and their analysis results](docs/screenshots/dashboard.png)
+**Built with:** Python, FastAPI, React, PostgreSQL, Docker, Syft and Grype.
+
+<details>
+<summary>View the workbench: synthetic firmware release comparison</summary>
+
+![FirmwareLens research overview showing two synthetic firmware releases and recorded scan findings](docs/screenshots/dashboard.png)
+
+Existing capture of the [source-built demo](#run-the-source-built-demo). These findings describe deliberately constructed research fixtures.
+
+</details>
 
 FirmwareLens runs real SquashFS extraction, ELF inspection, Syft inventory and Grype advisory matching in disposable, network-isolated Linux containers. PostgreSQL preserves jobs, immutable results and analyst history. The browser and CLI use the same authenticated API and analysis pipeline.
 
