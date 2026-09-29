@@ -190,6 +190,10 @@ class Extraction:
                     if stat.S_ISLNK(member.external_attr >> 16):
                         self.diagnostics.append(f"ZIP symlink omitted: {name}")
                         continue
+                    if member.compress_type not in (zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED):
+                        raise Unsupported(
+                            "ZIP compression method is unsupported; use Store or Deflate"
+                        )
                     self.expanded += member.file_size
                     if self.expanded > self.limits.max_bytes:
                         raise ExtractionError("ZIP expansion budget exceeded")

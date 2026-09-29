@@ -3,6 +3,7 @@
 ## Release audit fixes
 
 - Reject non-ASCII authentication tokens, CSRF values and upload digests without server errors.
+- Enforce the documented ZIP codec boundary before opening members; unsupported BZIP2/LZMA/Zstandard members cannot reach decompression.
 - Move shipped runtimes to Alpine/Python 3.14, rebuild analyzers with Go 1.26.8, and apply the tested upstream zlib fix.
 - Block unresolved high, critical and unknown container advisories; retain raw matches and verify narrowly scoped remediation evidence.
 - Migrate Debian PostgreSQL data by logical restore into a separate Alpine volume, with row verification and the original volume retained.

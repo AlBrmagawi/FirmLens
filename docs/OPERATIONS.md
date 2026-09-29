@@ -1,6 +1,6 @@
 # Local operations
 
-Use Linux with Docker Engine 26+ (volume subpaths), cgroup v2 and Docker Compose. On Windows use WSL2 plus Docker Desktop's Linux engine. The repository can also reside on Windows, as validated here; bind-mounted development environments are considerably slower than Linux volumes. Docker Desktop's disk image may reside on another drive, such as `D:\Docker`; the application uses named volumes and does not depend on that host path.
+Use Linux with a currently patched Docker Engine, cgroup v2 and Docker Compose. Engine 26 is the minimum for volume subpaths, not a security recommendation to run an old release. The local audit used Engine 29.6.2; operators must keep the host engine patched independently of application images. On Windows use WSL2 plus Docker Desktop's Linux engine. The repository can also reside on Windows, as validated here; bind-mounted development environments are considerably slower than Linux volumes. Docker Desktop's disk image may reside on another drive, such as `D:\Docker`; the application uses named volumes and does not depend on that host path.
 
 ## Startup and offline operation
 

@@ -10,7 +10,7 @@ A release passes the documented gates for the supported local research workflow.
 | Analysis and API contracts | Python tests for extraction boundaries, redaction, comparison coverage, authentication, persistence, cancellation, CLI exits and provider contracts |
 | Browser workflow | Chromium, Firefox and WebKit uploads, analysis, evidence, persistent triage, comparison, reports, keyboard dialogs, upload recovery and narrow screens |
 | Accessibility | Axe checks across the application views, browser error checks and manual review of captured desktop/mobile screenshots |
-| Real integrations | All seven synthetic formats, prepared Grype intelligence, actual Syft inventory, valid CycloneDX/SARIF exports and reproducible fixtures |
+| Real integrations | All seven synthetic formats, supported/rejected ZIP codecs, prepared Grype intelligence, actual Syft inventory, valid CycloneDX/SARIF exports and reproducible fixtures |
 | Data safety | Concurrent idempotency, worker crash recovery, cancellation cleanup and isolated restore with table/artifact/permission comparison |
 | Runtime security | Enforced sandbox isolation, dependency audits, secret scans and container advisory policy with verified remediation evidence |
 | Distribution | Fresh hosted GitHub Actions build and workflow; no credentials, firmware, database dumps, runtime artifacts or dependencies tracked in Git |

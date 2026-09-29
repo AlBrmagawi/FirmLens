@@ -96,5 +96,6 @@ jobs:
             exports/*validation*.json
             exports/demo-results.json
             exports/browser-audit.json
+            exports/*-image-audit.json
       - if: always()
         run: docker compose down

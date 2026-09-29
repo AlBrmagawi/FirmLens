@@ -8,7 +8,7 @@ import pytest
 
 from firmwarelens.ai import retrieve, validate_answer
 from firmwarelens.comparison import compare
-from firmwarelens.extraction import Extraction, ExtractionError, safe_path, signature
+from firmwarelens.extraction import Extraction, ExtractionError, Unsupported, safe_path, signature
 from firmwarelens.plugins import ConfigurationPlugin, Context, InventoryPlugin, inspect_elf
 from firmwarelens.redaction import redact
 from firmwarelens.reports import report
@@ -155,6 +155,25 @@ def test_zip_traversal(tmp_path):
         archive.writestr("../escape", b"anything")
     with pytest.raises(ExtractionError):
         Extraction(tmp_path, Limits()).unpack(buf.getvalue(), tmp_path)
+
+
+@pytest.mark.parametrize("compression", [12, 14, 93])
+def test_unsupported_zip_codecs_rejected_before_decompression(tmp_path, monkeypatch, compression):
+    stream = io.BytesIO()
+    with zipfile.ZipFile(stream, "w") as archive:
+        archive.writestr("rootfs.tar", tar([("etc/example", b"safe", 0o644)]))
+    data = bytearray(stream.getvalue())
+    # Mark the member BZIP2/LZMA/Zstandard without invoking an optional encoder.
+    struct.pack_into("<H", data, 8, compression)
+    struct.pack_into("<H", data, data.index(b"PK\x01\x02") + 10, compression)
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("Unsupported ZIP codec reached member decompression")
+
+    monkeypatch.setattr(zipfile.ZipFile, "open", forbidden)
+    with pytest.raises(Unsupported, match="ZIP compression"):
+        Extraction(tmp_path, Limits()).unpack(bytes(data), tmp_path)
+    assert not list(tmp_path.iterdir())
 
 
 def test_metadata_and_redaction(context):
