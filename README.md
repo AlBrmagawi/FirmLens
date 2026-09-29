@@ -1,14 +1,16 @@
 # FirmwareLens
 
-[![Validate FirmwareLens](https://github.com/AlBrmagawi/FirmLens/actions/workflows/ci.yml/badge.svg)](https://github.com/AlBrmagawi/FirmLens/actions/workflows/ci.yml)
+[![Validate FirmwareLens](https://github.com/AlBrmagawi/FirmLens/actions/workflows/ci.yml/badge.svg)](https://github.com/AlBrmagawi/FirmLens/actions/workflows/ci.yml) [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-167a68.svg)](LICENSE) [![Python 3.14](https://img.shields.io/badge/Python-3.14-3776ab.svg)](pyproject.toml) [![Docker Compose](https://img.shields.io/badge/Runs_with-Docker_Compose-2496ed.svg)](compose.yaml)
 
-**Firmware Vulnerability Researcher with an AI Assistant**
+**From firmware bytes to findings you can verify.**
 
-A local workbench for authorized Linux IoT firmware research. Upload a filesystem, follow the evidence behind each finding, compare releases, and export a report that records both the results and the analysis gaps.
+A local workbench for authorized Linux IoT firmware research, with an optional AI assistant. Upload a filesystem, follow the evidence behind each finding, compare releases, and export a report that records both the results and the analysis gaps.
+
+[Quickstart](#quickstart) · [Demo](#run-the-source-built-demo) · [Documentation](docs/README.md) · [QA results](docs/RELEASE_READINESS.md) · [Contribute](CONTRIBUTING.md)
+
+![FirmwareLens dashboard showing two synthetic firmware releases and their analysis results](docs/screenshots/dashboard.png)
 
 FirmwareLens runs real SquashFS extraction, ELF inspection, Syft inventory and Grype advisory matching in disposable, network-isolated Linux containers. PostgreSQL preserves jobs, immutable results and analyst history. The browser and CLI use the same authenticated API and analysis pipeline.
-
-![Scan overview from the running application](docs/screenshots/overview.png)
 
 ## What it does
 
@@ -22,11 +24,13 @@ FirmwareLens runs real SquashFS extraction, ELF inspection, Syft inventory and G
 
 ## Quickstart
 
-Use Docker Engine 26+ with Linux containers, cgroup v2, Compose, and Node 24 for the setup helper. Windows uses Docker Desktop with WSL2. The validated engine had 6 CPUs and 7.72 GiB RAM available; allow additional disk space for images and the advisory database. Docker Desktop storage can reside on `D:\Docker`: application data uses named volumes.
+Use a currently patched Docker Engine with Linux containers, cgroup v2 and Docker Compose, plus Git and Node 24 for setup. Engine 26 is the feature minimum. Windows uses Docker Desktop with WSL2. Validation used 6 CPUs and 7.72 GiB RAM available to Docker; allow additional disk space for images and the advisory database. See [operations](docs/OPERATIONS.md) for platform and storage details.
 
-Run these commands from the repository root:
+Clone the repository and start the workbench:
 
 ```sh
+git clone https://github.com/AlBrmagawi/FirmLens.git
+cd FirmLens
 node scripts/setup.mjs
 docker compose build
 docker compose --profile tools build sandbox demo
@@ -63,9 +67,22 @@ After preparing dependencies, images, fixtures and optionally the database, the 
 
 In the browser, open the generated project, select the lab release, and inspect the SSH finding's evidence. Acknowledge it with a research note, inspect the redacted configuration preview and component identity, then compare against the revised release. Export HTML from **Reports**. The assistant explains how to configure a provider when none is enabled.
 
+<details>
+<summary>Explore the workbench: scan coverage, evidence and release comparison</summary>
+
+### Scan coverage
+
+![Scan overview with stage coverage and reproducibility information](docs/screenshots/overview.png)
+
+### Findings and evidence
+
 ![Finding and evidence panel](docs/screenshots/findings.png)
 
+### Release comparison
+
 ![Release comparison](docs/screenshots/comparison.png)
+
+</details>
 
 ## CLI workflow
 
@@ -90,7 +107,7 @@ On the recorded 2026-09-29 database, the synthetic lab produced **19 findings** 
 
 The [original validation record](docs/VALIDATION.md) preserves earlier measurements. Live OpenAI/Ollama responses require your provider configuration and have not been evaluated in this environment. Adapter, citation, scope and redaction tests use test doubles. [Support matrix](docs/SUPPORT_MATRIX.md) and [limitations](docs/LIMITATIONS.md) describe parser coverage, unknowns and the roadmap.
 
-## Development and project guide
+## Development
 
 ```sh
 uv sync --frozen
@@ -106,7 +123,11 @@ npm run build
 npm run test:e2e
 ```
 
-Browser checks require a running application and generated demo fixtures. On PowerShell use `npm.cmd` and `npx.cmd` if script execution is restricted. A container-only Python check runner and contribution guidance are in [CONTRIBUTING.md](CONTRIBUTING.md).
+Browser checks require a running application and generated demo fixtures. On PowerShell use `npm.cmd` and `npx.cmd` if script execution is restricted. A container-only Python check runner and the complete contribution workflow are in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Documentation
+
+Start with the [documentation index](docs/README.md) for installation, research workflows and contributor references.
 
 | Document | Purpose |
 | --- | --- |
@@ -116,7 +137,15 @@ Browser checks require a running application and generated demo fixtures. On Pow
 | [Support matrix](docs/SUPPORT_MATRIX.md) | Tested extraction and architecture variants |
 | [Operations](docs/OPERATIONS.md) | Offline setup, AI, intelligence, backup and troubleshooting |
 | [API / CLI](docs/API_CLI.md) | Endpoints, flags and exit codes |
-| [Validation](docs/VALIDATION.md) / [Case study](docs/CASE_STUDY.md) | Measurements, evidence and CV bullets |
+| [Release qualification](docs/RELEASE_READINESS.md) / [Case study](docs/CASE_STUDY.md) | Current QA evidence and a worked research example |
 | [Status](STATUS.md) / [Changelog](CHANGELOG.md) | Release state and remaining verification |
+
+## Community
+
+[Get help](SUPPORT.md), [report a bug](https://github.com/AlBrmagawi/FirmLens/issues/new?template=bug_report.yml), or [propose an improvement](https://github.com/AlBrmagawi/FirmLens/issues/new?template=feature_request.yml). Documentation, parser coverage, accessibility and reproducible research fixtures are useful contributions. Follow the [contribution guide](CONTRIBUTING.md) and [code of conduct](CODE_OF_CONDUCT.md).
+
+Report security vulnerabilities through the [private reporting channel](https://github.com/AlBrmagawi/FirmLens/security/advisories/new), following the [security policy](SECURITY.md).
+
+## License
 
 Apache-2.0 for original project code. Dependencies, schema files, analyzer binaries and optional firmware retain their own licenses; see [third-party notices](THIRD_PARTY_NOTICES.md). Large firmware, databases, credentials and generated research artifacts are excluded from Git.

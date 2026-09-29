@@ -1,0 +1,29 @@
+name: Research workflow improvement
+description: Propose a concrete research workflow or coverage improvement.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Research problem
+      description: What authorized research task is difficult today, and who would benefit?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the desired result, evidence needs and any change to isolation or data sharing.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe existing workflows or tools you have tried.
+  - type: textarea
+    id: validation
+    attributes:
+      label: How could this be validated?
+      description: Suggest a synthetic or redistributable input and an observable outcome. Do not attach private firmware.

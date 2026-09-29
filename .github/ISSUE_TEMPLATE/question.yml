@@ -1,0 +1,29 @@
+name: Setup or usage question
+description: Get help with installation, coverage diagnostics or research workflows.
+title: "[Question]: "
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check the [support guide](https://github.com/AlBrmagawi/FirmLens/blob/main/SUPPORT.md) first.
+        Keep access tokens, provider keys, `.env` and private firmware out of public issues.
+  - type: textarea
+    id: question
+    attributes:
+      label: What are you trying to do?
+      description: Describe the intended workflow and where you need help.
+    validations:
+      required: true
+  - type: textarea
+    id: attempted
+    attributes:
+      label: What have you tried?
+      description: Include relevant documentation, commands and redacted error or coverage messages.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and version
+      description: Include the commit, operating system and Docker version if relevant.
