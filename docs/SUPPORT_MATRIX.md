@@ -1,10 +1,10 @@
 # Supported inputs and tested coverage
 
-This release supports a bounded set of Linux firmware containers. It does not provide universal firmware support. The primary runtime is Linux Docker with cgroup v2; validation used Windows Docker Desktop's WSL2 Linux engine on x86-64. ARM64 container builds are supported by the installer but have not been run on ARM64 hardware.
+This release supports a bounded set of Linux firmware containers. It does not provide universal firmware support. The primary runtime is Linux Docker with cgroup v2; validation used Windows Docker Desktop's WSL2 Linux engine on x86-64. Analyzer builds use pinned source archives and the target architecture's Go compiler. ARM64 builds and hardware execution remain unverified.
 
 | Input | Implementation | Real pipeline validation |
 |---|---|---|
-| Raw SquashFS | v4 little-endian superblock, `unsquashfs` 4.5.1 | Synthetic gzip, xz and zstd images passed |
+| Raw SquashFS | v4 little-endian superblock, `unsquashfs` 4.7.4 | Synthetic gzip, xz and zstd images passed |
 | Embedded SquashFS | Validated superblock/bytes-used, bounded discovery | Synthetic payload at offset 4096 passed |
 | Tar root filesystem | Header/checksum signature, regular-file extraction and original metadata | USTAR fixture passed |
 | Gzip tar root filesystem | Bounded decompression followed by tar validation | Deterministic fixture passed |

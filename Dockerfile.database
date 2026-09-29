@@ -1,0 +1,5 @@
+FROM postgres:17.11-alpine3.24@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
+COPY security/zlib /opt/zlib-backport
+RUN apk add --no-cache --virtual .zlib-build build-base patch \
+    && sh /opt/zlib-backport/build.sh \
+    && apk del .zlib-build

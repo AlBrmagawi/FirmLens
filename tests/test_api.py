@@ -80,6 +80,34 @@ def test_auth_origin_and_csrf(client):
     assert client.get("/api/v1/projects").status_code == 200
 
 
+@pytest.mark.parametrize("token", ["invalid-\u00e9", "\U0001f510"])
+def test_non_ascii_login_is_rejected_without_server_error(client, token):
+    assert client.post("/api/v1/auth/login", json={"token": token}).status_code == 401
+
+
+def test_non_ascii_security_headers_are_rejected(client):
+    assert (
+        client.get("/api/v1/projects", headers={b"Authorization": b"Bearer \xff"}).status_code
+        == 401
+    )
+    login(client)
+    assert (
+        client.post(
+            "/api/v1/projects", json={"name": "blocked"}, headers={b"X-CSRF-Token": b"\xff"}
+        ).status_code
+        == 403
+    )
+    pid = project(client)
+    assert (
+        client.post(
+            f"/api/v1/projects/{pid}/artifacts",
+            content=b"bounded test content",
+            headers={b"X-Content-SHA256": b"\xff"},
+        ).status_code
+        == 422
+    )
+
+
 def test_duplicate_scans_history_scope_and_cancellation(client):
     login(client)
     pid = project(client)

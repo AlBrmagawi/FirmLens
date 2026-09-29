@@ -13,7 +13,7 @@ docker compose exec api firmwarelens doctor --json
 docker compose exec api firmwarelens access-token
 ```
 
-Open http://localhost:8080 and sign in using the locally displayed token. Initial builds download base images, locked Python/npm dependencies, Debian packages, and checksummed Syft/Grype release binaries. Advisory updates and OpenWrt integration downloads are explicit. After preparing images, fixtures and optionally the database, the core demo requires no network and no paid AI service. Cloud AI is off by default; no local model is downloaded by FirmwareLens.
+Open http://localhost:8080 and sign in using the locally displayed token. Initial builds download pinned base images, locked Python/npm dependencies, Alpine packages, checksummed analyzer source archives and Go modules. Syft and Grype are compiled with the pinned Go compiler; the first build can take several minutes. Each runtime also builds and tests the documented [zlib security backport](../security/zlib/README.md). Advisory updates and OpenWrt integration downloads are explicit. After preparing images, fixtures and optionally the database, the core demo requires no network and no paid AI service. Cloud AI is off by default; no local model is downloaded by FirmwareLens.
 
 ```sh
 docker compose --profile tools run --rm demo
@@ -60,16 +60,17 @@ docker compose start api supervisor
 
 Protect the backup: it contains original firmware and the local access credential. Restore into a fresh deployment with services stopped, matching application version, and the original `.env`. Restore the named-volume archive preserving ownership, then restore PostgreSQL with `pg_restore -U firmwarelens -d firmwarelens --clean --if-exists`. Start API/supervisor and run `doctor`. This is an operational recipe; destructive restore into an existing deployment is intentionally manual.
 
-## Upgrading an older PostgreSQL Bookworm deployment
+## Upgrading an existing Debian PostgreSQL deployment
 
-The audited Compose file now pins PostgreSQL 17.11 on Trixie. Existing 17.x data uses the same major-version format, but the operating-system collation libraries changed. Back up first and stop API/supervisor writes before changing the database image. After starting the updated database, rebuild indexes before refreshing collation metadata:
+The release database is PostgreSQL 17.11 on Alpine, built from `Dockerfile.database`. It uses a new volume, `firmwarelens_postgres_alpine17`. An existing Debian/glibc database must be logically restored into this volume; do not attach the old data directory to the Alpine/musl image. Keep the existing database running while building the new images, then run:
 
 ```sh
-docker compose exec -T db psql -v ON_ERROR_STOP=1 -U firmwarelens -d firmwarelens -c 'REINDEX DATABASE firmwarelens'
-docker compose exec -T db psql -v ON_ERROR_STOP=1 -U firmwarelens -d firmwarelens -c 'ALTER DATABASE firmwarelens REFRESH COLLATION VERSION'
+docker compose build
+docker compose --profile tools build sandbox demo
+node scripts/migrate_database.mjs
 ```
 
-Apply the same order to `postgres` and `template1` when their recorded collation version differs, connecting to each database for its reindex. Then start the API/supervisor and verify readiness. The local upgrade exercised during the release audit retained a private metadata dump under `exports/backups/`, compared every application table before/after, and found no row changes. See PostgreSQL's [collation version guidance](https://www.postgresql.org/docs/17/sql-altercollation.html); refreshing the version alone does not rebuild indexes.
+The migration stops application writes, creates a private logical dump, restores into a separate volume, compares every public table's row count and content digest, and checks application readiness after switching. It retains the original volume and a rollback Compose override under ignored `exports/backups/`. If migration fails, it attempts to restart the original deployment and retains the new volume for inspection. A pre-existing target volume causes an explicit stop instead of an overwrite. Back up `.env` and the artifact volume separately as described above. Fresh installations use the normal startup commands and need no migration.
 
 An isolated restore can be exercised with `node scripts/verify_restore.mjs`. It stops writes briefly, restores into separate labelled resources, compares table contents and artifact hashes/ownership, removes only its own temporary resources, and restarts the application. This does not perform a destructive restore of the live deployment.
 

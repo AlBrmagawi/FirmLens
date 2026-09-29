@@ -84,7 +84,7 @@ try {
   ]);
   created = true;
   let ready = false;
-  for (let n = 0; n < 60; n++) {
+  for (let n = 0; n < 180; n++) {
     try {
       run([
         "exec",
@@ -106,7 +106,12 @@ try {
       await delay(1000);
     }
   }
-  assert(ready, "Isolated restore database did not become ready");
+  if (!ready) {
+    writeFileSync("exports/restore-startup.log", run(["logs", container]));
+    throw new Error(
+      "Isolated restore database did not become ready; inspect exports/restore-startup.log",
+    );
+  }
   run(
     [
       "exec",
@@ -144,7 +149,8 @@ try {
   const counts = {};
   for (const table of tables) {
     assert.match(table, /^[a-z_]+$/);
-    const query = `SELECT count(*), md5(coalesce(string_agg(row_to_json(t)::text, '' ORDER BY row_to_json(t)::text), '')) FROM "${table}" t`;
+    // Locale ordering differs between glibc and musl; compare canonical byte order.
+    const query = `SELECT count(*), md5(coalesce(string_agg(row_to_json(t)::text, '' ORDER BY row_to_json(t)::text COLLATE "C"), '')) FROM "${table}" t`;
     const expected = sql(source, query);
     assert.equal(
       sql(restored, query),

@@ -5,8 +5,12 @@ RUN npm ci
 COPY frontend ./
 RUN npm run build
 
-FROM ghcr.io/astral-sh/uv:python3.12-trixie-slim@sha256:ca99e1db564ab49c1b93e39007d7c1f39e9184c4b26b15c9f826095dfe59f40b
+FROM ghcr.io/astral-sh/uv:python3.14-alpine@sha256:ea7c8f721b5042fb12f6eb051b63469edfeb61c7c00551dbe67d71f182810c66
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_LINK_MODE=copy
+COPY security/zlib /opt/zlib-backport
+RUN apk add --no-cache --virtual .zlib-build build-base patch \
+    && sh /opt/zlib-backport/build.sh \
+    && apk del .zlib-build
 WORKDIR /app
 COPY pyproject.toml uv.lock README.md ./
 RUN uv sync --frozen --no-dev --no-install-project

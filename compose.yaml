@@ -2,7 +2,8 @@ name: firmwarelens
 
 services:
   db:
-    image: postgres:17.11-trixie@sha256:d74eeac9a635390a49bc21bd49fccd973de707e2a53a76ac49b552b8712ec46f
+    image: firmwarelens-postgres:0.1.0
+    build: {context: ., dockerfile: Dockerfile.database}
     environment:
       POSTGRES_USER: firmwarelens
       POSTGRES_DB: firmwarelens
@@ -126,5 +127,5 @@ services:
 volumes:
   data: {name: firmwarelens_data}
   intelligence: {name: firmwarelens_intelligence}
-  postgres: {name: firmwarelens_postgres}
+  postgres: {name: firmwarelens_postgres_alpine17}
   exports: {name: firmwarelens_exports}

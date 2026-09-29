@@ -2,7 +2,7 @@
 
 Use authorized, redistributable, or synthetic inputs. Do not upload production secrets, proprietary firmware or live-device targets to issues. Read [architecture](docs/ARCHITECTURE.md), [rules](docs/RULES.md), and [threat model](docs/THREAT_MODEL.md) before changing analysis boundaries.
 
-Python 3.12+, uv and Node 24 are used for development. Linux/WSL2 is recommended:
+Python 3.14, uv and Node 24 are used for release validation. The source declares Python 3.12+ compatibility; the shipped containers and hosted checks use 3.14. Linux/WSL2 is recommended:
 
 ```sh
 uv sync --frozen
@@ -11,6 +11,7 @@ uv run ruff check src tests scripts demo
 uv run ruff format --check src tests scripts demo
 uv run mypy src
 uv run python scripts/generate_types.py
+node --test tests/test_image_policy.mjs
 cd frontend
 npm ci
 npx playwright install chromium firefox webkit

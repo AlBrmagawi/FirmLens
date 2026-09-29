@@ -1,8 +1,13 @@
-// Scanner findings remain visible. This gate rejects critical matches, not all advisories.
+// Retain every match; reject high/critical/unknown findings without verified remediation evidence.
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import {
+  disposition,
+  verifyAnalyzerScope,
+  verifyBackport,
+} from "./image_policy.mjs";
 
 const docker = process.platform === "win32" ? "docker.exe" : "docker";
 const run = (args) =>
@@ -11,10 +16,7 @@ const run = (args) =>
     stdio: ["pipe", "pipe", "pipe"],
     maxBuffer: 10 * 1024 * 1024,
   });
-const databaseImage = run(["compose", "config", "--images"])
-  .trim()
-  .split(/\s+/)
-  .find((name) => name.startsWith("postgres:"));
+const databaseImage = run(["compose", "config", "--images", "db"]).trim();
 assert(databaseImage);
 const results = [];
 for (const [name, target] of [
@@ -23,6 +25,96 @@ for (const [name, target] of [
   ["database", databaseImage],
 ]) {
   const image = run(["image", "inspect", "--format", "{{.Id}}", target]).trim();
+  const inspectFile = (path) =>
+    run([
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--read-only",
+      "--cap-drop",
+      "ALL",
+      "--security-opt",
+      "no-new-privileges:true",
+      "--entrypoint",
+      "cat",
+      target,
+      path,
+    ]);
+  const receipt = inspectFile(
+    "/usr/local/share/firmwarelens/backports/zlib.txt",
+  );
+  const checksums = run([
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges:true",
+    "--entrypoint",
+    "sha256sum",
+    target,
+    "/usr/lib/libz.so.1.3.2",
+    "/opt/zlib-backport/CVE-2026-85091.patch",
+    "/opt/zlib-backport/regression.c",
+    "/usr/local/share/firmwarelens/backports/zlib-regression",
+  ]);
+  const hashes = Object.fromEntries(
+    [...checksums.matchAll(/^([a-f0-9]{64})  (\S+)$/gm)].map((match) => [
+      match[2],
+      match[1],
+    ]),
+  );
+  const evidence = {
+    zlib_backport_verified: verifyBackport(
+      receipt,
+      hashes,
+      readFileSync("security/zlib/CVE-2026-85091.patch"),
+      readFileSync("security/zlib/regression.c"),
+    ),
+    zlib_receipt: receipt,
+    installed_hashes: hashes,
+    grype_client_only_verified: false,
+  };
+  if (name === "sandbox") {
+    const packages = inspectFile(
+      "/usr/local/share/firmwarelens/analyzers/grype-packages.txt",
+    );
+    const build = inspectFile(
+      "/usr/local/share/firmwarelens/analyzers/grype-build.txt",
+    );
+    evidence.grype_client_only_verified = verifyAnalyzerScope(packages, build);
+    evidence.grype_docker_packages = packages
+      .trim()
+      .split(/\s+/)
+      .filter((pkg) => /github.com\/(docker|moby)\//.test(pkg));
+  }
+  assert(
+    evidence.zlib_backport_verified,
+    `${name}: backport bytes or regression receipt differ from reviewed source`,
+  );
+  run([
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges:true",
+    "--memory",
+    "64m",
+    "--pids-limit",
+    "8",
+    "--entrypoint",
+    "/usr/local/share/firmwarelens/backports/zlib-regression",
+    target,
+  ]);
+  evidence.installed_zlib_regression = "passed";
   run([
     "run",
     "--rm",
@@ -77,7 +169,7 @@ for (const [name, target] of [
       (severity[match.vulnerability.severity] ?? 0) + 1;
   const high = report.matches
     .filter((match) =>
-      ["Critical", "High"].includes(match.vulnerability.severity),
+      ["Critical", "High", "Unknown"].includes(match.vulnerability.severity),
     )
     .map((match) => ({
       id: match.vulnerability.id,
@@ -87,15 +179,26 @@ for (const [name, target] of [
       fix_state: match.vulnerability.fix.state,
       fixes: match.vulnerability.fix.versions,
       source: match.vulnerability.dataSource,
+      disposition: disposition(match, evidence),
     }));
-  results.push({ name, image, severity, high_and_critical: high });
-  console.log(JSON.stringify({ name, severity }));
+  const blocking = high.filter(
+    (match) => match.disposition.status === "blocked",
+  );
+  results.push({
+    name,
+    image,
+    severity,
+    evidence,
+    high_and_critical: high,
+    blocking,
+  });
+  console.log(JSON.stringify({ name, severity, blocking: blocking.length }));
 }
 writeFileSync(
   "exports/image-validation.json",
   JSON.stringify(
     {
-      gate: "No critical matches; high and lower matches remain disclosed for review",
+      gate: "No high, critical or unknown matches without verified backport or package-scope evidence; retain all scanner matches",
       results,
     },
     null,
@@ -103,6 +206,6 @@ writeFileSync(
   ),
 );
 assert(
-  results.every((result) => !result.severity.Critical),
-  "Critical container advisories remain; inspect exports/image-validation.json",
+  results.every((result) => result.blocking.length === 0),
+  "Unresolved container advisories remain; inspect exports/image-validation.json",
 );

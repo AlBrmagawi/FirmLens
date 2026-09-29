@@ -202,18 +202,21 @@ def csrf(token: str) -> str:
     return hashlib.sha256((token + ":firmwarelens-csrf").encode()).hexdigest()
 
 
+def constant_match(value: str, expected: str) -> bool:
+    """Tokens and digests are ASCII; malformed Unicode is a mismatch, never a 500."""
+    return value.isascii() and hmac.compare_digest(value, expected)
+
+
 def authenticated(request: Request, db: Session = Depends(db_session)) -> str:
     authorization = request.headers.get("authorization", "")
-    if authorization.startswith("Bearer ") and hmac.compare_digest(
-        authorization[7:], access_token()
-    ):
+    if authorization.startswith("Bearer ") and constant_match(authorization[7:], access_token()):
         return "local-owner"
     token = request.cookies.get("fl_session", "")
     active = db.get(BrowserSession, hashlib.sha256(token.encode()).hexdigest()) if token else None
     if active is None or active.expires < time.time():
         raise HTTPException(401, "Sign in with the locally generated access token")
     if request.method not in ("GET", "HEAD", "OPTIONS"):
-        if request.headers.get("origin") != settings().origin or not hmac.compare_digest(
+        if request.headers.get("origin") != settings().origin or not constant_match(
             request.headers.get("x-csrf-token", ""), csrf(token)
         ):
             raise HTTPException(403, "CSRF verification failed")
@@ -236,7 +239,7 @@ def login(payload: Login, request: Request, response: Response, db: Session = De
     if len(recent) >= 10:
         raise HTTPException(429, "Too many sign-in attempts; wait one minute")
     recent.append(time.time())
-    if not hmac.compare_digest(payload.token, access_token()):
+    if not constant_match(payload.token, access_token()):
         raise HTTPException(401, "Invalid local access token")
     token = secrets.token_urlsafe(32)
     db.add(
@@ -406,7 +409,7 @@ async def upload(
             raise HTTPException(422, "Firmware is empty")
         sha = digest.hexdigest()
         supplied = request.headers.get("x-content-sha256")
-        if supplied and not hmac.compare_digest(supplied, sha):
+        if supplied and not constant_match(supplied, sha):
             raise HTTPException(422, "Upload SHA-256 did not match")
         directory = config.data_dir / "artifacts" / sha
         directory.mkdir(mode=0o755, exist_ok=True)

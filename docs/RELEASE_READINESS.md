@@ -1,79 +1,33 @@
-# Release audit — 2026-09-29
+# Release qualification — 2026-09-29
 
-**The functional checks pass, but the strict container security gate is blocked. This is not a 100% clean release verdict.** Live AI and hosted GitHub Actions also remain unverified. The source can be reviewed and published with these limitations disclosed; it should not be described as production-certified or vulnerability-free.
+The updated release candidate is undergoing final integration and hosted CI checks. The earlier failed image audit is preserved in [RELEASE_AUDIT_INITIAL.md](RELEASE_AUDIT_INITIAL.md); it describes the previous Debian images.
 
-The audit started from local commit `813cddc`. Tests ran on the Windows/WSL2 x86-64 environment described in [the original validation record](VALIDATION.md). The updated runtime uses Python 3.12.14, PostgreSQL 17.11, Debian Trixie, squashfs-tools 4.6.1, Syft 1.52.0 and Grype 0.119.0. Runtime base images are pinned by digest.
+The candidate uses Python 3.14.7, PostgreSQL 17.11, Alpine runtime images, squashfs-tools 4.7.4, Syft 1.52.0 and Grype 0.119.0 rebuilt with Go 1.26.8. Base images and analyzer source archives are pinned. All three runtime images build and test the upstream zlib security backport.
 
-## Checks and evidence
+## Completed candidate checks
 
-| Check | Result |
-| --- | --- |
-| Python unit, API, CLI and provider-contract tests | 56 passed on Python 3.12.14 |
-| Unit coverage, including branches | 67% overall; API 89%. Separate Docker integration runs are not included in this percentage |
-| Python lint, formatting and typing | Ruff passed; mypy passed for all 17 source modules |
-| Frontend quality checks | Clean npm installation, ESLint, Prettier, TypeScript and production build passed |
-| Browser workflows | 12 Playwright scenarios across Chromium, Firefox and WebKit; real uploads/analyses, reload-persistent triage, reports, disabled AI, keyboard dialogs and error recovery |
-| Responsive layouts | Login at 320 px and overview at 320, 390 and 768 px; desktop workflows at 1440 px |
-| Accessibility and visual review | Nine application views with zero Axe violations and zero page errors; no page-level overflow at 390 px. Refreshed overview, findings, comparison, dashboard and mobile screenshots were visually reviewed |
-| Synthetic firmware | Lab: 19 findings; revised: 3; comparison: 16 no longer detected, 3 persistent |
-| Format matrix | All seven formats passed; each retained the expected 12 static findings and one component |
-| OpenWrt 23.05.5 sample | Partial coverage reported correctly: 1,398 entries, 368 components and 143 findings; all stages after extraction succeeded |
-| Actual export formats | Both releases' CycloneDX 1.7 and SARIF 2.1.0 outputs passed official schema validation offline |
-| Concurrent requests | Eight simultaneous uploads and eight idempotent submissions produced one scan with one attempt; 50 parallel reads passed; original download hash matched |
-| Sandbox failure paths | Missing intelligence, entry budget, immediate cancellation and wall-time limit passed; all test containers removed |
-| Fixture reproducibility | All 14 artifacts matched across two builds using the updated builder image |
-| Restart, worker crash, cancellation and CLI | Immutable scan survived restart; forced crash recovered on attempt 2; active cancellation removed its container; real high-severity CLI run returned exit 3 |
-| Backup and database upgrade | Final restore matched all 11 public tables and 20 artifacts, including bytes and ownership. Upgrade to PostgreSQL 17.11 preserved metadata; collation indexes were rebuilt before refreshing the recorded version |
-| Dependency and secret audits | npm and pip audits reported no known application dependency vulnerabilities; Gitleaks found no secrets in source/history |
-| Container security | **Failed critical gate:** database image retains one critical advisory match; other high-severity matches remain disclosed below |
+- 59 Python unit/API/CLI/provider-contract tests passed without warnings.
+- Three image-policy tests passed, including rejection of missing evidence, changed packages, unexpected artifact locations and affected Docker server packages.
+- Ruff lint/formatting, mypy across 17 modules, generated API types, ESLint, Prettier, TypeScript and the production frontend build passed.
+- npm and pip audits found no known application dependency vulnerabilities; source and Git history passed Gitleaks.
+- An isolated restore into the patched Alpine database matched all 11 public tables and 21 stored artifacts, including bytes, ownership and permissions.
+- Live database migration passed with every public table unchanged, the original volume retained and application readiness verified.
+- All three runtime image gates passed: zero critical matches and zero unresolved high/unknown matches. Raw high matches were app 1, sandbox 2, database 1; each received a verified backport or unaffected-code disposition. Raw medium/low counts were 8/1, 11/3 and 3/0 respectively.
 
-These checks are a test matrix, not exhaustive proof of correctness, accessibility, security or firmware detection accuracy. The automated accessibility checks cover WCAG 2 A/AA and 2.1 AA rules supported by Axe. A Starlette test-client deprecation warning remains; it did not fail the locked test suite.
+The firmware, browser and recovery matrix is being repeated against the candidate. Hosted GitHub Actions must pass on the intended source revision before its distribution gate is recorded as passed. Previous runtime results remain historical evidence.
 
-The checked-in [machine-readable audit](validation/release-audit.json) records the final test counts, coverage, runtime isolation probe, firmware results, recovery and restore checks. The [image audit](validation/release-image-audit.json) retains every high and critical package/advisory match and its source. Full local reports, traces and private backups remain under ignored `exports/` and `frontend/test-results/` paths. Unit coverage is 71% of statements and 53% of branches (67% combined); it is not 100% coverage. Integration timings recorded while other audits ran are observations, not controlled performance benchmarks.
+## Remediation and quality controls
 
-## Fixes made during the audit
+Non-ASCII tokens and security headers now produce authentication/validation errors instead of server errors. Regression tests reproduced the original failure before the fix. The test client uses Starlette's supported dependency. Restore comparisons use explicit byte ordering so glibc/musl collation differences do not masquerade as changed rows.
 
-- Graceful worker shutdown now respects the retry budget. Analyst cancellation during shutdown records a terminal timestamp and the correct event status.
-- Escape no longer hides an upload in progress. Closing a dialog restores keyboard focus to its opener.
-- Default labels derived from long filenames are bounded in both the UI and CLI.
-- The Python/Debian runtime and PostgreSQL image were updated after the image audit exposed outdated system packages. The application image's critical match count fell from 16 to zero, and its high match count from 124 to 50.
-- Regression coverage now includes suppression expiry, triage isolation and redaction, immutable results, AI error/budget handling, revoked sessions, CLI exit contracts, and tar hard-link/symbolic-link chains.
-- The restore harness waits for the final PostgreSQL TCP listener and an actual query; `pg_isready` alone could succeed during initial temporary-server startup.
+The database migration uses a logical dump and a separate volume. It verifies table contents, retains the original volume, and checks application readiness before declaring success. See [operations](OPERATIONS.md).
 
-## Remaining container advisories
+The [image policy](QUALITY.md) blocks unresolved critical, high and unknown-severity findings. Every raw scanner match is retained. The zlib disposition requires the reviewed upstream patch, installed file hashes and an actual shared-library regression. The Docker advisory disposition requires evidence that affected daemon authorization code is absent from Grype's production package graph.
 
-These are package/advisory matches, not proven reachable vulnerabilities in FirmwareLens. Counts include multiple packages matching the same advisory. No findings were suppressed to obtain a passing result.
+Medium and low package matches remain visible for review. FirmwareLens copies tar regular-file contents itself, rejects unsafe paths, omits links and accepts only Store/Deflate ZIP compression. Its firmware workflow does not use POP3, urllib password managers or BusyBox wget with firmware-controlled URLs. These boundaries reduce exposure; they do not certify every use of the runtime libraries.
 
-| Runtime image | Critical matches | High matches |
-| --- | ---: | ---: |
-| Application / supervisor | 0 | 50 |
-| Analysis sandbox | 0 | 65 |
-| PostgreSQL | 1 | 73 |
+## Repeating the checks
 
-The critical database match is **CVE-2026-6653** in `libxml2` `2.12.7+dfsg+really2.9.14-2.1+deb13u3`. Debian marks that Trixie version affected and describes the issue as minor, with no stable security update currently scheduled. The issue concerns XML entity parsing; FirmwareLens uses parameterized SQL and does not expose arbitrary SQL or XML database operations. Those application boundaries are relevant, but do not constitute a complete reachability assessment. See the [Debian advisory record](https://security-tracker.debian.org/tracker/CVE-2026-6653).
+Follow [CONTRIBUTING.md](../CONTRIBUTING.md), prepare the demo and advisory database using [OPERATIONS.md](OPERATIONS.md), and run the workflow in `.github/workflows/ci.yml`. Run operational scripts sequentially because they restart services and interrupt test jobs. `node scripts/verify_openwrt.mjs` adds the pinned real-firmware exercise after preparing its sample.
 
-Other matches include unpatched distribution packages and Go standard-library advisories in the current official Syft/Grype binaries. The official release APIs were checked: [Syft 1.52.0](https://github.com/anchore/syft/releases/tag/v1.52.0) and [Grype 0.119.0](https://github.com/anchore/grype/releases/tag/v0.119.0) were still the latest releases at audit time. Retain the findings for review and update/retest when patched upstream artifacts become available; switching off the scanner or its critical gate is not remediation.
-
-Python's [CVE-2026-82049 advisory](https://mail.python.org/archives/list/security-announce%40python.org/message/EFJWGAZJA56AKSBR2WHMHQZO7RRLZPRH/) concerns tar extraction filters following hard-link/symbolic-link chains. FirmwareLens copies regular-file contents manually and records links without materializing them. A dedicated regression verifies that the external file's bytes, mode and timestamp remain unchanged and that `TarFile.extract`/`extractall` are never called. The package match remains visible in the image report.
-
-`node scripts/verify_images.mjs` scans application, sandbox and database images against the prepared local database, retains all matches, and fails on any critical match. The GitHub workflow runs this gate after functional checks so the remaining security failure does not prevent collection of their results. **A green hosted release gate is not currently expected until the critical match is resolved or a separately reviewed, evidence-backed disposition is established.**
-
-## Repeating the release checks
-
-Follow [CONTRIBUTING.md](../CONTRIBUTING.md) for unit, lint, type and browser checks. Generate the demo and prepare Grype intelligence using [OPERATIONS.md](OPERATIONS.md), then run:
-
-```sh
-docker compose exec -T api python scripts/demo_workflow.py
-docker compose exec -T api python scripts/verify_variants.py
-docker compose cp api:/exports/. ./exports
-node scripts/verify_reproducibility.mjs
-node scripts/verify_concurrency.mjs
-node scripts/verify_sandbox_boundaries.mjs
-node scripts/verify_operations.mjs
-node scripts/verify_restore.mjs
-node scripts/verify_images.mjs
-```
-
-Run operational scripts sequentially: they restart services, interrupt a test worker and create ordinary test projects. The restore check uses separate labelled containers/volumes, checks ownership before cleanup, and never replaces live data. `FL_RESTORE_IMAGE` optionally selects a target PostgreSQL image for a restore compatibility exercise. Run `node scripts/verify_openwrt.mjs` after preparing the pinned sample with `scripts/openwrt_integration.py` and a local advisory database.
-
-Still unverified: live OpenAI/Ollama inference and real-model prompt-injection resistance, hosted GitHub Actions, ARM64 host execution, production-scale load, exhaustive accessibility and independent penetration testing. No provider key or large model was installed, and nothing was published to GitHub.
+Live OpenAI/Ollama inference remains unverified until a real provider is configured. No model is downloaded automatically. ARM64 hardware, production-scale load, exhaustive accessibility and independent penetration testing remain outside the measured support claims. Passing the documented gates does not establish absence of all bugs or vulnerabilities.

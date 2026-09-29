@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
         with:
-          version: '0.9.30'
-          python-version: '3.12'
+          version: '0.12.20'
+          python-version: '3.14'
           enable-cache: true
       - uses: actions/setup-node@v4
         with:
@@ -25,6 +25,7 @@ jobs:
       - run: uv run ruff format --check src tests scripts demo
       - run: uv run mypy src
       - run: uv run pytest -q
+      - run: node --test tests/test_image_policy.mjs
       - run: uv run python scripts/generate_types.py && git diff --exit-code frontend/src/generated.ts
       - run: npm ci && npm run lint && npx prettier --check . && npm run build
         working-directory: frontend
@@ -36,7 +37,7 @@ jobs:
           docker run --rm -v "$PWD:/repo:ro" zricethezav/gitleaks:v8.30.1 dir /repo --config /repo/.gitleaks.toml --redact --no-banner
   integration:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -81,7 +82,7 @@ jobs:
         run: node scripts/verify_sandbox_boundaries.mjs
       - name: Restore an isolated backup copy
         run: node scripts/verify_restore.mjs
-      - name: Audit runtime images (critical gate; retain all other advisories)
+      - name: Audit runtime images and verify remediation evidence
         run: node scripts/verify_images.mjs
       - name: Logs on failure
         if: failure()

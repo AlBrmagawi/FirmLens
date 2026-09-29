@@ -1,19 +1,20 @@
 # Third-party notices
 
-FirmwareLens original source is licensed under Apache-2.0. This does not relicense dependencies or firmware analyzed with it. Lockfiles identify exact resolved Python/npm dependencies. Container operating-system packages retain their installed license/copyright files under `/usr/share/doc`.
+FirmwareLens original source is licensed under Apache-2.0. This does not relicense dependencies or firmware analyzed with it. Lockfiles identify exact resolved Python/npm dependencies. Runtime package provenance is available from Alpine package metadata and its source repositories; analyzer licenses and build manifests are retained under `/usr/local/share/firmwarelens/analyzers`.
 
 | Component | Source and license |
 | --- | --- |
-| Syft | [Anchore Syft](https://github.com/anchore/syft), Apache-2.0; checksummed release binary installed at image build |
-| Grype | [Anchore Grype](https://github.com/anchore/grype), Apache-2.0; advisory feeds retain source-specific terms |
-| squashfs-tools | [Upstream](https://github.com/plougher/squashfs-tools), GPL-2.0; Debian package/source availability applies when redistributing containers |
+| Syft | [Anchore Syft](https://github.com/anchore/syft), Apache-2.0; checksummed release source rebuilt with pinned Go 1.26.8 |
+| Grype | [Anchore Grype](https://github.com/anchore/grype), Apache-2.0; checksummed release source rebuilt with pinned Go 1.26.8; advisory feeds retain source-specific terms |
+| squashfs-tools | [Upstream](https://github.com/plougher/squashfs-tools), GPL-2.0; [Alpine packaging and corresponding source](https://gitlab.alpinelinux.org/alpine/aports/-/tree/3.23-stable/main/squashfs-tools) apply when redistributing containers |
+| zlib | [Upstream](https://zlib.net/), zlib license; the [documented security backport](security/zlib/README.md) retains the upstream license and patch provenance |
 | pyelftools | [Upstream](https://github.com/eliben/pyelftools), public domain / Unlicense |
 | FastAPI, Pydantic, SQLAlchemy, Alembic, Typer, OpenAI Python SDK | Respective upstream packages, MIT |
 | React, Vite, Tailwind CSS | Respective upstream packages, MIT |
 | Lucide icons | [Lucide](https://lucide.dev/license), ISC; source includes icon artwork |
 | Swagger UI | [Swagger UI](https://github.com/swagger-api/swagger-ui), Apache-2.0; LICENSE and NOTICE copied alongside locally bundled documentation assets |
 | PostgreSQL | [PostgreSQL license](https://www.postgresql.org/about/licence/) |
-| Python, Node.js, uv, Debian and build tools | Respective upstream and per-package licenses; not covered by this project's license |
+| Python, Node.js, uv, Alpine and build tools | Respective upstream and per-package licenses; not covered by this project's license |
 
 ## Vendored validation schemas
 
