@@ -1,0 +1,2147 @@
+{
+  "recorded_at": "2026-09-29T16:33:34.568Z",
+  "candidate_commit": "c07fa9afc3887a92365e32159074cddd6c2a24af",
+  "outcome": "Documented local release gates passed; live AI remains unverified",
+  "environment": {
+    "host": "Windows with Docker Desktop Linux/WSL2",
+    "architecture": "x86_64",
+    "node": "v24.18.0",
+    "docker_engine": "29.6.2"
+  },
+  "source_manifest_sha256": "26495a56cb7ba45ed65c10a65832d85db6beb9afb24ee08c05d55ef7b43adb82",
+  "source_manifest": [
+    {
+      "path": ".dockerignore",
+      "sha256": "1f59f96b0d56f0a3a8c0a9b39badff93fef170e3e72720db100279e3859c6303"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "e7bd05595bbb47d11106b7e71ee392557e02090d23982945f10b17102f227059"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "e69d24ae01c276c996b17a58be7f50c7d2ae714fedef3893f05a6a8ad1b8fc29"
+    },
+    {
+      "path": ".gitleaks.toml",
+      "sha256": "e2c53c244075d2ae002719ab8d27b9a368740d14f9dfb62fd9d1040379040381"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "c4d87147933984cf4236e65c8e4b859df63b6713ecc76e832c1f475784c1e97f"
+    },
+    {
+      "path": "Dockerfile.database",
+      "sha256": "735c6451aee88551647a92f1eb323ff6a6df1c287e9e1a04d0c356efc879996c"
+    },
+    {
+      "path": "Dockerfile.sandbox",
+      "sha256": "c9304631083c46ed659aaae063dd8696ceb38fd0a09cf06732a8a64054b554ad"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "47798049caf4175a11a54f3c37401db4ee217896bbb921b164ed15a123ba42a1"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "b5a83038fcdc25df5ea6c557daaf713a5565263a245f20922a221ce455a5473e"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "3af01b69aa9d6ab93297aff079230b12ed1ec0b1f976dafbc36bbc7069f1d7b9"
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "sha256": "2615d488fe70b0d296fe2420979a3485f310fc4f0f74595ec547e76521425033"
+    },
+    {
+      "path": "frontend/src/api.ts",
+      "sha256": "64319ed8e58745c191fbaf938dd1c7aa9d3a691eb18c2d105a38e10fd85e1e76"
+    },
+    {
+      "path": "frontend/src/generated.ts",
+      "sha256": "351a02db0529bdca5ff391f0dbb26065f8e49003abcbc8de91db6a2cf1e954a4"
+    },
+    {
+      "path": "frontend/src/main.tsx",
+      "sha256": "41431cb94a112ca05f90ca6037229d09d4bb8ecc1c27ae3bb3740ace8f01d2a6"
+    },
+    {
+      "path": "frontend/src/styles.css",
+      "sha256": "787cbf5fde0c4db62bee28fb4f5b343eb8ddaa99c9afa27266abceb966362486"
+    },
+    {
+      "path": "frontend/src/ui.tsx",
+      "sha256": "311b62004f6ce97335fc45c1af2699347166a399bfe04fcac39ed408d14da5da"
+    },
+    {
+      "path": "frontend/src/views.tsx",
+      "sha256": "434a06076bd6391243181091a066ba5263cbb76c56a6eee3f979e86b5ac0f0e0"
+    },
+    {
+      "path": "frontend/src/vite-env.d.ts",
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "93010cffa9caee4eefd46f4a7b8b9dc88d3a99187fd6c5e0f90e9ea259844418"
+    },
+    {
+      "path": "scripts/demo_workflow.py",
+      "sha256": "3bfe0983308d47eeb8968aa22982e53abb603abad44973179b16a47b7eac0524"
+    },
+    {
+      "path": "scripts/generate_types.py",
+      "sha256": "e41daddf959ee4029efebac8576f621961432372aeff62822247b1aff1a96dc0"
+    },
+    {
+      "path": "scripts/image_policy.mjs",
+      "sha256": "fb1622a561d18c4de86a6772d51d1946e5c04b265c1158b4a1e3d5a6f85c697b"
+    },
+    {
+      "path": "scripts/init_storage.py",
+      "sha256": "94a4aa035e594939137386df41818cf9214dc0ef730212934960cf1e0d04b613"
+    },
+    {
+      "path": "scripts/migrate_database.mjs",
+      "sha256": "8eee0f0284830e357d1105767c1fabdd91d70c3dcc01949f07f9e22ae2f3e912"
+    },
+    {
+      "path": "scripts/openwrt_integration.py",
+      "sha256": "341f183a5700f25a67c01cf341ddb43999111f823bc19de29af3fb1f639230ea"
+    },
+    {
+      "path": "scripts/record_validation.mjs",
+      "sha256": "d3acb62fc17e7e4c8761163668d5454bcc96f83a02716ccc1e79a0f2b082d28f"
+    },
+    {
+      "path": "scripts/setup.mjs",
+      "sha256": "ea355a7a3c763d2ce7fd597487dd16860dee505f8cda63c5b39a03c8ec8a0922"
+    },
+    {
+      "path": "scripts/validate_exports.py",
+      "sha256": "70d578213f96e0e37cadff9e9db1ae15cae43a3b16459e8c6b71637cb313bfbc"
+    },
+    {
+      "path": "scripts/verify_concurrency.mjs",
+      "sha256": "c16bf18f5849f97d864f19cd6e3cdb80ad3e4380088318865b015e3974c7dd1a"
+    },
+    {
+      "path": "scripts/verify_images.mjs",
+      "sha256": "05ffaef3f1222a1864d9e59402006963a1256f1b6013342afddf50db5c603bb5"
+    },
+    {
+      "path": "scripts/verify_openwrt.mjs",
+      "sha256": "8bf581c341b650f01c91938c6e649ec3999cec5c3ed762079b9a67b32d9fdb32"
+    },
+    {
+      "path": "scripts/verify_operations.mjs",
+      "sha256": "a900d7fbee1fb8f63331615ce47f92cb02536aab4ea29b26d6f093a5869778a5"
+    },
+    {
+      "path": "scripts/verify_reproducibility.mjs",
+      "sha256": "853ea4171ac3f6cd0f8d2f27f693c860b4516b27e791cfa07728a08e50ec0f10"
+    },
+    {
+      "path": "scripts/verify_restore.mjs",
+      "sha256": "89c471428af0980e2baed5dffbdd57fd059a2cb08a05b1884b280363f72be687"
+    },
+    {
+      "path": "scripts/verify_sandbox_boundaries.mjs",
+      "sha256": "575d1f0ed229b3778c1382788b7c273dd5210f7ae4f71bee7a55b2ba248dbf96"
+    },
+    {
+      "path": "scripts/verify_variants.py",
+      "sha256": "567de24428b3dadf4a3b605d00c5b65b1bc4464d481ccc9fb338c4ba93bbca4a"
+    },
+    {
+      "path": "security/zlib/CVE-2026-85091.patch",
+      "sha256": "d5b7cc68f995210f97863128489d693e70e98124d878c8bac792f1c39003e875"
+    },
+    {
+      "path": "security/zlib/LICENSE",
+      "sha256": "e32ff4e00d9d94930537635291da39e7e612703334bf6fde8c7f1686fe8a45a2"
+    },
+    {
+      "path": "security/zlib/README.md",
+      "sha256": "9a2866086386517735a0a269282a14e803152e2d480fc8e2e4c31b9880b1dc7d"
+    },
+    {
+      "path": "security/zlib/build.sh",
+      "sha256": "bc3c5d49ab3e88bbd3e84c8f5b6a8c0758d8bf1d93bb816387e57a2c065fc022"
+    },
+    {
+      "path": "security/zlib/regression.c",
+      "sha256": "a9cb1d31ff52089ddceafd32e5d3512147e152ff64c401c3ed335d6b50cbbb40"
+    },
+    {
+      "path": "src/firmwarelens/__init__.py",
+      "sha256": "216838fb4d229005ce96c480bfe56f00dae967614139272ed9890fea80bf8f9e"
+    },
+    {
+      "path": "src/firmwarelens/ai.py",
+      "sha256": "629652c7889971fbdae3e9b043c2712cbd9371e96b66964a3b29b9379db4387a"
+    },
+    {
+      "path": "src/firmwarelens/api.py",
+      "sha256": "501a32b4a28db1f3b754961d8e6d2e292d802746a18f6ddbc572671f16adbb33"
+    },
+    {
+      "path": "src/firmwarelens/cli.py",
+      "sha256": "c09441731e1a9a17845caa2bfa1c0837a0946f09f2a5e95829eb4fb5cc40ca19"
+    },
+    {
+      "path": "src/firmwarelens/comparison.py",
+      "sha256": "3d5b1d356ce216c791675012193769dacba0fd2f6504f466060714ead1033697"
+    },
+    {
+      "path": "src/firmwarelens/config.py",
+      "sha256": "8338b4825ca5f45eab179460c7ebe77348e339adbc299a03a4e04cfb4a601126"
+    },
+    {
+      "path": "src/firmwarelens/database.py",
+      "sha256": "ecdf83580a14f1d191ab9de02bfe18d42947ccaf1df40f7a93a0fd721fca02c9"
+    },
+    {
+      "path": "src/firmwarelens/doctor_probe.py",
+      "sha256": "86216cb4ad26d98314325c5fe9634e17d94d4b1767810869a14fa60fdeca833f"
+    },
+    {
+      "path": "src/firmwarelens/extraction.py",
+      "sha256": "9c469491adaeecda140be52650dc8037533c838f16d4b6f1acec710db3bfd9ff"
+    },
+    {
+      "path": "src/firmwarelens/pipeline.py",
+      "sha256": "a84b57e2febacccf506e812d1c7905d530d48888c434d20fbcde2becea6902ba"
+    },
+    {
+      "path": "src/firmwarelens/plugins.py",
+      "sha256": "33626fffd3da556c68e577977e98d127dcb31f4f0314f70d64de95d4d511983f"
+    },
+    {
+      "path": "src/firmwarelens/redaction.py",
+      "sha256": "434098e544caed37198035b553fd1c3ea6c9d88fedf93bd2decbaaefb242372b"
+    },
+    {
+      "path": "src/firmwarelens/reports.py",
+      "sha256": "2bd6e859a8ec77436e161d5d9db9d3b9f19635a559295e1ba00250166610cf69"
+    },
+    {
+      "path": "src/firmwarelens/sandbox.py",
+      "sha256": "4b20ef0426f79147221274505f93ee43e55631226c1ee12c30ca7bbf6f8487dc"
+    },
+    {
+      "path": "src/firmwarelens/schemas.py",
+      "sha256": "0af2ca30bdba74e4fbef8c4fd2428011c8e5403d5e7a4cd7afb911f61fd63005"
+    },
+    {
+      "path": "src/firmwarelens/tooling.py",
+      "sha256": "adf457dd66ec8ee450f3de76af0c9976f5af65dff8f31d2f89381089e659ad88"
+    },
+    {
+      "path": "src/firmwarelens/worker.py",
+      "sha256": "49fd075543bcc950fde660469e051dc007e902be260a094648af92f8fb808190"
+    },
+    {
+      "path": "tests/schemas/bom-1.7.schema.json",
+      "sha256": "73308edec3ab2d38bfffd993e96a042b594314143b6971a6e9ed98bbb6bd76ce"
+    },
+    {
+      "path": "tests/schemas/cryptography-defs.schema.json",
+      "sha256": "027b059a729a06d591bac79a584ef04f83fc32d91a826fdba6ad3c98a10e5b44"
+    },
+    {
+      "path": "tests/schemas/jsf-0.82.schema.json",
+      "sha256": "8bae002c25e723db7ee1f26afde680ae1a2b1a8f6b4b4b0fd65dc3becb090aae"
+    },
+    {
+      "path": "tests/schemas/licenses/CycloneDX.txt",
+      "sha256": "6c29f22a4a7385285c6f579ec9f33c5e989f00739d6b257243a0b082ec9447ae"
+    },
+    {
+      "path": "tests/schemas/licenses/SARIF.md",
+      "sha256": "1ee371a08c4bc2a64cf4382990271676835c3d75bc984560a181de54c88471c5"
+    },
+    {
+      "path": "tests/schemas/provenance.json",
+      "sha256": "c667b696450562c0abfd6da03cc6e98175c49c17a74c6ff79d944bde99a2dac1"
+    },
+    {
+      "path": "tests/schemas/sarif-schema-2.1.0.json",
+      "sha256": "c3b4bb2d6093897483348925aaa73af03b3e3f4bd4ca38cef26dcb4212a2682e"
+    },
+    {
+      "path": "tests/schemas/spdx.schema.json",
+      "sha256": "4b345e2329f209f34e960ae2a8e7cb46a166907e6a45e94978565925dc47b359"
+    },
+    {
+      "path": "tests/test_analysis.py",
+      "sha256": "26fafd2f6feca1eec010f048a20060ea4855c89d373133a7a22f3befb183bc53"
+    },
+    {
+      "path": "tests/test_api.py",
+      "sha256": "9632c3b70222a9f190df345f3321dc50c95a8f836b4078c0d4542305bcb9bc6b"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "sha256": "7305738f3553f2f662bb34ab8843239fbe7333efbda3be239d0141a854ef5417"
+    },
+    {
+      "path": "tests/test_image_policy.mjs",
+      "sha256": "bf87dd5409c5aa9a3058a7e628e2061f547bf8c9fa2533592f5ef53e04319c5e"
+    },
+    {
+      "path": "tests/test_providers.py",
+      "sha256": "02d6a146d97f027a1ab7296c1fb231f131cdc9d5a747ed9f6aa624f9ceb7e77c"
+    },
+    {
+      "path": "tests/test_regressions.py",
+      "sha256": "991f2a4ddafc2fc840492e94e0ebb151ab48b5249b2c38e2f3cc8cb27be10afc"
+    },
+    {
+      "path": "tests/test_tooling.py",
+      "sha256": "e3fcac5a5434242f3afae8f28dc430b0f16f9c1ca7cafe30b8734e11cd60d591"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "6c412c3c1f7a96fd22b640984fd278ea7c2b5b0a25e0a990a0e4a80d9361445b"
+    }
+  ],
+  "original_specification_sha256": "68e3d10304386813bb9e01c8f4b8bc6959e7fe675079098c37b2932be37ba9c9",
+  "python": {
+    "junit": {
+      "tests": 62,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "time": 231.325
+    },
+    "coverage_totals": {
+      "covered_lines": 1268,
+      "num_statements": 1801,
+      "percent_covered": 66.65237891127303,
+      "percent_covered_display": "67",
+      "missing_lines": 533,
+      "excluded_lines": 4,
+      "percent_statements_covered": 70.40533037201554,
+      "percent_statements_covered_display": "70",
+      "num_branches": 532,
+      "num_partial_branches": 81,
+      "covered_branches": 287,
+      "missing_branches": 245,
+      "percent_branches_covered": 53.94736842105263,
+      "percent_branches_covered_display": "54"
+    },
+    "per_module_coverage": {
+      "src/firmwarelens/__init__.py": {
+        "covered_lines": 1,
+        "num_statements": 1,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/ai.py": {
+        "covered_lines": 71,
+        "num_statements": 80,
+        "percent_covered": 85.24590163934427,
+        "percent_covered_display": "85",
+        "missing_lines": 9,
+        "excluded_lines": 0,
+        "percent_statements_covered": 88.75,
+        "percent_statements_covered_display": "89",
+        "num_branches": 42,
+        "num_partial_branches": 9,
+        "covered_branches": 33,
+        "missing_branches": 9,
+        "percent_branches_covered": 78.57142857142857,
+        "percent_branches_covered_display": "79"
+      },
+      "src/firmwarelens/api.py": {
+        "covered_lines": 386,
+        "num_statements": 424,
+        "percent_covered": 89.23076923076923,
+        "percent_covered_display": "89",
+        "missing_lines": 38,
+        "excluded_lines": 0,
+        "percent_statements_covered": 91.0377358490566,
+        "percent_statements_covered_display": "91",
+        "num_branches": 96,
+        "num_partial_branches": 16,
+        "covered_branches": 78,
+        "missing_branches": 18,
+        "percent_branches_covered": 81.25,
+        "percent_branches_covered_display": "81"
+      },
+      "src/firmwarelens/cli.py": {
+        "covered_lines": 80,
+        "num_statements": 149,
+        "percent_covered": 49.735449735449734,
+        "percent_covered_display": "50",
+        "missing_lines": 69,
+        "excluded_lines": 0,
+        "percent_statements_covered": 53.691275167785236,
+        "percent_statements_covered_display": "54",
+        "num_branches": 40,
+        "num_partial_branches": 6,
+        "covered_branches": 14,
+        "missing_branches": 26,
+        "percent_branches_covered": 35,
+        "percent_branches_covered_display": "35"
+      },
+      "src/firmwarelens/comparison.py": {
+        "covered_lines": 28,
+        "num_statements": 30,
+        "percent_covered": 90.625,
+        "percent_covered_display": "91",
+        "missing_lines": 2,
+        "excluded_lines": 0,
+        "percent_statements_covered": 93.33333333333333,
+        "percent_statements_covered_display": "93",
+        "num_branches": 2,
+        "num_partial_branches": 1,
+        "covered_branches": 1,
+        "missing_branches": 1,
+        "percent_branches_covered": 50,
+        "percent_branches_covered_display": "50"
+      },
+      "src/firmwarelens/config.py": {
+        "covered_lines": 28,
+        "num_statements": 28,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/database.py": {
+        "covered_lines": 97,
+        "num_statements": 97,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/doctor_probe.py": {
+        "covered_lines": 0,
+        "num_statements": 18,
+        "percent_covered": 0,
+        "percent_covered_display": "0",
+        "missing_lines": 18,
+        "excluded_lines": 0,
+        "percent_statements_covered": 0,
+        "percent_statements_covered_display": "0",
+        "num_branches": 8,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 8,
+        "percent_branches_covered": 0,
+        "percent_branches_covered_display": "0"
+      },
+      "src/firmwarelens/extraction.py": {
+        "covered_lines": 138,
+        "num_statements": 212,
+        "percent_covered": 60.96774193548387,
+        "percent_covered_display": "61",
+        "missing_lines": 74,
+        "excluded_lines": 0,
+        "percent_statements_covered": 65.09433962264151,
+        "percent_statements_covered_display": "65",
+        "num_branches": 98,
+        "num_partial_branches": 21,
+        "covered_branches": 51,
+        "missing_branches": 47,
+        "percent_branches_covered": 52.04081632653061,
+        "percent_branches_covered_display": "52"
+      },
+      "src/firmwarelens/pipeline.py": {
+        "covered_lines": 0,
+        "num_statements": 88,
+        "percent_covered": 0,
+        "percent_covered_display": "0",
+        "missing_lines": 88,
+        "excluded_lines": 0,
+        "percent_statements_covered": 0,
+        "percent_statements_covered_display": "0",
+        "num_branches": 22,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 22,
+        "percent_branches_covered": 0,
+        "percent_branches_covered_display": "0"
+      },
+      "src/firmwarelens/plugins.py": {
+        "covered_lines": 128,
+        "num_statements": 236,
+        "percent_covered": 50,
+        "percent_covered_display": "50",
+        "missing_lines": 108,
+        "excluded_lines": 4,
+        "percent_statements_covered": 54.23728813559322,
+        "percent_statements_covered_display": "54",
+        "num_branches": 100,
+        "num_partial_branches": 14,
+        "covered_branches": 40,
+        "missing_branches": 60,
+        "percent_branches_covered": 40,
+        "percent_branches_covered_display": "40"
+      },
+      "src/firmwarelens/redaction.py": {
+        "covered_lines": 22,
+        "num_statements": 22,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 8,
+        "num_partial_branches": 0,
+        "covered_branches": 8,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/reports.py": {
+        "covered_lines": 60,
+        "num_statements": 62,
+        "percent_covered": 93.75,
+        "percent_covered_display": "94",
+        "missing_lines": 2,
+        "excluded_lines": 0,
+        "percent_statements_covered": 96.7741935483871,
+        "percent_statements_covered_display": "97",
+        "num_branches": 34,
+        "num_partial_branches": 4,
+        "covered_branches": 30,
+        "missing_branches": 4,
+        "percent_branches_covered": 88.23529411764706,
+        "percent_branches_covered_display": "88"
+      },
+      "src/firmwarelens/sandbox.py": {
+        "covered_lines": 30,
+        "num_statements": 119,
+        "percent_covered": 23.312883435582823,
+        "percent_covered_display": "23",
+        "missing_lines": 89,
+        "excluded_lines": 0,
+        "percent_statements_covered": 25.210084033613445,
+        "percent_statements_covered_display": "25",
+        "num_branches": 44,
+        "num_partial_branches": 4,
+        "covered_branches": 8,
+        "missing_branches": 36,
+        "percent_branches_covered": 18.181818181818183,
+        "percent_branches_covered_display": "18"
+      },
+      "src/firmwarelens/schemas.py": {
+        "covered_lines": 91,
+        "num_statements": 91,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/tooling.py": {
+        "covered_lines": 33,
+        "num_statements": 36,
+        "percent_covered": 89.58333333333333,
+        "percent_covered_display": "90",
+        "missing_lines": 3,
+        "excluded_lines": 0,
+        "percent_statements_covered": 91.66666666666667,
+        "percent_statements_covered_display": "92",
+        "num_branches": 12,
+        "num_partial_branches": 2,
+        "covered_branches": 10,
+        "missing_branches": 2,
+        "percent_branches_covered": 83.33333333333333,
+        "percent_branches_covered_display": "83"
+      },
+      "src/firmwarelens/worker.py": {
+        "covered_lines": 75,
+        "num_statements": 108,
+        "percent_covered": 66.41791044776119,
+        "percent_covered_display": "66",
+        "missing_lines": 33,
+        "excluded_lines": 0,
+        "percent_statements_covered": 69.44444444444444,
+        "percent_statements_covered_display": "69",
+        "num_branches": 26,
+        "num_partial_branches": 4,
+        "covered_branches": 14,
+        "missing_branches": 12,
+        "percent_branches_covered": 53.84615384615385,
+        "percent_branches_covered_display": "54"
+      }
+    },
+    "coverage_scope": "Unit, API and CLI suite only; separate container integration processes are not instrumented"
+  },
+  "node_security_policy": {
+    "tests": 3,
+    "passed": 3
+  },
+  "playwright": {
+    "stats": {
+      "startTime": "2026-09-29T16:20:35.131Z",
+      "duration": 211408.58099999998,
+      "expected": 12,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "projects": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ]
+  },
+  "ui_inspection": {
+    "views": [
+      {
+        "view": "dashboard",
+        "violations": []
+      },
+      {
+        "view": "overview",
+        "violations": []
+      },
+      {
+        "view": "findings",
+        "violations": []
+      },
+      {
+        "view": "components",
+        "violations": []
+      },
+      {
+        "view": "files",
+        "violations": []
+      },
+      {
+        "view": "comparison",
+        "violations": []
+      },
+      {
+        "view": "assistant",
+        "violations": []
+      },
+      {
+        "view": "reports",
+        "violations": []
+      },
+      {
+        "view": "settings",
+        "violations": []
+      }
+    ],
+    "page_errors": [],
+    "mobile": {
+      "viewport": 390,
+      "document": 390
+    },
+    "visual_review": [
+      "dashboard",
+      "overview",
+      "findings",
+      "comparison",
+      "mobile"
+    ]
+  },
+  "quality": {
+    "ruff": "passed",
+    "mypy_source_modules": 17,
+    "eslint": "passed",
+    "prettier": "passed",
+    "typescript": "passed",
+    "production_frontend_build": "passed",
+    "generated_api_types": "no drift",
+    "npm_audit": "zero known vulnerabilities",
+    "pip_audit": "zero known dependency vulnerabilities",
+    "gitleaks_source_and_history": "passed"
+  },
+  "runtime_doctor": {
+    "database": "available",
+    "supervisor": {
+      "last_seen": 1790698581.7851467,
+      "alive": true,
+      "sandbox": {
+        "checks": {
+          "linux": true,
+          "memory_limit": true,
+          "cpu_limit": true,
+          "pids_limit": true,
+          "seccomp": true,
+          "cgroup_v2": true,
+          "sandbox_image": true,
+          "isolation_probe": true
+        },
+        "ready": true,
+        "engine": "29.6.2",
+        "image": "sha256:bdf9fedea8059e87ba1af843b2e901a978180d250825f9bc342e1520a68e5cc3",
+        "tools": {
+          "syft": "1.52.0",
+          "grype": "0.119.0",
+          "unsquashfs": "unsquashfs version 4.7.4 (2025/11/09)"
+        },
+        "probe": "non-root, read-only root, empty capabilities, no-new-privileges, network-none verified"
+      }
+    },
+    "limits": {
+      "upload_bytes": 134217728,
+      "job_timeout_seconds": 600,
+      "max_attempts": 2
+    },
+    "ai": {
+      "provider": "disabled",
+      "model": "",
+      "cloud_enabled": false,
+      "key_configured": false,
+      "daily_requests": 50,
+      "context_chars": 24000,
+      "disclosure": "When explicitly enabled, cloud AI receives your redacted question, bounded redacted finding/evidence/component records, coverage, and selected comparison data. Raw firmware is never sent. No automatic model downloads."
+    }
+  },
+  "firmware": {
+    "scans": {
+      "lab": {
+        "id": "bba55eb2-6f91-4710-957c-03863e35547c",
+        "artifact_id": "49a6e3628be86c189623ea510c56a351255b6f714de5740c2c5ee9d19668648d",
+        "status": "complete",
+        "attempts": 1,
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 19,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 8,
+            "low": 2,
+            "info": 0
+          }
+        },
+        "stages": [
+          {
+            "id": "extraction",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Extracted 18 filesystem entries",
+            "duration_ms": 0,
+            "diagnostics": []
+          },
+          {
+            "id": "inventory",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Inventoried 18 entries; text previews bounded to 16 KiB and redacted",
+            "duration_ms": 3,
+            "diagnostics": []
+          },
+          {
+            "id": "configuration",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Produced 9 configuration and credential findings",
+            "duration_ms": 4,
+            "diagnostics": []
+          },
+          {
+            "id": "elf",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Inspected 1 ELF files; absent canary symbols are reported as unknown",
+            "duration_ms": 11,
+            "diagnostics": []
+          },
+          {
+            "id": "components",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Syft identified 1 components; binary cataloger hints remain heuristic",
+            "duration_ms": 1349,
+            "diagnostics": []
+          },
+          {
+            "id": "vulnerabilities",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Grype completed advisory matching; database freshness: fresh",
+            "duration_ms": 21975,
+            "diagnostics": []
+          }
+        ],
+        "limitations": [
+          "Static analysis cannot establish service reachability or exploitability.",
+          "Package-manager-free firmware may have incomplete component inventory.",
+          "Missing canary symbols do not prove absence of stack protection."
+        ],
+        "runtime": {
+          "python": "3.14.7",
+          "syft": "1.52.0",
+          "grype": "0.119.0"
+        },
+        "measurements": {
+          "started_at": "2026-09-29T16:16:29.666167+00:00",
+          "finished_at": "2026-09-29T16:16:53.148950+00:00",
+          "duration_ms": 23487,
+          "peak_rss_kib": 43152,
+          "child_peak_rss_kib": 190764
+        }
+      },
+      "revised": {
+        "id": "28bf8329-9bac-4a5e-83fc-86ba8656c0e3",
+        "artifact_id": "3ef438286e2531c669c32980c6d0f0efe70f1065937e5959363220b1f51055e5",
+        "status": "complete",
+        "attempts": 1,
+        "summary": {
+          "files": 17,
+          "components": 1,
+          "findings": 3,
+          "severity": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 2,
+            "info": 0
+          }
+        },
+        "stages": [
+          {
+            "id": "extraction",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Extracted 17 filesystem entries",
+            "duration_ms": 0,
+            "diagnostics": []
+          },
+          {
+            "id": "inventory",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Inventoried 17 entries; text previews bounded to 16 KiB and redacted",
+            "duration_ms": 1,
+            "diagnostics": []
+          },
+          {
+            "id": "configuration",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Produced 0 configuration and credential findings",
+            "duration_ms": 1,
+            "diagnostics": []
+          },
+          {
+            "id": "elf",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Inspected 1 ELF files; absent canary symbols are reported as unknown",
+            "duration_ms": 4,
+            "diagnostics": []
+          },
+          {
+            "id": "components",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Syft identified 1 components; binary cataloger hints remain heuristic",
+            "duration_ms": 1259,
+            "diagnostics": []
+          },
+          {
+            "id": "vulnerabilities",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Grype completed advisory matching; database freshness: fresh",
+            "duration_ms": 10999,
+            "diagnostics": []
+          }
+        ],
+        "limitations": [
+          "Static analysis cannot establish service reachability or exploitability.",
+          "Package-manager-free firmware may have incomplete component inventory.",
+          "Missing canary symbols do not prove absence of stack protection."
+        ],
+        "runtime": {
+          "python": "3.14.7",
+          "syft": "1.52.0",
+          "grype": "0.119.0"
+        },
+        "measurements": {
+          "started_at": "2026-09-29T16:17:01.834028+00:00",
+          "finished_at": "2026-09-29T16:17:14.232038+00:00",
+          "duration_ms": 12400,
+          "peak_rss_kib": 43132,
+          "child_peak_rss_kib": 178640
+        }
+      }
+    },
+    "comparison": {
+      "new": 0,
+      "persistent": 3,
+      "no_longer_detected": 16,
+      "unknown_due_to_coverage": 0
+    },
+    "formats": [
+      {
+        "input": "lab.tar",
+        "scan_id": "7d86db14-f98f-4a44-9ea6-d7ae8d8c1490",
+        "format": "tar",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1379
+      },
+      {
+        "input": "lab.tar.gz",
+        "scan_id": "e592a071-ad48-46fd-83fd-0835c0a8f754",
+        "format": "gzip",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1514
+      },
+      {
+        "input": "lab-gzip.squashfs",
+        "scan_id": "5a3e90cf-ce97-4e4b-b60e-e75c7762ebf6",
+        "format": "squashfs",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1397
+      },
+      {
+        "input": "lab-xz.squashfs",
+        "scan_id": "36e7b806-3892-424d-a8aa-7ab776b3ae53",
+        "format": "squashfs",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1658
+      },
+      {
+        "input": "lab-zstd.squashfs",
+        "scan_id": "56ddf83b-3cd5-425d-a034-6e8315c6efe3",
+        "format": "squashfs",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1477
+      },
+      {
+        "input": "lab-embedded.bin",
+        "scan_id": "b9152825-0e68-4317-afa8-8278c271a528",
+        "format": "embedded-squashfs",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1455
+      },
+      {
+        "input": "lab.zip",
+        "scan_id": "5f5d6941-7317-479f-a7c4-457421aa814d",
+        "format": "zip",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1481
+      }
+    ],
+    "zip_codecs": [
+      {
+        "codec": "Store",
+        "status": "partial",
+        "scan_id": "d55fb357-effc-452a-b749-fa390826995e"
+      },
+      {
+        "codec": "Deflate",
+        "status": "partial",
+        "scan_id": "51c5a786-8f77-49a4-9e4c-829f70bd9382"
+      },
+      {
+        "codec": "BZIP2",
+        "status": "unsupported",
+        "scan_id": "d54d53be-0fd3-4df2-9db2-a90c143d4417"
+      },
+      {
+        "codec": "LZMA",
+        "status": "unsupported",
+        "scan_id": "34acb138-2605-4345-aa2a-b22be8e0be2c"
+      },
+      {
+        "codec": "Zstandard",
+        "status": "unsupported",
+        "scan_id": "96892842-a6fe-41b6-be14-d89bb469aff5"
+      }
+    ],
+    "openwrt": {
+      "id": "3ffde51a-62b6-4597-8c67-62f18817f94d",
+      "artifact_id": "c27bb3ab1f955b46940b9752a546bede813c9324b73be004202027091065a806",
+      "status": "partial",
+      "attempts": 1,
+      "summary": {
+        "files": 1398,
+        "components": 368,
+        "findings": 143,
+        "severity": {
+          "critical": 1,
+          "high": 10,
+          "medium": 36,
+          "low": 96,
+          "info": 0
+        }
+      },
+      "stages": [
+        {
+          "id": "extraction",
+          "version": "1.0.0",
+          "state": "partial",
+          "message": "Extracted 1398 filesystem entries",
+          "duration_ms": 0,
+          "diagnostics": [
+            "PARTIAL EXTRACTION: unsquashfs reported nonfatal errors; permissions, links or special-file entries may be omitted",
+            "Link metadata retained without dereference: lib64",
+            "Link metadata retained without dereference: var",
+            "Link metadata retained without dereference: www/luci-static/bootstrap-dark",
+            "Link metadata retained without dereference: www/luci-static/bootstrap-light",
+            "Link metadata retained without dereference: www/cgi-bin/cgi-backup",
+            "Link metadata retained without dereference: www/cgi-bin/cgi-download",
+            "Link metadata retained without dereference: www/cgi-bin/cgi-exec",
+            "Link metadata retained without dereference: www/cgi-bin/cgi-upload",
+            "Link metadata retained without dereference: usr/lib64",
+            "Link metadata retained without dereference: usr/share/ucode/luci/template/themes/bootstrap-dark",
+            "Link metadata retained without dereference: usr/share/ucode/luci/template/themes/bootstrap-light",
+            "Link metadata retained without dereference: usr/sbin/brctl",
+            "Link metadata retained without dereference: usr/sbin/chroot",
+            "Link metadata retained without dereference: usr/sbin/crond",
+            "Link metadata retained without dereference: usr/sbin/fsck.ext2",
+            "Link metadata retained without dereference: usr/sbin/fsck.ext3",
+            "Link metadata retained without dereference: usr/sbin/fsck.ext4",
+            "Link metadata retained without dereference: usr/sbin/mkfs.ext2",
+            "Link metadata retained without dereference: usr/sbin/mkfs.ext3",
+            "Link metadata retained without dereference: usr/sbin/mkfs.ext4",
+            "Link metadata retained without dereference: usr/sbin/ntpd",
+            "Link metadata retained without dereference: usr/lib/libblkid.so.1",
+            "Link metadata retained without dereference: usr/lib/libcom_err.so.0",
+            "Link metadata retained without dereference: usr/lib/libe2p.so.2",
+            "Link metadata retained without dereference: usr/lib/libext2fs.so.2",
+            "Link metadata retained without dereference: usr/lib/libf2fs.so.10",
+            "Link metadata retained without dereference: usr/lib/libjansson.so.4",
+            "Link metadata retained without dereference: usr/lib/libjson-c.so.5",
+            "Link metadata retained without dereference: usr/lib/liblucihttp.so.0",
+            "Link metadata retained without dereference: usr/lib/libmbedcrypto.so.7",
+            "Link metadata retained without dereference: usr/lib/libmbedtls.so.14",
+            "Link metadata retained without dereference: usr/lib/libmbedx509.so.1",
+            "Link metadata retained without dereference: usr/lib/libmnl.so.0",
+            "Link metadata retained without dereference: usr/lib/libnftables.so",
+            "Link metadata retained without dereference: usr/lib/libnftables.so.1",
+            "Link metadata retained without dereference: usr/lib/libnftnl.so.11",
+            "Link metadata retained without dereference: usr/lib/libsmartcols.so.1",
+            "Link metadata retained without dereference: usr/lib/libss.so.2",
+            "Link metadata retained without dereference: usr/lib/libuuid.so.1",
+            "Link metadata retained without dereference: usr/bin/[",
+            "Link metadata retained without dereference: usr/bin/[[",
+            "Link metadata retained without dereference: usr/bin/awk",
+            "Link metadata retained without dereference: usr/bin/basename",
+            "Link metadata retained without dereference: usr/bin/clear",
+            "Link metadata retained without dereference: usr/bin/cmp",
+            "Link metadata retained without dereference: usr/bin/crontab",
+            "Link metadata retained without dereference: usr/bin/cut",
+            "Link metadata retained without dereference: usr/bin/dbclient",
+            "Link metadata retained without dereference: usr/bin/dirname",
+            "Link metadata retained without dereference: usr/bin/dropbearkey",
+            "Link metadata retained without dereference: usr/bin/du",
+            "Link metadata retained without dereference: usr/bin/env",
+            "Link metadata retained without dereference: usr/bin/expr",
+            "Link metadata retained without dereference: usr/bin/find",
+            "Link metadata retained without dereference: usr/bin/flock",
+            "Link metadata retained without dereference: usr/bin/free",
+            "Link metadata retained without dereference: usr/bin/head",
+            "Link metadata retained without dereference: usr/bin/hexdump",
+            "Link metadata retained without dereference: usr/bin/id",
+            "Link metadata retained without dereference: usr/bin/killall",
+            "Link metadata retained without dereference: usr/bin/ldd",
+            "Link metadata retained without dereference: usr/bin/less",
+            "Link metadata retained without dereference: usr/bin/logger",
+            "Link metadata retained without dereference: usr/bin/md5sum",
+            "Link metadata retained without dereference: usr/bin/mkfifo",
+            "Link metadata retained without dereference: usr/bin/nc",
+            "Link metadata retained without dereference: usr/bin/nslookup",
+            "Link metadata retained without dereference: usr/bin/pgrep",
+            "Link metadata retained without dereference: usr/bin/printf",
+            "Link metadata retained without dereference: usr/bin/readlink",
+            "Link metadata retained without dereference: usr/bin/reset",
+            "Link metadata retained without dereference: usr/bin/resize",
+            "Link metadata retained without dereference: usr/bin/scp",
+            "Link metadata retained without dereference: usr/bin/seq",
+            "Link metadata retained without dereference: usr/bin/sha256sum",
+            "Link metadata retained without dereference: usr/bin/signify",
+            "Link metadata retained without dereference: usr/bin/sort",
+            "Link metadata retained without dereference: usr/bin/ssh",
+            "Link metadata retained without dereference: usr/bin/strings",
+            "Link metadata retained without dereference: usr/bin/tail",
+            "Link metadata retained without dereference: usr/bin/taskset",
+            "Link metadata retained without dereference: usr/bin/tee",
+            "Link metadata retained without dereference: usr/bin/test",
+            "Link metadata retained without dereference: usr/bin/time",
+            "Link metadata retained without dereference: usr/bin/top",
+            "Link metadata retained without dereference: usr/bin/tr",
+            "Link metadata retained without dereference: usr/bin/ucc",
+            "Link metadata retained without dereference: usr/bin/uniq",
+            "Link metadata retained without dereference: usr/bin/uptime",
+            "Link metadata retained without dereference: usr/bin/utpl",
+            "Link metadata retained without dereference: usr/bin/wc",
+            "Link metadata retained without dereference: usr/bin/wget",
+            "Link metadata retained without dereference: usr/bin/which",
+            "Link metadata retained without dereference: usr/bin/xargs",
+            "Link metadata retained without dereference: usr/bin/yes",
+            "Link metadata retained without dereference: sbin/fw3",
+            "Link metadata retained without dereference: sbin/halt",
+            "Link metadata retained without dereference: sbin/hwclock",
+            "Link metadata retained without dereference: sbin/ifconfig"
+          ]
+        },
+        {
+          "id": "inventory",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Inventoried 1398 entries; text previews bounded to 16 KiB and redacted",
+          "duration_ms": 264,
+          "diagnostics": []
+        },
+        {
+          "id": "configuration",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Produced 10 configuration and credential findings",
+          "duration_ms": 230,
+          "diagnostics": []
+        },
+        {
+          "id": "elf",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Inspected 161 ELF files; absent canary symbols are reported as unknown",
+          "duration_ms": 392,
+          "diagnostics": []
+        },
+        {
+          "id": "components",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Syft identified 368 components; binary cataloger hints remain heuristic",
+          "duration_ms": 1980,
+          "diagnostics": []
+        },
+        {
+          "id": "vulnerabilities",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Grype completed advisory matching; database freshness: fresh",
+          "duration_ms": 11901,
+          "diagnostics": []
+        }
+      ],
+      "limitations": [
+        "Static analysis cannot establish service reachability or exploitability.",
+        "Package-manager-free firmware may have incomplete component inventory.",
+        "Missing canary symbols do not prove absence of stack protection."
+      ],
+      "runtime": {
+        "python": "3.14.7",
+        "syft": "1.52.0",
+        "grype": "0.119.0"
+      },
+      "measurements": {
+        "started_at": "2026-09-29T16:20:28.876080+00:00",
+        "finished_at": "2026-09-29T16:20:44.605861+00:00",
+        "duration_ms": 15977,
+        "peak_rss_kib": 154216,
+        "child_peak_rss_kib": 198776
+      }
+    },
+    "export_schemas": {
+      "releases": [
+        "lab",
+        "revised"
+      ],
+      "formats": [
+        "CycloneDX 1.7",
+        "SARIF 2.1.0"
+      ],
+      "validation": "passed against vendored official schemas with network disabled"
+    },
+    "timing_note": "Single observed local runs, not controlled performance benchmarks"
+  },
+  "concurrency": {
+    "concurrent_uploads": 8,
+    "concurrent_idempotent_submissions": 8,
+    "unique_scans": 1,
+    "scan_attempts": 1,
+    "parallel_reads": 50,
+    "parallel_read_batch_ms": 306,
+    "original_download_integrity": true,
+    "scan_id": "11579484-c4fc-453e-93db-33b1fa7a5bb2"
+  },
+  "sandbox_boundaries": {
+    "missing_intelligence": {
+      "status": "partial",
+      "retained_findings": 12
+    },
+    "file_budget": "failed",
+    "immediate_cancellation": "passed",
+    "wall_time_budget": "passed",
+    "all_test_containers_removed": true
+  },
+  "operational_recovery": {
+    "restart_preserved_scan": "bba55eb2-6f91-4710-957c-03863e35547c",
+    "recovered_scan": "c5640267-8bf2-4762-9720-b396eaa048f2",
+    "recovery_attempts": 2,
+    "cancelled_running_scan": "f41036f2-6ec9-44d8-8195-1d61a44a8a15",
+    "container_removed": true,
+    "threshold_scan": "6dc7abfe-c4d4-401d-be52-96d1e719942a",
+    "threshold_exit": 3
+  },
+  "backup_restore": {
+    "restored_database_image": "firmwarelens-postgres:0.1.0",
+    "database_tables": {
+      "alembic_version": 1,
+      "artifacts": 36,
+      "audit": 18,
+      "conversations": 0,
+      "events": 869,
+      "heartbeats": 1,
+      "project_artifacts": 104,
+      "projects": 55,
+      "scans": 111,
+      "sessions": 47,
+      "triage": 18
+    },
+    "database_rows_equal": true,
+    "dump_bytes": 2409028,
+    "entries": 76,
+    "verified_artifacts": 36,
+    "permissions_and_bytes_equal": true
+  },
+  "database_migration": {
+    "old_image": "postgres:17.11-trixie@sha256:d74eeac9a635390a49bc21bd49fccd973de707e2a53a76ac49b552b8712ec46f",
+    "new_image": "firmwarelens-postgres:0.1.0",
+    "old_volume_retained": "firmwarelens_postgres",
+    "new_volume": "firmwarelens_postgres_alpine17",
+    "metadata_unchanged": true,
+    "table_count": 11,
+    "logical_restore": true,
+    "application_ready": true
+  },
+  "fixture_reproducibility": {
+    "builder_image": "sha256:055a1e6e12ffd88649a4080df4e2b5acab986d28d55c40c5ddb0dff6bf4df7e7",
+    "identical_artifacts": 14,
+    "manifest": {
+      "source_date_epoch": 1700000000,
+      "releases": {
+        "lab": {
+          "compiler_flags": [
+            "-fno-stack-protector",
+            "-no-pie",
+            "-Wl,-z,norelro",
+            "-Wl,-z,execstack"
+          ],
+          "file_count": 10
+        },
+        "revised": {
+          "compiler_flags": [
+            "-fstack-protector-all",
+            "-fPIE",
+            "-pie",
+            "-Wl,-z,relro,-z,now",
+            "-Wl,-z,noexecstack",
+            "-s"
+          ],
+          "file_count": 9
+        }
+      },
+      "sha256": {
+        "lab-embedded.bin": "20df9b38d9c1934948abcc3d048426f1f668bbea81763093052592f37a730957",
+        "lab-gzip.squashfs": "49a6e3628be86c189623ea510c56a351255b6f714de5740c2c5ee9d19668648d",
+        "lab-xz.squashfs": "c948b6eaa925959b94974011c29ade8aaeb37d198971cca95391358ca5375ebc",
+        "lab-zstd.squashfs": "e8da680cf043321a779f9aaf136afcc82766e3e176dad93b42ee5dabfd254d9e",
+        "lab.tar": "12a9c350e4d7167ff4431239b738b1818e882c41e992a1fa40020846de0fad73",
+        "lab.tar.gz": "2b32dd40a3c982329e334afcbf4a387108a1df96aa15531752d403e2b17b5040",
+        "lab.zip": "b4afbcb5c5279c0376699ec91edd1f8df0f305cb791f80de7df56f19ce81c1e8",
+        "revised-embedded.bin": "bc11885f726468258465a55cee963de815ca62b43ef0092e7a5f37bd5fffa023",
+        "revised-gzip.squashfs": "3ef438286e2531c669c32980c6d0f0efe70f1065937e5959363220b1f51055e5",
+        "revised-xz.squashfs": "8b3c14807e1b0bddd455967ccf4dc6a32b7981fe307466575f9593dd12b5b03d",
+        "revised-zstd.squashfs": "ee25b82e24250ac1ff0246e0067c6d9bce2f70bca69f57b99fd79a85bca0835c",
+        "revised.tar": "a6885dec34dc5dc20b2c7689d3e47bcdda68ba4689431dbc2cb596adb1fe83a5",
+        "revised.tar.gz": "50504775b267a25c83a1530f0d10c8373a14da639bff298da62de4f5f4220873",
+        "revised.zip": "e243f1989717e8c92ea8ba128cd235744fafda3cf370b00185ec6ac89f774aa4"
+      }
+    }
+  },
+  "image_audit": {
+    "file": "release-images-qa.json",
+    "status": "passed",
+    "severity": {
+      "app": {
+        "High": 1,
+        "Medium": 8,
+        "Low": 1
+      },
+      "sandbox": {
+        "High": 2,
+        "Medium": 11,
+        "Low": 3
+      },
+      "database": {
+        "High": 1,
+        "Medium": 3
+      }
+    }
+  },
+  "hosted_ci": {
+    "conclusion": "success",
+    "databaseId": 36596449346,
+    "headSha": "c07fa9afc3887a92365e32159074cddd6c2a24af",
+    "jobs": [
+      {
+        "completedAt": "2026-09-29T16:16:51Z",
+        "conclusion": "success",
+        "databaseId": 109502475515,
+        "name": "checks",
+        "startedAt": "2026-09-29T16:16:04Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-29T16:16:06Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-29T16:16:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:06Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-09-29T16:16:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:08Z",
+            "conclusion": "success",
+            "name": "Run astral-sh/setup-uv@v6",
+            "number": 3,
+            "startedAt": "2026-09-29T16:16:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:09Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v4",
+            "number": 4,
+            "startedAt": "2026-09-29T16:16:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:12Z",
+            "conclusion": "success",
+            "name": "Run uv sync --frozen",
+            "number": 5,
+            "startedAt": "2026-09-29T16:16:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:12Z",
+            "conclusion": "success",
+            "name": "Run uv run ruff check src tests scripts demo",
+            "number": 6,
+            "startedAt": "2026-09-29T16:16:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:12Z",
+            "conclusion": "success",
+            "name": "Run uv run ruff format --check src tests scripts demo",
+            "number": 7,
+            "startedAt": "2026-09-29T16:16:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:24Z",
+            "conclusion": "success",
+            "name": "Run uv run mypy src",
+            "number": 8,
+            "startedAt": "2026-09-29T16:16:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:32Z",
+            "conclusion": "success",
+            "name": "Run uv run pytest -q",
+            "number": 9,
+            "startedAt": "2026-09-29T16:16:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:32Z",
+            "conclusion": "success",
+            "name": "Run node --test tests/test_image_policy.mjs",
+            "number": 10,
+            "startedAt": "2026-09-29T16:16:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:32Z",
+            "conclusion": "success",
+            "name": "Run uv run python scripts/generate_types.py && git diff --exit-code frontend/src/generated.ts",
+            "number": 11,
+            "startedAt": "2026-09-29T16:16:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:43Z",
+            "conclusion": "success",
+            "name": "Run npm ci && npm run lint && npx prettier --check . && npm run build",
+            "number": 12,
+            "startedAt": "2026-09-29T16:16:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:45Z",
+            "conclusion": "success",
+            "name": "Run uv run pip-audit",
+            "number": 13,
+            "startedAt": "2026-09-29T16:16:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:46Z",
+            "conclusion": "success",
+            "name": "Run npm audit --audit-level=high",
+            "number": 14,
+            "startedAt": "2026-09-29T16:16:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:48Z",
+            "conclusion": "success",
+            "name": "Secret scan (tracked working tree, including new files)",
+            "number": 15,
+            "startedAt": "2026-09-29T16:16:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:48Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v4",
+            "number": 28,
+            "startedAt": "2026-09-29T16:16:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:49Z",
+            "conclusion": "success",
+            "name": "Post Run astral-sh/setup-uv@v6",
+            "number": 29,
+            "startedAt": "2026-09-29T16:16:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 30,
+            "startedAt": "2026-09-29T16:16:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:49Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 31,
+            "startedAt": "2026-09-29T16:16:49Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/AlBrmagawi/FirmLens/actions/runs/36596449346/job/109502475515"
+      },
+      {
+        "completedAt": "2026-09-29T16:30:54Z",
+        "conclusion": "success",
+        "databaseId": 109502475877,
+        "name": "integration",
+        "startedAt": "2026-09-29T16:16:39Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-29T16:16:41Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-29T16:16:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:41Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-09-29T16:16:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:44Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v4",
+            "number": 3,
+            "startedAt": "2026-09-29T16:16:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:16:44Z",
+            "conclusion": "success",
+            "name": "Run node scripts/setup.mjs",
+            "number": 4,
+            "startedAt": "2026-09-29T16:16:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:17:11Z",
+            "conclusion": "success",
+            "name": "Run docker compose build",
+            "number": 5,
+            "startedAt": "2026-09-29T16:16:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:19:55Z",
+            "conclusion": "success",
+            "name": "Run docker compose --profile tools build sandbox demo",
+            "number": 6,
+            "startedAt": "2026-09-29T16:17:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:20:03Z",
+            "conclusion": "success",
+            "name": "Run docker build -f Dockerfile.sandbox --target checks -t firmwarelens-checks .",
+            "number": 7,
+            "startedAt": "2026-09-29T16:19:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:20:18Z",
+            "conclusion": "success",
+            "name": "Run docker compose up -d",
+            "number": 8,
+            "startedAt": "2026-09-29T16:20:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:20:25Z",
+            "conclusion": "success",
+            "name": "Wait for verified sandbox readiness",
+            "number": 9,
+            "startedAt": "2026-09-29T16:20:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:20:26Z",
+            "conclusion": "success",
+            "name": "Run docker compose exec -T api firmwarelens doctor --json",
+            "number": 10,
+            "startedAt": "2026-09-29T16:20:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:22:07Z",
+            "conclusion": "success",
+            "name": "Prepare current advisory data outside analysis containers",
+            "number": 11,
+            "startedAt": "2026-09-29T16:20:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:22:08Z",
+            "conclusion": "success",
+            "name": "Run docker compose --profile tools run --rm demo",
+            "number": 12,
+            "startedAt": "2026-09-29T16:22:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:22:10Z",
+            "conclusion": "success",
+            "name": "Run node scripts/verify_reproducibility.mjs",
+            "number": 13,
+            "startedAt": "2026-09-29T16:22:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:22:46Z",
+            "conclusion": "success",
+            "name": "Run docker compose exec -T api python scripts/demo_workflow.py",
+            "number": 14,
+            "startedAt": "2026-09-29T16:22:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:23:35Z",
+            "conclusion": "success",
+            "name": "Run docker compose exec -T api python scripts/verify_variants.py",
+            "number": 15,
+            "startedAt": "2026-09-29T16:22:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:23:35Z",
+            "conclusion": "success",
+            "name": "Run docker compose cp api:/exports/. ./exports",
+            "number": 16,
+            "startedAt": "2026-09-29T16:23:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:23:37Z",
+            "conclusion": "success",
+            "name": "Validate actual exports against official schemas",
+            "number": 17,
+            "startedAt": "2026-09-29T16:23:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:26:45Z",
+            "conclusion": "success",
+            "name": "Run npm ci && npx playwright install --with-deps chromium firefox webkit && npm run test:e2e",
+            "number": 18,
+            "startedAt": "2026-09-29T16:23:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:27:08Z",
+            "conclusion": "success",
+            "name": "Inspect all views for accessibility and browser errors",
+            "number": 19,
+            "startedAt": "2026-09-29T16:26:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:29:16Z",
+            "conclusion": "success",
+            "name": "Verify persistence and active cancellation",
+            "number": 20,
+            "startedAt": "2026-09-29T16:27:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:29:21Z",
+            "conclusion": "success",
+            "name": "Verify concurrent uploads and idempotent submissions",
+            "number": 21,
+            "startedAt": "2026-09-29T16:29:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:29:33Z",
+            "conclusion": "success",
+            "name": "Verify sandbox failure boundaries",
+            "number": 22,
+            "startedAt": "2026-09-29T16:29:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:30:22Z",
+            "conclusion": "success",
+            "name": "Restore an isolated backup copy",
+            "number": 23,
+            "startedAt": "2026-09-29T16:29:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:30:49Z",
+            "conclusion": "success",
+            "name": "Audit runtime images and verify remediation evidence",
+            "number": 24,
+            "startedAt": "2026-09-29T16:30:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:30:49Z",
+            "conclusion": "skipped",
+            "name": "Logs on failure",
+            "number": 25,
+            "startedAt": "2026-09-29T16:30:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:30:50Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 26,
+            "startedAt": "2026-09-29T16:30:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:30:52Z",
+            "conclusion": "success",
+            "name": "Run docker compose down",
+            "number": 27,
+            "startedAt": "2026-09-29T16:30:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:30:52Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v4",
+            "number": 53,
+            "startedAt": "2026-09-29T16:30:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:30:52Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 54,
+            "startedAt": "2026-09-29T16:30:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-29T16:30:52Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 55,
+            "startedAt": "2026-09-29T16:30:52Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/AlBrmagawi/FirmLens/actions/runs/36596449346/job/109502475877"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/AlBrmagawi/FirmLens/actions/runs/36596449346"
+  },
+  "hosted_integration_evidence": {
+    "image": {
+      "gate": "No high, critical or unknown matches without verified backport or package-scope evidence; retain all scanner matches",
+      "results": [
+        {
+          "name": "app",
+          "image": "sha256:38cadee2f5464f6e3aba03f4d5085e78a275178812f35ce0df67e8d521d10c7c",
+          "severity": {
+            "High": 1,
+            "Medium": 8,
+            "Low": 1
+          },
+          "evidence": {
+            "zlib_backport_verified": true,
+            "zlib_receipt": "CVE-2026-85091 upstream patch df84af25dc1942490e1d1c899a07619152a46148\nzlib 1.3.2; distribution package version retained\nnegative-control=86 patched-regression=0 dynamic-regression=0 upstream-make-check=passed\n84491168e7e25c1184dd50601aa228979027915308f8156f7f48e9de852dc08d  /usr/lib/libz.so.1.3.2\nd5b7cc68f995210f97863128489d693e70e98124d878c8bac792f1c39003e875  /opt/zlib-backport/CVE-2026-85091.patch\na9cb1d31ff52089ddceafd32e5d3512147e152ff64c401c3ed335d6b50cbbb40  /opt/zlib-backport/regression.c\nfe8507c4f67bf2520775147ecc029893fb5adafb3d8356ed773fd75bfd5c3d9a  /usr/local/share/firmwarelens/backports/zlib-regression\n",
+            "installed_hashes": {
+              "/usr/lib/libz.so.1.3.2": "84491168e7e25c1184dd50601aa228979027915308f8156f7f48e9de852dc08d",
+              "/opt/zlib-backport/CVE-2026-85091.patch": "d5b7cc68f995210f97863128489d693e70e98124d878c8bac792f1c39003e875",
+              "/opt/zlib-backport/regression.c": "a9cb1d31ff52089ddceafd32e5d3512147e152ff64c401c3ed335d6b50cbbb40",
+              "/usr/local/share/firmwarelens/backports/zlib-regression": "fe8507c4f67bf2520775147ecc029893fb5adafb3d8356ed773fd75bfd5c3d9a"
+            },
+            "grype_client_only_verified": false,
+            "installed_zlib_regression": "passed"
+          },
+          "high_and_critical": [
+            {
+              "id": "CVE-2026-85091",
+              "package": "zlib",
+              "installed": "1.3.2-r0",
+              "severity": "High",
+              "fix_state": "",
+              "fixes": [],
+              "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-85091",
+              "disposition": {
+                "status": "fixed_by_backport",
+                "reason": "Upstream fix applied; negative control, patched regression, upstream tests and installed-library hash verified",
+                "source": "https://github.com/madler/zlib/commit/df84af25dc1942490e1d1c899a07619152a46148"
+              }
+            }
+          ],
+          "blocking": []
+        },
+        {
+          "name": "sandbox",
+          "image": "sha256:2fc3de24b0e9fe990735b6a32ae85b7af904d8d15cb307ad0ce836940268e123",
+          "severity": {
+            "High": 2,
+            "Medium": 11,
+            "Low": 3
+          },
+          "evidence": {
+            "zlib_backport_verified": true,
+            "zlib_receipt": "CVE-2026-85091 upstream patch df84af25dc1942490e1d1c899a07619152a46148\nzlib 1.3.2; distribution package version retained\nnegative-control=86 patched-regression=0 dynamic-regression=0 upstream-make-check=passed\n84491168e7e25c1184dd50601aa228979027915308f8156f7f48e9de852dc08d  /usr/lib/libz.so.1.3.2\nd5b7cc68f995210f97863128489d693e70e98124d878c8bac792f1c39003e875  /opt/zlib-backport/CVE-2026-85091.patch\na9cb1d31ff52089ddceafd32e5d3512147e152ff64c401c3ed335d6b50cbbb40  /opt/zlib-backport/regression.c\nfe8507c4f67bf2520775147ecc029893fb5adafb3d8356ed773fd75bfd5c3d9a  /usr/local/share/firmwarelens/backports/zlib-regression\n",
+            "installed_hashes": {
+              "/usr/lib/libz.so.1.3.2": "84491168e7e25c1184dd50601aa228979027915308f8156f7f48e9de852dc08d",
+              "/opt/zlib-backport/CVE-2026-85091.patch": "d5b7cc68f995210f97863128489d693e70e98124d878c8bac792f1c39003e875",
+              "/opt/zlib-backport/regression.c": "a9cb1d31ff52089ddceafd32e5d3512147e152ff64c401c3ed335d6b50cbbb40",
+              "/usr/local/share/firmwarelens/backports/zlib-regression": "fe8507c4f67bf2520775147ecc029893fb5adafb3d8356ed773fd75bfd5c3d9a"
+            },
+            "grype_client_only_verified": true,
+            "grype_docker_packages": [
+              "github.com/docker/go-connections/tlsconfig",
+              "github.com/docker/cli/cli/config/types",
+              "github.com/docker/docker-credential-helpers/credentials",
+              "github.com/docker/docker-credential-helpers/client",
+              "github.com/docker/cli/cli/config/credentials",
+              "github.com/docker/cli/cli/config/memorystore",
+              "github.com/docker/cli/cli/config/configfile",
+              "github.com/docker/cli/cli/config",
+              "github.com/moby/sys/userns",
+              "github.com/moby/sys/mountinfo",
+              "github.com/moby/sys/user",
+              "github.com/moby/locker",
+              "github.com/moby/sys/signal",
+              "github.com/docker/cli/cli/connhelper/commandconn",
+              "github.com/docker/cli/cli/connhelper/internal/syntax",
+              "github.com/docker/cli/cli/connhelper/ssh",
+              "github.com/docker/cli/cli/connhelper",
+              "github.com/docker/go-connections/sockets",
+              "github.com/moby/moby/api/types",
+              "github.com/moby/moby/api/types/build",
+              "github.com/moby/moby/api/types/checkpoint",
+              "github.com/moby/moby/api/types/common",
+              "github.com/docker/go-units",
+              "github.com/moby/docker-image-spec/specs-go/v1",
+              "github.com/moby/moby/api/types/blkiodev",
+              "github.com/moby/moby/api/types/mount",
+              "github.com/moby/moby/api/types/network",
+              "github.com/moby/moby/api/types/storage",
+              "github.com/moby/moby/api/types/container",
+              "github.com/moby/moby/api/types/events",
+              "github.com/moby/moby/api/types/image",
+              "github.com/moby/moby/api/types/jsonstream",
+              "github.com/moby/moby/api/types/plugin",
+              "github.com/moby/moby/api/types/registry",
+              "github.com/moby/moby/api/types/swarm",
+              "github.com/moby/moby/api/types/volume",
+              "github.com/moby/moby/api/types/system",
+              "github.com/moby/moby/client/internal",
+              "github.com/moby/moby/client/internal/mod",
+              "github.com/moby/moby/client/internal/timestamp",
+              "github.com/moby/moby/client/pkg/versions",
+              "github.com/moby/moby/client",
+              "github.com/docker/docker/api/types/versions",
+              "github.com/docker/docker/api/types/filters",
+              "github.com/docker/docker/api/types/blkiodev",
+              "github.com/docker/docker/api/types/common",
+              "github.com/docker/docker/api/types/mount",
+              "github.com/docker/docker/api/types/network",
+              "github.com/docker/docker/api/types/storage",
+              "github.com/docker/docker/api/types/strslice",
+              "github.com/docker/go-connections/nat",
+              "github.com/docker/docker/api/types/container",
+              "github.com/docker/docker/api/types/image",
+              "github.com/docker/docker/api",
+              "github.com/docker/docker/api/types/registry",
+              "github.com/docker/docker/api/types/build",
+              "github.com/docker/docker/api/types/swarm/runtime",
+              "github.com/docker/docker/api/types/swarm",
+              "github.com/docker/docker/api/types/volume",
+              "github.com/docker/docker/api/types",
+              "github.com/docker/docker/api/types/checkpoint",
+              "github.com/docker/docker/api/types/events",
+              "github.com/docker/docker/api/types/system",
+              "github.com/docker/docker/api/types/time",
+              "github.com/docker/docker/client"
+            ],
+            "installed_zlib_regression": "passed"
+          },
+          "high_and_critical": [
+            {
+              "id": "CVE-2026-85091",
+              "package": "zlib",
+              "installed": "1.3.2-r0",
+              "severity": "High",
+              "fix_state": "",
+              "fixes": [],
+              "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-85091",
+              "disposition": {
+                "status": "fixed_by_backport",
+                "reason": "Upstream fix applied; negative control, patched regression, upstream tests and installed-library hash verified",
+                "source": "https://github.com/madler/zlib/commit/df84af25dc1942490e1d1c899a07619152a46148"
+              }
+            },
+            {
+              "id": "GO-2026-4887",
+              "package": "github.com/docker/docker",
+              "installed": "v28.5.2+incompatible",
+              "severity": "High",
+              "fix_state": "",
+              "fixes": [],
+              "source": "https://github.com/moby/moby/security/advisories/GHSA-x744-4wpc-v9h2",
+              "disposition": {
+                "status": "not_affected",
+                "reason": "Docker daemon AuthZ middleware is absent from Grype's compiled package graph; the client library does not implement the affected server",
+                "source": "https://github.com/moby/moby/security/advisories/GHSA-x744-4wpc-v9h2"
+              }
+            }
+          ],
+          "blocking": []
+        },
+        {
+          "name": "database",
+          "image": "sha256:4248b1b35f1e480169257c17d2684c9e1b940f73ad73f2a843b3439a20da0f30",
+          "severity": {
+            "High": 1,
+            "Medium": 3
+          },
+          "evidence": {
+            "zlib_backport_verified": true,
+            "zlib_receipt": "CVE-2026-85091 upstream patch df84af25dc1942490e1d1c899a07619152a46148\nzlib 1.3.2; distribution package version retained\nnegative-control=86 patched-regression=0 dynamic-regression=0 upstream-make-check=passed\ncc1ebd949e29724dd61bc4e7183bb3313d5ceb5b3adc84476ab1106ff28b8d09  /usr/lib/libz.so.1.3.2\nd5b7cc68f995210f97863128489d693e70e98124d878c8bac792f1c39003e875  /opt/zlib-backport/CVE-2026-85091.patch\na9cb1d31ff52089ddceafd32e5d3512147e152ff64c401c3ed335d6b50cbbb40  /opt/zlib-backport/regression.c\n1cdbeae0e066e8cd690023aa98249d681396f4e2afb6bd89a35675acb7933590  /usr/local/share/firmwarelens/backports/zlib-regression\n",
+            "installed_hashes": {
+              "/usr/lib/libz.so.1.3.2": "cc1ebd949e29724dd61bc4e7183bb3313d5ceb5b3adc84476ab1106ff28b8d09",
+              "/opt/zlib-backport/CVE-2026-85091.patch": "d5b7cc68f995210f97863128489d693e70e98124d878c8bac792f1c39003e875",
+              "/opt/zlib-backport/regression.c": "a9cb1d31ff52089ddceafd32e5d3512147e152ff64c401c3ed335d6b50cbbb40",
+              "/usr/local/share/firmwarelens/backports/zlib-regression": "1cdbeae0e066e8cd690023aa98249d681396f4e2afb6bd89a35675acb7933590"
+            },
+            "grype_client_only_verified": false,
+            "installed_zlib_regression": "passed"
+          },
+          "high_and_critical": [
+            {
+              "id": "CVE-2026-85091",
+              "package": "zlib",
+              "installed": "1.3.2-r0",
+              "severity": "High",
+              "fix_state": "",
+              "fixes": [],
+              "source": "https://nvd.nist.gov/vuln/detail/CVE-2026-85091",
+              "disposition": {
+                "status": "fixed_by_backport",
+                "reason": "Upstream fix applied; negative control, patched regression, upstream tests and installed-library hash verified",
+                "source": "https://github.com/madler/zlib/commit/df84af25dc1942490e1d1c899a07619152a46148"
+              }
+            }
+          ],
+          "blocking": []
+        }
+      ]
+    },
+    "restore": {
+      "restored_database_image": "firmwarelens-postgres:0.1.0",
+      "database_tables": {
+        "alembic_version": 1,
+        "artifacts": 16,
+        "audit": 3,
+        "conversations": 0,
+        "events": 198,
+        "heartbeats": 1,
+        "project_artifacts": 25,
+        "projects": 10,
+        "scans": 27,
+        "sessions": 7,
+        "triage": 3
+      },
+      "database_rows_equal": true,
+      "dump_bytes": 121198,
+      "entries": 36,
+      "verified_artifacts": 16,
+      "permissions_and_bytes_equal": true
+    },
+    "concurrency": {
+      "concurrent_uploads": 8,
+      "concurrent_idempotent_submissions": 8,
+      "unique_scans": 1,
+      "scan_attempts": 1,
+      "parallel_reads": 50,
+      "parallel_read_batch_ms": 253,
+      "original_download_integrity": true,
+      "scan_id": "beb8f7f8-1adb-4af3-a344-9f9051e09372"
+    },
+    "operations": {
+      "restart_preserved_scan": "062509d8-caf0-47a4-a842-2fa68104af01",
+      "recovered_scan": "6923ba77-a9ad-4eb3-9793-2598cd0ef0ee",
+      "recovery_attempts": 2,
+      "cancelled_running_scan": "49c39d7d-f0c5-4c41-ab4a-b3cfe4012de8",
+      "container_removed": true,
+      "threshold_scan": "88bf282e-b105-41c6-b818-d0ce57761b53",
+      "threshold_exit": 3
+    },
+    "sandbox": {
+      "missing_intelligence": {
+        "status": "partial",
+        "retained_findings": 12
+      },
+      "file_budget": "failed",
+      "immediate_cancellation": "passed",
+      "wall_time_budget": "passed",
+      "all_test_containers_removed": true
+    },
+    "zip-codec": [
+      {
+        "codec": "Store",
+        "status": "partial",
+        "scan_id": "62398c15-24d9-4ae3-9e48-1049a4082e32"
+      },
+      {
+        "codec": "Deflate",
+        "status": "partial",
+        "scan_id": "ecc9301e-7a77-4992-88e0-fa5ca251dc61"
+      },
+      {
+        "codec": "BZIP2",
+        "status": "unsupported",
+        "scan_id": "650a4856-0f69-4b4e-a6c3-cad6cd469359"
+      },
+      {
+        "codec": "LZMA",
+        "status": "unsupported",
+        "scan_id": "0a91db54-a2e9-4391-8f48-fd43435b95ea"
+      },
+      {
+        "codec": "Zstandard",
+        "status": "unsupported",
+        "scan_id": "f050802e-d650-45d0-aff9-dfce83bde3ca"
+      }
+    ],
+    "reproducibility": {
+      "builder_image": "sha256:50f06ed397e8bd114d13c807c205dba6267e78b7f45b731c3fa6642ec3dcfbb7",
+      "identical_artifacts": 14,
+      "manifest": {
+        "source_date_epoch": 1700000000,
+        "releases": {
+          "lab": {
+            "compiler_flags": [
+              "-fno-stack-protector",
+              "-no-pie",
+              "-Wl,-z,norelro",
+              "-Wl,-z,execstack"
+            ],
+            "file_count": 10
+          },
+          "revised": {
+            "compiler_flags": [
+              "-fstack-protector-all",
+              "-fPIE",
+              "-pie",
+              "-Wl,-z,relro,-z,now",
+              "-Wl,-z,noexecstack",
+              "-s"
+            ],
+            "file_count": 9
+          }
+        },
+        "sha256": {
+          "lab-embedded.bin": "20df9b38d9c1934948abcc3d048426f1f668bbea81763093052592f37a730957",
+          "lab-gzip.squashfs": "49a6e3628be86c189623ea510c56a351255b6f714de5740c2c5ee9d19668648d",
+          "lab-xz.squashfs": "c948b6eaa925959b94974011c29ade8aaeb37d198971cca95391358ca5375ebc",
+          "lab-zstd.squashfs": "e8da680cf043321a779f9aaf136afcc82766e3e176dad93b42ee5dabfd254d9e",
+          "lab.tar": "12a9c350e4d7167ff4431239b738b1818e882c41e992a1fa40020846de0fad73",
+          "lab.tar.gz": "2b32dd40a3c982329e334afcbf4a387108a1df96aa15531752d403e2b17b5040",
+          "lab.zip": "b4afbcb5c5279c0376699ec91edd1f8df0f305cb791f80de7df56f19ce81c1e8",
+          "revised-embedded.bin": "bc11885f726468258465a55cee963de815ca62b43ef0092e7a5f37bd5fffa023",
+          "revised-gzip.squashfs": "3ef438286e2531c669c32980c6d0f0efe70f1065937e5959363220b1f51055e5",
+          "revised-xz.squashfs": "8b3c14807e1b0bddd455967ccf4dc6a32b7981fe307466575f9593dd12b5b03d",
+          "revised-zstd.squashfs": "ee25b82e24250ac1ff0246e0067c6d9bce2f70bca69f57b99fd79a85bca0835c",
+          "revised.tar": "a6885dec34dc5dc20b2c7689d3e47bcdda68ba4689431dbc2cb596adb1fe83a5",
+          "revised.tar.gz": "50504775b267a25c83a1530f0d10c8373a14da639bff298da62de4f5f4220873",
+          "revised.zip": "e243f1989717e8c92ea8ba128cd235744fafda3cf370b00185ec6ac89f774aa4"
+        }
+      }
+    }
+  },
+  "unverified": [
+    "Live OpenAI/Ollama inference and real-model prompt-injection resistance",
+    "ARM64 host execution",
+    "Production-scale load",
+    "Exhaustive accessibility",
+    "Independent penetration testing"
+  ]
+}

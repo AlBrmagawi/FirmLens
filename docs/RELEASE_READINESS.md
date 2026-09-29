@@ -1,33 +1,63 @@
 # Release qualification — 2026-09-29
 
-The updated release candidate is undergoing final integration and hosted CI checks. The earlier failed image audit is preserved in [RELEASE_AUDIT_INITIAL.md](RELEASE_AUDIT_INITIAL.md); it describes the previous Debian images.
+**All documented local and hosted release gates pass for the supported local research workflow.** Live AI remains unverified until a real provider is configured. This is not a claim of zero bugs, universal firmware support or production certification.
 
-The candidate uses Python 3.14.7, PostgreSQL 17.11, Alpine runtime images, squashfs-tools 4.7.4, Syft 1.52.0 and Grype 0.119.0 rebuilt with Go 1.26.8. Base images and analyzer source archives are pinned. All three runtime images build and test the upstream zlib security backport.
+Tested implementation: `c07fa9afc3887a92365e32159074cddd6c2a24af`. The [GitHub run](https://github.com/AlBrmagawi/FirmLens/actions/runs/36596449346), [machine-readable QA record](validation/release-qa.json) and [runtime image evidence](validation/release-images-qa.json) identify the actual checks and artifacts. Documentation updates report those measurements. The [initial failed audit](RELEASE_AUDIT_INITIAL.md) remains available as history.
 
-## Completed candidate checks
+## Verified checks
 
-- 59 Python unit/API/CLI/provider-contract tests passed without warnings.
-- Three image-policy tests passed, including rejection of missing evidence, changed packages, unexpected artifact locations and affected Docker server packages.
-- Ruff lint/formatting, mypy across 17 modules, generated API types, ESLint, Prettier, TypeScript and the production frontend build passed.
-- npm and pip audits found no known application dependency vulnerabilities; source and Git history passed Gitleaks.
-- An isolated restore into the patched Alpine database matched all 11 public tables and 21 stored artifacts, including bytes, ownership and permissions.
-- Live database migration passed with every public table unchanged, the original volume retained and application readiness verified.
-- All three runtime image gates passed: zero critical matches and zero unresolved high/unknown matches. Raw high matches were app 1, sandbox 2, database 1; each received a verified backport or unaffected-code disposition. Raw medium/low counts were 8/1, 11/3 and 3/0 respectively.
+| Area | Result |
+| --- | --- |
+| Python unit, API, CLI and provider contracts | 62 passed; zero failures, errors or skips; Python 3.14.7 |
+| Image-policy regression tests | 3 passed, including missing/tampered evidence, changed packages, unexpected artifact locations and affected server packages |
+| Source quality | Ruff lint/format, mypy for 17 modules, generated API types, ESLint, Prettier, TypeScript and production UI build passed |
+| Browsers and UX | 12 scenarios passed across Chromium, Firefox and WebKit, with zero retries/flaky results; upload, analysis, evidence, persistent triage, comparison, exports, keyboard dialogs and upload-error recovery |
+| Accessibility and responsive layout | Nine views with zero Axe violations and page errors; tested widths 320, 390, 768 and 1440 px; screenshots visually reviewed; wide tables scroll within their containers |
+| Firmware matrix | All seven input formats passed real extraction/inventory; 12 static findings and one component per lab input |
+| ZIP boundaries | Real Store/Deflate tar bundles analyzed successfully; real BZIP2, LZMA and Zstandard members returned an actionable unsupported result |
+| Prepared advisory matching | Actual Syft/Grype scans: lab 19 findings, revised 3; comparison 16 no longer detected and 3 persistent |
+| Real OpenWrt sample | Explicit partial coverage: 1,398 entries, 368 components, 143 findings; all stages after extraction succeeded |
+| Export schemas | Both releases' CycloneDX 1.7 and SARIF 2.1.0 exports passed official schema validation offline |
+| Reproducibility | All 14 artifacts matched across two fresh builder runs and matched the prepared demo files |
+| Concurrency | Eight uploads and eight idempotent submissions produced one scan/one attempt; 50 parallel reads passed; original-download hash matched |
+| Sandbox failures | Missing intelligence, file budget, cancellation and wall-time limits produced the expected outcomes; all test containers removed |
+| Recovery | Immutable results survived restart; forced worker crash recovered on attempt 2; active cancellation removed its container; severity-threshold CLI exit was 3 |
+| Backup and migration | Isolated restore matched all 11 public tables and 36 stored artifacts, including bytes/ownership/permissions; Debian-to-Alpine logical migration preserved every table and retained the original volume |
+| Dependency and secret audits | npm/pip audits found no known application dependency vulnerabilities; Gitleaks found no source/history secrets; private outputs and dependencies are absent from tracked files |
+| Runtime image policy | Passed for application, sandbox and database: zero critical matches and zero unresolved high/unknown matches |
+| Hosted GitHub Actions | Both source-quality and full container-integration jobs passed on Ubuntu 24.04 for the tested implementation revision |
 
-The firmware, browser and recovery matrix is being repeated against the candidate. Hosted GitHub Actions must pass on the intended source revision before its distribution gate is recorded as passed. Previous runtime results remain historical evidence.
+Unit coverage is **66.65% combined line/branch coverage** (70.41% statements, 53.95% branches). Separate container integration processes are not instrumented in this percentage. Accessibility automation covers the Axe rules exercised, not exhaustive accessibility. Recorded timings are observations from local runs, not controlled performance benchmarks.
 
-## Remediation and quality controls
+## Fixes and runtime provenance
 
-Non-ASCII tokens and security headers now produce authentication/validation errors instead of server errors. Regression tests reproduced the original failure before the fix. The test client uses Starlette's supported dependency. Restore comparisons use explicit byte ordering so glibc/musl collation differences do not masquerade as changed rows.
+The release uses pinned Alpine runtime bases, Python 3.14.7 and PostgreSQL 17.11. Syft 1.52.0 and Grype 0.119.0 are rebuilt from checksummed upstream archives with Go 1.26.8. SquashFS tools are 4.7.4. The local host used Docker Engine 29.6.2 on Windows/WSL2 x86-64.
 
-The database migration uses a logical dump and a separate volume. It verifies table contents, retains the original volume, and checks application readiness before declaring success. See [operations](OPERATIONS.md).
+- Non-ASCII login tokens, bearer/CSRF headers and upload digests now return authentication/validation errors instead of server errors. Regression tests failed before the fix and pass afterward.
+- ZIP members outside Store/Deflate are rejected before opening a decompressor. Unit regressions and actual encoded-archive integrations verify the boundary.
+- The upstream zlib fix is compiled into each runtime. Build checks include a failing unpatched negative control, upstream tests and passing patched tests. The image gate reruns the installed shared-library regression and verifies the recorded source/file hashes.
+- Database migration restores into a new volume, verifies rows before cutover, checks readiness and retains the original volume. Restore digests use explicit byte ordering across glibc/musl; startup checks wait for a real query on the final TCP listener.
+- Image audits return JSON on stdout for the host process to write. This fixes the Linux report-directory ownership failure found by GitHub CI and removes the scanner's writable host mount.
+- Earlier worker shutdown/retry, cancellation timestamp, dialog focus/Escape and long-filename fixes remain covered.
 
-The [image policy](QUALITY.md) blocks unresolved critical, high and unknown-severity findings. Every raw scanner match is retained. The zlib disposition requires the reviewed upstream patch, installed file hashes and an actual shared-library regression. The Docker advisory disposition requires evidence that affected daemon authorization code is absent from Grype's production package graph.
+## Retained advisory matches
 
-Medium and low package matches remain visible for review. FirmwareLens copies tar regular-file contents itself, rejects unsafe paths, omits links and accepts only Store/Deflate ZIP compression. Its firmware workflow does not use POP3, urllib password managers or BusyBox wget with firmware-controlled URLs. These boundaries reduce exposure; they do not certify every use of the runtime libraries.
+These are raw package/advisory counts. The gate does not delete scanner findings.
 
-## Repeating the checks
+| Runtime | Critical | High | Medium | Low | Unresolved high/critical/unknown |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Application / supervisor | 0 | 1 | 8 | 1 | 0 |
+| Analysis sandbox | 0 | 2 | 11 | 3 | 0 |
+| PostgreSQL | 0 | 1 | 3 | 0 | 0 |
 
-Follow [CONTRIBUTING.md](../CONTRIBUTING.md), prepare the demo and advisory database using [OPERATIONS.md](OPERATIONS.md), and run the workflow in `.github/workflows/ci.yml`. Run operational scripts sequentially because they restart services and interrupt test jobs. `node scripts/verify_openwrt.mjs` adds the pinned real-firmware exercise after preparing its sample.
+CVE-2026-85091 is recorded as `fixed_by_backport` only after verifying the specific [upstream patch and regression evidence](../security/zlib/README.md). GO-2026-4887 concerns [Docker daemon authorization middleware](https://github.com/moby/moby/security/advisories/GHSA-x744-4wpc-v9h2); Grype's recorded production package graph excludes the affected server/authorization packages. Its disposition is scoped to that binary, module version and compiler. Operators must patch their host Docker Engine separately.
 
-Live OpenAI/Ollama inference remains unverified until a real provider is configured. No model is downloaded automatically. ARM64 hardware, production-scale load, exhaustive accessibility and independent penetration testing remain outside the measured support claims. Passing the documented gates does not establish absence of all bugs or vulnerabilities.
+Medium/low matches remain disclosed in the image evidence and full scanner reports. FirmwareLens copies tar regular-file contents itself, rejects unsafe paths, omits links and now explicitly restricts ZIP codecs. The firmware workflow does not use POP3, urllib password managers or BusyBox wget with firmware-controlled URLs. These boundaries reduce exposure; they do not certify every possible use of the runtime libraries. Review all matches when changing dependencies or intelligence.
+
+## Scope and reproduction
+
+Follow [CONTRIBUTING.md](../CONTRIBUTING.md), prepare fixtures and intelligence using [OPERATIONS.md](OPERATIONS.md), and run the workflow in `.github/workflows/ci.yml`. [QUALITY.md](QUALITY.md) defines the gates. Run operational scripts sequentially because they restart services and interrupt test jobs. `node scripts/verify_openwrt.mjs` adds the pinned real-firmware exercise after preparing its sample.
+
+Live OpenAI/Ollama inference and real-model prompt-injection resistance remain unverified: no provider/model is configured, cloud AI is disabled, and no model was downloaded automatically. Adapter tests use test doubles. ARM64 hardware, production-scale load and independent penetration testing remain outside the measured support claims.
+
+Full local reports and private backups remain under ignored `exports/`; browser artifacts remain under ignored frontend report directories. No credentials, firmware, advisory database, database dump or installed dependency tree is committed.

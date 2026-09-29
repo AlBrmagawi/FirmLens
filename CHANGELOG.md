@@ -8,9 +8,9 @@
 - Block unresolved high, critical and unknown container advisories; retain raw matches and verify narrowly scoped remediation evidence.
 - Migrate Debian PostgreSQL data by logical restore into a separate Alpine volume, with row verification and the original volume retained.
 - Use the supported Starlette test client dependency and compare database restore contents with locale-independent ordering.
+- Write image-audit JSON through the host process, avoiding Linux report-directory ownership failures and removing the scanner's writable host mount.
 - Bound graceful-shutdown retries and persist cancellation timestamps correctly.
 - Preserve uploads on Escape, restore dialog focus, and accept long default filenames in UI/CLI flows.
-- Update Python/Debian and PostgreSQL runtime images; verify an isolated restore and preserve database metadata through the upgrade.
 - Expand unit, cross-browser, concurrency, sandbox-failure, restore and container-audit checks. Record current outcomes in [the release audit](docs/RELEASE_READINESS.md).
 
 ## 0.1.0 — initial implementation

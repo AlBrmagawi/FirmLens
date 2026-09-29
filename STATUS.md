@@ -2,7 +2,7 @@
 
 All six implementation milestones are delivered: isolated analysis, shared CLI/API, evidence and vulnerability correlation, durable PostgreSQL jobs, the React workbench, and optional provider adapters with exports.
 
-Final release qualification is in progress. The [release record](docs/RELEASE_READINESS.md) records completed checks and outstanding gates. The [original implementation validation](docs/VALIDATION.md) and [first release audit](docs/RELEASE_AUDIT_INITIAL.md) are preserved as history.
+Release qualification is complete for the supported local research workflow: 62 Python tests, 3 image-policy tests, 12 browser scenarios, real firmware/export checks, recovery/restore and all runtime image gates passed. Both hosted GitHub Actions jobs passed. The [release record](docs/RELEASE_READINESS.md) links the tested revision, exact evidence and remaining limits. The [original implementation validation](docs/VALIDATION.md) and [first release audit](docs/RELEASE_AUDIT_INITIAL.md) are preserved as history.
 
 The latest changes address malformed authentication input, runtime package advisories, analyzer compiler advisories, test-client compatibility and Debian-to-Alpine database migration. The image gate verifies remediation evidence and rejects unresolved high, critical and unknown matches.
 

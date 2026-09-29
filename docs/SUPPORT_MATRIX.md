@@ -8,7 +8,7 @@ This release supports a bounded set of Linux firmware containers. It does not pr
 | Embedded SquashFS | Validated superblock/bytes-used, bounded discovery | Synthetic payload at offset 4096 passed |
 | Tar root filesystem | Header/checksum signature, regular-file extraction and original metadata | USTAR fixture passed |
 | Gzip tar root filesystem | Bounded decompression followed by tar validation | Deterministic fixture passed |
-| ZIP firmware bundle | Supported payload discovery, Store/Deflate support, bounded nesting/expansion | Deflate bundle containing raw SquashFS passed |
+| ZIP firmware bundle | Supported payload discovery, Store/Deflate support, bounded nesting/expansion | Deflate/SquashFS and Store/Deflate tar bundles passed; real BZIP2, LZMA and Zstandard members returned unsupported before decompression |
 | Gzip raw filesystem | Prepare/decompress externally using pinned integration recipe | Not accepted as gzip tar |
 | Other/encrypted/damaged filesystems | Explicit unsupported/failure or partial result | Adversarial unit cases and unsupported signature tests |
 

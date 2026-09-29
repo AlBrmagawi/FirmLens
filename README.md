@@ -1,5 +1,7 @@
 # FirmwareLens
 
+[![Validate FirmwareLens](https://github.com/AlBrmagawi/FirmLens/actions/workflows/ci.yml/badge.svg)](https://github.com/AlBrmagawi/FirmLens/actions/workflows/ci.yml)
+
 **Firmware Vulnerability Researcher with an AI Assistant**
 
 A local workbench for authorized Linux IoT firmware research. Upload a filesystem, follow the evidence behind each finding, compare releases, and export a report that records both the results and the analysis gaps.
@@ -82,9 +84,9 @@ For automation, `--fail-on high` returns exit 3 for findings at/above that thres
 
 ## Verified results and limits
 
-The latest [release qualification](docs/RELEASE_READINESS.md) records checks on the updated Alpine runtime, rebuilt analyzers and tested security backport. Final integration and hosted CI checks are in progress. The [quality policy](docs/QUALITY.md) defines the release gates and the evidence required to pass them.
+The latest [release qualification](docs/RELEASE_READINESS.md) passes the documented local and hosted CI gates: **62 Python tests, 3 image-policy tests and 12 browser scenarios**, plus firmware integrations, export schemas, recovery, restore and runtime image auditing. The [quality policy](docs/QUALITY.md) defines the gates and their evidence. Optional live AI remains unverified until a provider is configured.
 
-On the recorded 2026-09-29 database, the synthetic lab produced **19 findings** and the revised release **3**, with 16 no longer detected and 3 persistent. Pipeline times were **15.252 s** and **10.052 s** in single measured runs. Seven input variants passed real extraction/inventory checks. A pinned OpenWrt 23.05.5 image was also analyzed with explicit partial extraction coverage. These are reproducible research examples, not accuracy or device exploitability claims.
+On the recorded 2026-09-29 database, the synthetic lab produced **19 findings** and the revised release **3**, with 16 no longer detected and 3 persistent. Seven input variants and five ZIP codec cases passed real pipeline checks. A pinned OpenWrt 23.05.5 image was also analyzed with explicit partial extraction coverage. These are reproducible research examples, not accuracy or device exploitability claims. The release record includes measured timings and tool/database identities.
 
 The [original validation record](docs/VALIDATION.md) preserves earlier measurements. Live OpenAI/Ollama responses require your provider configuration and have not been evaluated in this environment. Adapter, citation, scope and redaction tests use test doubles. [Support matrix](docs/SUPPORT_MATRIX.md) and [limitations](docs/LIMITATIONS.md) describe parser coverage, unknowns and the roadmap.
 

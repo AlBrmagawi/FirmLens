@@ -1,4 +1,6 @@
-# Release audit — 2026-09-29
+# Initial release audit — 2026-09-29 (historical)
+
+This record describes the runtime before remediation. See [current release qualification](RELEASE_READINESS.md) for the updated images and results.
 
 **The functional checks pass, but the strict container security gate is blocked. This is not a 100% clean release verdict.** Live AI and hosted GitHub Actions also remain unverified. The source can be reviewed and published with these limitations disclosed; it should not be described as production-certified or vulnerability-free.
 
