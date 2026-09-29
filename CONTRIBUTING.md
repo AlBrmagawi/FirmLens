@@ -13,7 +13,9 @@ uv run mypy src
 uv run python scripts/generate_types.py
 cd frontend
 npm ci
+npx playwright install chromium firefox webkit
 npm run lint
+npx prettier --check .
 npm run build
 npm run test:e2e
 ```

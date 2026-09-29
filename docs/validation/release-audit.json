@@ -1,0 +1,1204 @@
+{
+  "recorded_at": "2026-09-29T10:27:47.259Z",
+  "audit_started_from_commit": "813cddc",
+  "outcome": "Functional matrix passed; container critical-advisory gate failed",
+  "environment": {
+    "host": "Windows with Docker Desktop Linux/WSL2",
+    "architecture": "x86_64",
+    "node": "v24.18.0",
+    "docker_engine": "29.6.2"
+  },
+  "source_manifest_sha256": "75b5857ac6d5a473df2a598a26af8002784f12fdf8f0f6567140ee53b6e88289",
+  "source_manifest": [
+    {
+      "path": "Dockerfile",
+      "sha256": "99b06da6bba4365f0223205ab25a082ebdafd3cb6637b2455f89caad922602a6"
+    },
+    {
+      "path": "Dockerfile.sandbox",
+      "sha256": "03a4d4651174de417a419af1f9bfa147457f56d1c1fd3d84252f3f84d2b7e5cb"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "2e13916e112d7e7baf6f02e9b53e7e8b23ed370a0ed910d2b7ac6aaa7a8d9574"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "b5a83038fcdc25df5ea6c557daaf713a5565263a245f20922a221ce455a5473e"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "3af01b69aa9d6ab93297aff079230b12ed1ec0b1f976dafbc36bbc7069f1d7b9"
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "sha256": "2615d488fe70b0d296fe2420979a3485f310fc4f0f74595ec547e76521425033"
+    },
+    {
+      "path": "frontend/src/api.ts",
+      "sha256": "64319ed8e58745c191fbaf938dd1c7aa9d3a691eb18c2d105a38e10fd85e1e76"
+    },
+    {
+      "path": "frontend/src/generated.ts",
+      "sha256": "351a02db0529bdca5ff391f0dbb26065f8e49003abcbc8de91db6a2cf1e954a4"
+    },
+    {
+      "path": "frontend/src/main.tsx",
+      "sha256": "41431cb94a112ca05f90ca6037229d09d4bb8ecc1c27ae3bb3740ace8f01d2a6"
+    },
+    {
+      "path": "frontend/src/styles.css",
+      "sha256": "787cbf5fde0c4db62bee28fb4f5b343eb8ddaa99c9afa27266abceb966362486"
+    },
+    {
+      "path": "frontend/src/ui.tsx",
+      "sha256": "311b62004f6ce97335fc45c1af2699347166a399bfe04fcac39ed408d14da5da"
+    },
+    {
+      "path": "frontend/src/views.tsx",
+      "sha256": "434a06076bd6391243181091a066ba5263cbb76c56a6eee3f979e86b5ac0f0e0"
+    },
+    {
+      "path": "frontend/src/vite-env.d.ts",
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "ca4f0a799c42b0e9dda98b61a4e92f5a143d8c8857aff128f706c1581ec9b846"
+    },
+    {
+      "path": "src/firmwarelens/__init__.py",
+      "sha256": "216838fb4d229005ce96c480bfe56f00dae967614139272ed9890fea80bf8f9e"
+    },
+    {
+      "path": "src/firmwarelens/ai.py",
+      "sha256": "629652c7889971fbdae3e9b043c2712cbd9371e96b66964a3b29b9379db4387a"
+    },
+    {
+      "path": "src/firmwarelens/api.py",
+      "sha256": "7e66d81d9a86a83c223b6e571cd6e0fd81f36eb206c756035a60f62e7eda6cad"
+    },
+    {
+      "path": "src/firmwarelens/cli.py",
+      "sha256": "c09441731e1a9a17845caa2bfa1c0837a0946f09f2a5e95829eb4fb5cc40ca19"
+    },
+    {
+      "path": "src/firmwarelens/comparison.py",
+      "sha256": "3d5b1d356ce216c791675012193769dacba0fd2f6504f466060714ead1033697"
+    },
+    {
+      "path": "src/firmwarelens/config.py",
+      "sha256": "8338b4825ca5f45eab179460c7ebe77348e339adbc299a03a4e04cfb4a601126"
+    },
+    {
+      "path": "src/firmwarelens/database.py",
+      "sha256": "ecdf83580a14f1d191ab9de02bfe18d42947ccaf1df40f7a93a0fd721fca02c9"
+    },
+    {
+      "path": "src/firmwarelens/doctor_probe.py",
+      "sha256": "86216cb4ad26d98314325c5fe9634e17d94d4b1767810869a14fa60fdeca833f"
+    },
+    {
+      "path": "src/firmwarelens/extraction.py",
+      "sha256": "44a8ee9de7d8596ca7e6bef30ff1cfe652f3980d198ca426f66e430ba7046e37"
+    },
+    {
+      "path": "src/firmwarelens/pipeline.py",
+      "sha256": "a84b57e2febacccf506e812d1c7905d530d48888c434d20fbcde2becea6902ba"
+    },
+    {
+      "path": "src/firmwarelens/plugins.py",
+      "sha256": "33626fffd3da556c68e577977e98d127dcb31f4f0314f70d64de95d4d511983f"
+    },
+    {
+      "path": "src/firmwarelens/redaction.py",
+      "sha256": "434098e544caed37198035b553fd1c3ea6c9d88fedf93bd2decbaaefb242372b"
+    },
+    {
+      "path": "src/firmwarelens/reports.py",
+      "sha256": "2bd6e859a8ec77436e161d5d9db9d3b9f19635a559295e1ba00250166610cf69"
+    },
+    {
+      "path": "src/firmwarelens/sandbox.py",
+      "sha256": "4b20ef0426f79147221274505f93ee43e55631226c1ee12c30ca7bbf6f8487dc"
+    },
+    {
+      "path": "src/firmwarelens/schemas.py",
+      "sha256": "0af2ca30bdba74e4fbef8c4fd2428011c8e5403d5e7a4cd7afb911f61fd63005"
+    },
+    {
+      "path": "src/firmwarelens/tooling.py",
+      "sha256": "adf457dd66ec8ee450f3de76af0c9976f5af65dff8f31d2f89381089e659ad88"
+    },
+    {
+      "path": "src/firmwarelens/worker.py",
+      "sha256": "49fd075543bcc950fde660469e051dc007e902be260a094648af92f8fb808190"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "95fc6bcc5f2e1d5e893a3861a10143086af06ceb39b7a072e8068a52672b11f6"
+    }
+  ],
+  "original_specification_sha256": "68e3d10304386813bb9e01c8f4b8bc6959e7fe675079098c37b2932be37ba9c9",
+  "python": {
+    "junit": {
+      "tests": 56,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "time": 173.832
+    },
+    "coverage_totals": {
+      "covered_lines": 1301,
+      "num_statements": 1839,
+      "percent_covered": 66.82144364710848,
+      "percent_covered_display": "67",
+      "missing_lines": 538,
+      "excluded_lines": 4,
+      "percent_statements_covered": 70.74497009244155,
+      "percent_statements_covered_display": "71",
+      "num_branches": 530,
+      "num_partial_branches": 76,
+      "covered_branches": 282,
+      "missing_branches": 248,
+      "percent_branches_covered": 53.20754716981132,
+      "percent_branches_covered_display": "53"
+    },
+    "per_module_coverage": {
+      "src/firmwarelens/__init__.py": {
+        "covered_lines": 1,
+        "num_statements": 1,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/ai.py": {
+        "covered_lines": 71,
+        "num_statements": 80,
+        "percent_covered": 85.24590163934427,
+        "percent_covered_display": "85",
+        "missing_lines": 9,
+        "excluded_lines": 0,
+        "percent_statements_covered": 88.75,
+        "percent_statements_covered_display": "89",
+        "num_branches": 42,
+        "num_partial_branches": 9,
+        "covered_branches": 33,
+        "missing_branches": 9,
+        "percent_branches_covered": 78.57142857142857,
+        "percent_branches_covered_display": "79"
+      },
+      "src/firmwarelens/api.py": {
+        "covered_lines": 384,
+        "num_statements": 422,
+        "percent_covered": 89.1891891891892,
+        "percent_covered_display": "89",
+        "missing_lines": 38,
+        "excluded_lines": 0,
+        "percent_statements_covered": 90.99526066350711,
+        "percent_statements_covered_display": "91",
+        "num_branches": 96,
+        "num_partial_branches": 16,
+        "covered_branches": 78,
+        "missing_branches": 18,
+        "percent_branches_covered": 81.25,
+        "percent_branches_covered_display": "81"
+      },
+      "src/firmwarelens/cli.py": {
+        "covered_lines": 80,
+        "num_statements": 149,
+        "percent_covered": 49.735449735449734,
+        "percent_covered_display": "50",
+        "missing_lines": 69,
+        "excluded_lines": 0,
+        "percent_statements_covered": 53.691275167785236,
+        "percent_statements_covered_display": "54",
+        "num_branches": 40,
+        "num_partial_branches": 6,
+        "covered_branches": 14,
+        "missing_branches": 26,
+        "percent_branches_covered": 35,
+        "percent_branches_covered_display": "35"
+      },
+      "src/firmwarelens/comparison.py": {
+        "covered_lines": 28,
+        "num_statements": 30,
+        "percent_covered": 90.625,
+        "percent_covered_display": "91",
+        "missing_lines": 2,
+        "excluded_lines": 0,
+        "percent_statements_covered": 93.33333333333333,
+        "percent_statements_covered_display": "93",
+        "num_branches": 2,
+        "num_partial_branches": 1,
+        "covered_branches": 1,
+        "missing_branches": 1,
+        "percent_branches_covered": 50,
+        "percent_branches_covered_display": "50"
+      },
+      "src/firmwarelens/config.py": {
+        "covered_lines": 28,
+        "num_statements": 28,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/database.py": {
+        "covered_lines": 97,
+        "num_statements": 97,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/doctor_probe.py": {
+        "covered_lines": 0,
+        "num_statements": 18,
+        "percent_covered": 0,
+        "percent_covered_display": "0",
+        "missing_lines": 18,
+        "excluded_lines": 0,
+        "percent_statements_covered": 0,
+        "percent_statements_covered_display": "0",
+        "num_branches": 8,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 8,
+        "percent_branches_covered": 0,
+        "percent_branches_covered_display": "0"
+      },
+      "src/firmwarelens/extraction.py": {
+        "covered_lines": 133,
+        "num_statements": 212,
+        "percent_covered": 58.116883116883116,
+        "percent_covered_display": "58",
+        "missing_lines": 79,
+        "excluded_lines": 0,
+        "percent_statements_covered": 62.735849056603776,
+        "percent_statements_covered_display": "63",
+        "num_branches": 96,
+        "num_partial_branches": 16,
+        "covered_branches": 46,
+        "missing_branches": 50,
+        "percent_branches_covered": 47.916666666666664,
+        "percent_branches_covered_display": "48"
+      },
+      "src/firmwarelens/pipeline.py": {
+        "covered_lines": 0,
+        "num_statements": 88,
+        "percent_covered": 0,
+        "percent_covered_display": "0",
+        "missing_lines": 88,
+        "excluded_lines": 0,
+        "percent_statements_covered": 0,
+        "percent_statements_covered_display": "0",
+        "num_branches": 22,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 22,
+        "percent_branches_covered": 0,
+        "percent_branches_covered_display": "0"
+      },
+      "src/firmwarelens/plugins.py": {
+        "covered_lines": 136,
+        "num_statements": 244,
+        "percent_covered": 51.16279069767442,
+        "percent_covered_display": "51",
+        "missing_lines": 108,
+        "excluded_lines": 4,
+        "percent_statements_covered": 55.73770491803279,
+        "percent_statements_covered_display": "56",
+        "num_branches": 100,
+        "num_partial_branches": 14,
+        "covered_branches": 40,
+        "missing_branches": 60,
+        "percent_branches_covered": 40,
+        "percent_branches_covered_display": "40"
+      },
+      "src/firmwarelens/redaction.py": {
+        "covered_lines": 22,
+        "num_statements": 22,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 8,
+        "num_partial_branches": 0,
+        "covered_branches": 8,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/reports.py": {
+        "covered_lines": 60,
+        "num_statements": 62,
+        "percent_covered": 93.75,
+        "percent_covered_display": "94",
+        "missing_lines": 2,
+        "excluded_lines": 0,
+        "percent_statements_covered": 96.7741935483871,
+        "percent_statements_covered_display": "97",
+        "num_branches": 34,
+        "num_partial_branches": 4,
+        "covered_branches": 30,
+        "missing_branches": 4,
+        "percent_branches_covered": 88.23529411764706,
+        "percent_branches_covered_display": "88"
+      },
+      "src/firmwarelens/sandbox.py": {
+        "covered_lines": 30,
+        "num_statements": 119,
+        "percent_covered": 23.312883435582823,
+        "percent_covered_display": "23",
+        "missing_lines": 89,
+        "excluded_lines": 0,
+        "percent_statements_covered": 25.210084033613445,
+        "percent_statements_covered_display": "25",
+        "num_branches": 44,
+        "num_partial_branches": 4,
+        "covered_branches": 8,
+        "missing_branches": 36,
+        "percent_branches_covered": 18.181818181818183,
+        "percent_branches_covered_display": "18"
+      },
+      "src/firmwarelens/schemas.py": {
+        "covered_lines": 123,
+        "num_statements": 123,
+        "percent_covered": 100,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100,
+        "percent_branches_covered_display": "100"
+      },
+      "src/firmwarelens/tooling.py": {
+        "covered_lines": 33,
+        "num_statements": 36,
+        "percent_covered": 89.58333333333333,
+        "percent_covered_display": "90",
+        "missing_lines": 3,
+        "excluded_lines": 0,
+        "percent_statements_covered": 91.66666666666667,
+        "percent_statements_covered_display": "92",
+        "num_branches": 12,
+        "num_partial_branches": 2,
+        "covered_branches": 10,
+        "missing_branches": 2,
+        "percent_branches_covered": 83.33333333333333,
+        "percent_branches_covered_display": "83"
+      },
+      "src/firmwarelens/worker.py": {
+        "covered_lines": 75,
+        "num_statements": 108,
+        "percent_covered": 66.41791044776119,
+        "percent_covered_display": "66",
+        "missing_lines": 33,
+        "excluded_lines": 0,
+        "percent_statements_covered": 69.44444444444444,
+        "percent_statements_covered_display": "69",
+        "num_branches": 26,
+        "num_partial_branches": 4,
+        "covered_branches": 14,
+        "missing_branches": 12,
+        "percent_branches_covered": 53.84615384615385,
+        "percent_branches_covered_display": "54"
+      }
+    },
+    "coverage_scope": "Unit, API and CLI suite only; separate container integration processes are not instrumented"
+  },
+  "playwright": {
+    "stats": {
+      "startTime": "2026-09-29T10:19:29.300Z",
+      "duration": 177617.922,
+      "expected": 12,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "projects": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ]
+  },
+  "ui_inspection": {
+    "views": [
+      {
+        "view": "dashboard",
+        "violations": []
+      },
+      {
+        "view": "overview",
+        "violations": []
+      },
+      {
+        "view": "findings",
+        "violations": []
+      },
+      {
+        "view": "components",
+        "violations": []
+      },
+      {
+        "view": "files",
+        "violations": []
+      },
+      {
+        "view": "comparison",
+        "violations": []
+      },
+      {
+        "view": "assistant",
+        "violations": []
+      },
+      {
+        "view": "reports",
+        "violations": []
+      },
+      {
+        "view": "settings",
+        "violations": []
+      }
+    ],
+    "page_errors": [],
+    "mobile": {
+      "viewport": 390,
+      "document": 390,
+      "wide_tables": "Horizontally scroll inside their containers"
+    },
+    "visual_review": [
+      "dashboard",
+      "overview",
+      "findings",
+      "comparison",
+      "mobile"
+    ]
+  },
+  "quality": {
+    "ruff": "passed",
+    "mypy_source_modules": 17,
+    "eslint": "passed",
+    "prettier": "passed",
+    "typescript": "passed",
+    "production_frontend_build": "passed",
+    "generated_api_types": "no drift",
+    "npm_audit": "zero known vulnerabilities",
+    "pip_audit": "zero known dependency vulnerabilities"
+  },
+  "runtime_doctor": {
+    "database": "available",
+    "supervisor": {
+      "last_seen": 1790677580.334286,
+      "alive": true,
+      "sandbox": {
+        "checks": {
+          "linux": true,
+          "memory_limit": true,
+          "cpu_limit": true,
+          "pids_limit": true,
+          "seccomp": true,
+          "cgroup_v2": true,
+          "sandbox_image": true,
+          "isolation_probe": true
+        },
+        "ready": true,
+        "engine": "29.6.2",
+        "image": "sha256:fbcb323c6547f146716e984e405f258115649e4c1977fa499808fcaad6f5e90c",
+        "tools": {
+          "syft": "1.52.0",
+          "grype": "0.119.0",
+          "unsquashfs": "unsquashfs version 4.6.1 (2023/03/25)"
+        },
+        "probe": "non-root, read-only root, empty capabilities, no-new-privileges, network-none verified"
+      }
+    },
+    "limits": {
+      "upload_bytes": 134217728,
+      "job_timeout_seconds": 600,
+      "max_attempts": 2
+    },
+    "ai": {
+      "provider": "disabled",
+      "model": "",
+      "cloud_enabled": false,
+      "key_configured": false,
+      "daily_requests": 50,
+      "context_chars": 24000,
+      "disclosure": "When explicitly enabled, cloud AI receives your redacted question, bounded redacted finding/evidence/component records, coverage, and selected comparison data. Raw firmware is never sent. No automatic model downloads."
+    }
+  },
+  "firmware": {
+    "scans": {
+      "lab": {
+        "id": "50e8093f-b82d-4047-973b-65687228412c",
+        "artifact_id": "d1521265522d067aae8c3aa3ef95bb7851d5dedcefe623da10fde4212e6ef27a",
+        "status": "complete",
+        "attempts": 1,
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 19,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 8,
+            "low": 2,
+            "info": 0
+          }
+        },
+        "stages": [
+          {
+            "id": "extraction",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Extracted 18 filesystem entries",
+            "duration_ms": 0,
+            "diagnostics": []
+          },
+          {
+            "id": "inventory",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Inventoried 18 entries; text previews bounded to 16 KiB and redacted",
+            "duration_ms": 2,
+            "diagnostics": []
+          },
+          {
+            "id": "configuration",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Produced 9 configuration and credential findings",
+            "duration_ms": 4,
+            "diagnostics": []
+          },
+          {
+            "id": "elf",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Inspected 1 ELF files; absent canary symbols are reported as unknown",
+            "duration_ms": 11,
+            "diagnostics": []
+          },
+          {
+            "id": "components",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Syft identified 1 components; binary cataloger hints remain heuristic",
+            "duration_ms": 2813,
+            "diagnostics": []
+          },
+          {
+            "id": "vulnerabilities",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Grype completed advisory matching; database freshness: fresh",
+            "duration_ms": 29508,
+            "diagnostics": []
+          }
+        ],
+        "limitations": [
+          "Static analysis cannot establish service reachability or exploitability.",
+          "Package-manager-free firmware may have incomplete component inventory.",
+          "Missing canary symbols do not prove absence of stack protection."
+        ],
+        "runtime": {
+          "python": "3.12.14",
+          "syft": "1.52.0",
+          "grype": "0.119.0"
+        },
+        "measurements": {
+          "started_at": "2026-09-29T10:07:33.783744+00:00",
+          "finished_at": "2026-09-29T10:08:06.321302+00:00",
+          "duration_ms": 32539,
+          "peak_rss_kib": 39816,
+          "child_peak_rss_kib": 186320
+        }
+      },
+      "revised": {
+        "id": "1f7855e1-373c-4872-abd0-4cf01cd46711",
+        "artifact_id": "3ef1b840c22dae386acf08becf04f28934594570c50e3bbd47cd6815969aea29",
+        "status": "complete",
+        "attempts": 1,
+        "summary": {
+          "files": 17,
+          "components": 1,
+          "findings": 3,
+          "severity": {
+            "critical": 0,
+            "high": 0,
+            "medium": 1,
+            "low": 2,
+            "info": 0
+          }
+        },
+        "stages": [
+          {
+            "id": "extraction",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Extracted 17 filesystem entries",
+            "duration_ms": 0,
+            "diagnostics": []
+          },
+          {
+            "id": "inventory",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Inventoried 17 entries; text previews bounded to 16 KiB and redacted",
+            "duration_ms": 3,
+            "diagnostics": []
+          },
+          {
+            "id": "configuration",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Produced 0 configuration and credential findings",
+            "duration_ms": 1,
+            "diagnostics": []
+          },
+          {
+            "id": "elf",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Inspected 1 ELF files; absent canary symbols are reported as unknown",
+            "duration_ms": 5,
+            "diagnostics": []
+          },
+          {
+            "id": "components",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Syft identified 1 components; binary cataloger hints remain heuristic",
+            "duration_ms": 1996,
+            "diagnostics": []
+          },
+          {
+            "id": "vulnerabilities",
+            "version": "1.0.0",
+            "state": "success",
+            "message": "Grype completed advisory matching; database freshness: fresh",
+            "duration_ms": 26847,
+            "diagnostics": []
+          }
+        ],
+        "limitations": [
+          "Static analysis cannot establish service reachability or exploitability.",
+          "Package-manager-free firmware may have incomplete component inventory.",
+          "Missing canary symbols do not prove absence of stack protection."
+        ],
+        "runtime": {
+          "python": "3.12.14",
+          "syft": "1.52.0",
+          "grype": "0.119.0"
+        },
+        "measurements": {
+          "started_at": "2026-09-29T10:08:17.327010+00:00",
+          "finished_at": "2026-09-29T10:08:46.252786+00:00",
+          "duration_ms": 28927,
+          "peak_rss_kib": 40012,
+          "child_peak_rss_kib": 189752
+        }
+      }
+    },
+    "comparison": {
+      "new": 0,
+      "persistent": 3,
+      "no_longer_detected": 16,
+      "unknown_due_to_coverage": 0
+    },
+    "formats": [
+      {
+        "input": "lab.tar",
+        "scan_id": "54c7dd83-db12-4fd3-b049-e2b3441fcf0e",
+        "format": "tar",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 2249
+      },
+      {
+        "input": "lab.tar.gz",
+        "scan_id": "1196c3c5-809d-426d-b983-087165851346",
+        "format": "gzip",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1334
+      },
+      {
+        "input": "lab-gzip.squashfs",
+        "scan_id": "61f81069-d9d1-4321-8a7b-bbb86696bcff",
+        "format": "squashfs",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1678
+      },
+      {
+        "input": "lab-xz.squashfs",
+        "scan_id": "93b87a7e-d811-4827-8719-cd00c22928d4",
+        "format": "squashfs",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1335
+      },
+      {
+        "input": "lab-zstd.squashfs",
+        "scan_id": "5d914db9-9525-4666-8df5-f5083f2c2e8d",
+        "format": "squashfs",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1387
+      },
+      {
+        "input": "lab-embedded.bin",
+        "scan_id": "1c0f2c52-4abe-4ed4-b090-fc5a37d912f7",
+        "format": "embedded-squashfs",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1347
+      },
+      {
+        "input": "lab.zip",
+        "scan_id": "0499a42f-efae-475f-bc0d-1500c6518e22",
+        "format": "zip",
+        "summary": {
+          "files": 18,
+          "components": 1,
+          "findings": 12,
+          "severity": {
+            "critical": 0,
+            "high": 9,
+            "medium": 3,
+            "low": 0,
+            "info": 0
+          }
+        },
+        "duration_ms": 1474
+      }
+    ],
+    "openwrt": {
+      "id": "63ce81db-567f-4ed1-aecf-86f66b8fd1c9",
+      "artifact_id": "c27bb3ab1f955b46940b9752a546bede813c9324b73be004202027091065a806",
+      "status": "partial",
+      "attempts": 1,
+      "summary": {
+        "files": 1398,
+        "components": 368,
+        "findings": 143,
+        "severity": {
+          "critical": 1,
+          "high": 10,
+          "medium": 36,
+          "low": 96,
+          "info": 0
+        }
+      },
+      "stages": [
+        {
+          "id": "extraction",
+          "version": "1.0.0",
+          "state": "partial",
+          "message": "Extracted 1398 filesystem entries",
+          "duration_ms": 0,
+          "diagnostics": [
+            "PARTIAL EXTRACTION: unsquashfs reported nonfatal errors; permissions, links or special-file entries may be omitted",
+            "Link metadata retained without dereference: lib64",
+            "Link metadata retained without dereference: var",
+            "Link metadata retained without dereference: www/luci-static/bootstrap-dark",
+            "Link metadata retained without dereference: www/luci-static/bootstrap-light",
+            "Link metadata retained without dereference: www/cgi-bin/cgi-backup",
+            "Link metadata retained without dereference: www/cgi-bin/cgi-download",
+            "Link metadata retained without dereference: www/cgi-bin/cgi-exec",
+            "Link metadata retained without dereference: www/cgi-bin/cgi-upload",
+            "Link metadata retained without dereference: usr/lib64",
+            "Link metadata retained without dereference: usr/share/ucode/luci/template/themes/bootstrap-dark",
+            "Link metadata retained without dereference: usr/share/ucode/luci/template/themes/bootstrap-light",
+            "Link metadata retained without dereference: usr/sbin/brctl",
+            "Link metadata retained without dereference: usr/sbin/chroot",
+            "Link metadata retained without dereference: usr/sbin/crond",
+            "Link metadata retained without dereference: usr/sbin/fsck.ext2",
+            "Link metadata retained without dereference: usr/sbin/fsck.ext3",
+            "Link metadata retained without dereference: usr/sbin/fsck.ext4",
+            "Link metadata retained without dereference: usr/sbin/mkfs.ext2",
+            "Link metadata retained without dereference: usr/sbin/mkfs.ext3",
+            "Link metadata retained without dereference: usr/sbin/mkfs.ext4",
+            "Link metadata retained without dereference: usr/sbin/ntpd",
+            "Link metadata retained without dereference: usr/lib/libblkid.so.1",
+            "Link metadata retained without dereference: usr/lib/libcom_err.so.0",
+            "Link metadata retained without dereference: usr/lib/libe2p.so.2",
+            "Link metadata retained without dereference: usr/lib/libext2fs.so.2",
+            "Link metadata retained without dereference: usr/lib/libf2fs.so.10",
+            "Link metadata retained without dereference: usr/lib/libjansson.so.4",
+            "Link metadata retained without dereference: usr/lib/libjson-c.so.5",
+            "Link metadata retained without dereference: usr/lib/liblucihttp.so.0",
+            "Link metadata retained without dereference: usr/lib/libmbedcrypto.so.7",
+            "Link metadata retained without dereference: usr/lib/libmbedtls.so.14",
+            "Link metadata retained without dereference: usr/lib/libmbedx509.so.1",
+            "Link metadata retained without dereference: usr/lib/libmnl.so.0",
+            "Link metadata retained without dereference: usr/lib/libnftables.so",
+            "Link metadata retained without dereference: usr/lib/libnftables.so.1",
+            "Link metadata retained without dereference: usr/lib/libnftnl.so.11",
+            "Link metadata retained without dereference: usr/lib/libsmartcols.so.1",
+            "Link metadata retained without dereference: usr/lib/libss.so.2",
+            "Link metadata retained without dereference: usr/lib/libuuid.so.1",
+            "Link metadata retained without dereference: usr/bin/[",
+            "Link metadata retained without dereference: usr/bin/[[",
+            "Link metadata retained without dereference: usr/bin/awk",
+            "Link metadata retained without dereference: usr/bin/basename",
+            "Link metadata retained without dereference: usr/bin/clear",
+            "Link metadata retained without dereference: usr/bin/cmp",
+            "Link metadata retained without dereference: usr/bin/crontab",
+            "Link metadata retained without dereference: usr/bin/cut",
+            "Link metadata retained without dereference: usr/bin/dbclient",
+            "Link metadata retained without dereference: usr/bin/dirname",
+            "Link metadata retained without dereference: usr/bin/dropbearkey",
+            "Link metadata retained without dereference: usr/bin/du",
+            "Link metadata retained without dereference: usr/bin/env",
+            "Link metadata retained without dereference: usr/bin/expr",
+            "Link metadata retained without dereference: usr/bin/find",
+            "Link metadata retained without dereference: usr/bin/flock",
+            "Link metadata retained without dereference: usr/bin/free",
+            "Link metadata retained without dereference: usr/bin/head",
+            "Link metadata retained without dereference: usr/bin/hexdump",
+            "Link metadata retained without dereference: usr/bin/id",
+            "Link metadata retained without dereference: usr/bin/killall",
+            "Link metadata retained without dereference: usr/bin/ldd",
+            "Link metadata retained without dereference: usr/bin/less",
+            "Link metadata retained without dereference: usr/bin/logger",
+            "Link metadata retained without dereference: usr/bin/md5sum",
+            "Link metadata retained without dereference: usr/bin/mkfifo",
+            "Link metadata retained without dereference: usr/bin/nc",
+            "Link metadata retained without dereference: usr/bin/nslookup",
+            "Link metadata retained without dereference: usr/bin/pgrep",
+            "Link metadata retained without dereference: usr/bin/printf",
+            "Link metadata retained without dereference: usr/bin/readlink",
+            "Link metadata retained without dereference: usr/bin/reset",
+            "Link metadata retained without dereference: usr/bin/resize",
+            "Link metadata retained without dereference: usr/bin/scp",
+            "Link metadata retained without dereference: usr/bin/seq",
+            "Link metadata retained without dereference: usr/bin/sha256sum",
+            "Link metadata retained without dereference: usr/bin/signify",
+            "Link metadata retained without dereference: usr/bin/sort",
+            "Link metadata retained without dereference: usr/bin/ssh",
+            "Link metadata retained without dereference: usr/bin/strings",
+            "Link metadata retained without dereference: usr/bin/tail",
+            "Link metadata retained without dereference: usr/bin/taskset",
+            "Link metadata retained without dereference: usr/bin/tee",
+            "Link metadata retained without dereference: usr/bin/test",
+            "Link metadata retained without dereference: usr/bin/time",
+            "Link metadata retained without dereference: usr/bin/top",
+            "Link metadata retained without dereference: usr/bin/tr",
+            "Link metadata retained without dereference: usr/bin/ucc",
+            "Link metadata retained without dereference: usr/bin/uniq",
+            "Link metadata retained without dereference: usr/bin/uptime",
+            "Link metadata retained without dereference: usr/bin/utpl",
+            "Link metadata retained without dereference: usr/bin/wc",
+            "Link metadata retained without dereference: usr/bin/wget",
+            "Link metadata retained without dereference: usr/bin/which",
+            "Link metadata retained without dereference: usr/bin/xargs",
+            "Link metadata retained without dereference: usr/bin/yes",
+            "Link metadata retained without dereference: sbin/fw3",
+            "Link metadata retained without dereference: sbin/halt",
+            "Link metadata retained without dereference: sbin/hwclock",
+            "Link metadata retained without dereference: sbin/ifconfig"
+          ]
+        },
+        {
+          "id": "inventory",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Inventoried 1398 entries; text previews bounded to 16 KiB and redacted",
+          "duration_ms": 199,
+          "diagnostics": []
+        },
+        {
+          "id": "configuration",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Produced 10 configuration and credential findings",
+          "duration_ms": 218,
+          "diagnostics": []
+        },
+        {
+          "id": "elf",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Inspected 161 ELF files; absent canary symbols are reported as unknown",
+          "duration_ms": 338,
+          "diagnostics": []
+        },
+        {
+          "id": "components",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Syft identified 368 components; binary cataloger hints remain heuristic",
+          "duration_ms": 1961,
+          "diagnostics": []
+        },
+        {
+          "id": "vulnerabilities",
+          "version": "1.0.0",
+          "state": "success",
+          "message": "Grype completed advisory matching; database freshness: fresh",
+          "duration_ms": 14521,
+          "diagnostics": []
+        }
+      ],
+      "limitations": [
+        "Static analysis cannot establish service reachability or exploitability.",
+        "Package-manager-free firmware may have incomplete component inventory.",
+        "Missing canary symbols do not prove absence of stack protection."
+      ],
+      "runtime": {
+        "python": "3.12.14",
+        "syft": "1.52.0",
+        "grype": "0.119.0"
+      },
+      "measurements": {
+        "started_at": "2026-09-29T10:11:00.849182+00:00",
+        "finished_at": "2026-09-29T10:11:18.751124+00:00",
+        "duration_ms": 18136,
+        "peak_rss_kib": 152264,
+        "child_peak_rss_kib": 203860
+      }
+    },
+    "export_schemas": {
+      "releases": [
+        "lab",
+        "revised"
+      ],
+      "formats": [
+        "CycloneDX 1.7",
+        "SARIF 2.1.0"
+      ],
+      "validation": "passed against vendored official schemas with network disabled"
+    },
+    "timing_note": "Audit runs shared engine resources; these timings are not controlled benchmarks"
+  },
+  "concurrency": {
+    "concurrent_uploads": 8,
+    "concurrent_idempotent_submissions": 8,
+    "unique_scans": 1,
+    "scan_attempts": 1,
+    "parallel_reads": 50,
+    "parallel_read_batch_ms": 258,
+    "original_download_integrity": true,
+    "scan_id": "449ae70e-8aee-4571-9ae3-93479afc08c1"
+  },
+  "sandbox_boundaries": {
+    "missing_intelligence": {
+      "status": "partial",
+      "retained_findings": 12
+    },
+    "file_budget": "failed",
+    "immediate_cancellation": "passed",
+    "wall_time_budget": "passed",
+    "all_test_containers_removed": true
+  },
+  "operational_recovery": {
+    "restart_preserved_scan": "50e8093f-b82d-4047-973b-65687228412c",
+    "recovered_scan": "0d8369a4-1a18-4efe-9b27-efd940839693",
+    "recovery_attempts": 2,
+    "cancelled_running_scan": "af6e5d2d-daf6-4199-bbad-f859e3f27b7d",
+    "container_removed": true,
+    "threshold_scan": "8a738c2e-aa66-4983-a6fe-872d9631c8a2",
+    "threshold_exit": 3
+  },
+  "backup_restore": {
+    "restored_database_image": "postgres:17.11-trixie@sha256:d74eeac9a635390a49bc21bd49fccd973de707e2a53a76ac49b552b8712ec46f",
+    "database_tables": {
+      "alembic_version": 1,
+      "artifacts": 20,
+      "audit": 9,
+      "conversations": 0,
+      "events": 456,
+      "heartbeats": 1,
+      "project_artifacts": 51,
+      "projects": 30,
+      "scans": 56,
+      "sessions": 26,
+      "triage": 9
+    },
+    "database_rows_equal": true,
+    "dump_bytes": 1557426,
+    "entries": 44,
+    "verified_artifacts": 20,
+    "permissions_and_bytes_equal": true
+  },
+  "database_upgrade": {
+    "old_image": "postgres:17.9-bookworm",
+    "new_version": "PostgreSQL 17.11 (Debian 17.11-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+    "metadata_unchanged": true,
+    "collation_indexes_rebuilt": true
+  },
+  "fixture_reproducibility": {
+    "builder_image": "sha256:1c72cfd5645423a54c490c8ad886af7de756fda8e1ea941f6a244e1c10ac5356",
+    "identical_artifacts": 14,
+    "manifest": {
+      "source_date_epoch": 1700000000,
+      "releases": {
+        "lab": {
+          "compiler_flags": [
+            "-fno-stack-protector",
+            "-no-pie",
+            "-Wl,-z,norelro",
+            "-Wl,-z,execstack"
+          ],
+          "file_count": 10
+        },
+        "revised": {
+          "compiler_flags": [
+            "-fstack-protector-all",
+            "-fPIE",
+            "-pie",
+            "-Wl,-z,relro,-z,now",
+            "-Wl,-z,noexecstack",
+            "-s"
+          ],
+          "file_count": 9
+        }
+      },
+      "sha256": {
+        "lab-embedded.bin": "28a65a1845da21d831ef0b72577552e7640f3e6eed45473d83d301d905ba7b01",
+        "lab-gzip.squashfs": "d1521265522d067aae8c3aa3ef95bb7851d5dedcefe623da10fde4212e6ef27a",
+        "lab-xz.squashfs": "b9f3a10f722c0cbff6c38a3f11a41babf7bb8063735dfcb90265b0663663984d",
+        "lab-zstd.squashfs": "6c77efe3e0c0c326436544c349a9a91024d5266b4cd936163d29a3d3c904f3f0",
+        "lab.tar": "263db03092e20667e17fdf3f8ed8587177736bbbfff6f1a46e4fc3ab80aed870",
+        "lab.tar.gz": "70320917044795fecfe6f9a76671cf4d5f2eb68cae390fcb38ec07162ac04a7e",
+        "lab.zip": "5e587dc58f2e437a6449ff9f225a7cb9c698c7ede165c9fd95b1f4d3e9442734",
+        "revised-embedded.bin": "cc9ed115bd032c8254b69498325cf095a1144562690a157863f5588cdd51293a",
+        "revised-gzip.squashfs": "3ef1b840c22dae386acf08becf04f28934594570c50e3bbd47cd6815969aea29",
+        "revised-xz.squashfs": "b5d7d5c70cef4f43cab475ad7749b69fa4b3c707dd49cb27581754e51950afe6",
+        "revised-zstd.squashfs": "5c9d98024dbf1cdc78df8fa0ea4d22c13a3269baedb4a4df5c5d879b563af1bf",
+        "revised.tar": "e08818f7e17d0d43e567e79d7d5c499da1d2775c747bc4046b409183fd17cf98",
+        "revised.tar.gz": "50462f2b1a1764c9846b6e4156e5b49221277b4c9e0dbf1245fed4ac1d5d639b",
+        "revised.zip": "dd23f184c5f0c3158b868837c26266422d4c6c64a1ae3c859cf028671697cd54"
+      }
+    }
+  },
+  "image_audit": {
+    "file": "release-image-audit.json",
+    "status": "failed",
+    "severity": {
+      "app": {
+        "High": 50,
+        "Medium": 63,
+        "Negligible": 45,
+        "Low": 12
+      },
+      "sandbox": {
+        "High": 65,
+        "Medium": 74,
+        "Negligible": 45,
+        "Low": 14
+      },
+      "database": {
+        "Negligible": 96,
+        "High": 73,
+        "Critical": 1,
+        "Medium": 85,
+        "Low": 26
+      }
+    }
+  },
+  "unverified": [
+    "Live OpenAI/Ollama inference and real-model prompt-injection resistance",
+    "Hosted GitHub Actions",
+    "ARM64 host execution",
+    "Production-scale load",
+    "Exhaustive accessibility",
+    "Independent penetration testing"
+  ]
+}

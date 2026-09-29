@@ -82,6 +82,8 @@ For automation, `--fail-on high` returns exit 3 for findings at/above that thres
 
 ## Verified results and limits
 
+The latest [release audit](docs/RELEASE_READINESS.md) records passing functional tests and an unresolved container security gate: the PostgreSQL image retains a critical libxml2 advisory match. This is a research release with documented limitations, not a vulnerability-free or production-certified deployment.
+
 On the recorded 2026-09-29 database, the synthetic lab produced **19 findings** and the revised release **3**, with 16 no longer detected and 3 persistent. Pipeline times were **15.252 s** and **10.052 s** in single measured runs. Seven input variants passed real extraction/inventory checks. A pinned OpenWrt 23.05.5 image was also analyzed with explicit partial extraction coverage. These are reproducible research examples, not accuracy or device exploitability claims.
 
 The [validation record](docs/VALIDATION.md) separates measured checks from unverified behavior. Live OpenAI/Ollama responses require your provider configuration and have not been evaluated in this environment. Adapter, citation, scope and redaction tests use test doubles. Hosted GitHub Actions have not run. [Support matrix](docs/SUPPORT_MATRIX.md) and [limitations](docs/LIMITATIONS.md) describe parser coverage, unknowns and the roadmap.
@@ -96,7 +98,7 @@ uv run ruff format --check src tests scripts demo
 uv run mypy src
 cd frontend
 npm ci
-npx playwright install chromium
+npx playwright install chromium firefox webkit
 npm run lint
 npm run build
 npm run test:e2e

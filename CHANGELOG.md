@@ -1,5 +1,12 @@
 # Changelog
 
+## Release audit fixes
+
+- Bound graceful-shutdown retries and persist cancellation timestamps correctly.
+- Preserve uploads on Escape, restore dialog focus, and accept long default filenames in UI/CLI flows.
+- Update Python/Debian and PostgreSQL runtime images; verify an isolated restore and preserve database metadata through the upgrade.
+- Expand unit, cross-browser, concurrency, sandbox-failure, restore and container-audit checks. Retain the unresolved upstream container security gate in [the release audit](docs/RELEASE_READINESS.md).
+
 ## 0.1.0 — initial implementation
 
 - Signature-led Linux firmware extraction in disposable, offline, non-root containers.

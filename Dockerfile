@@ -5,7 +5,7 @@ RUN npm ci
 COPY frontend ./
 RUN npm run build
 
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim@sha256:e5b65587bce7de595f299855d7385fe7fca39b8a74baa261ba1b7147afa78e58
+FROM ghcr.io/astral-sh/uv:python3.12-trixie-slim@sha256:ca99e1db564ab49c1b93e39007d7c1f39e9184c4b26b15c9f826095dfe59f40b
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_LINK_MODE=copy
 WORKDIR /app
 COPY pyproject.toml uv.lock README.md ./

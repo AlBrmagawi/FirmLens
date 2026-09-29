@@ -104,6 +104,38 @@ def test_no_links_or_special_files_materialized(tmp_path):
     assert extraction.diagnostics
 
 
+def test_tar_hardlink_to_symlink_never_reads_or_changes_external_file(tmp_path, monkeypatch):
+    """Regress the link-chain shape in CVE-2026-82049 without using tar extraction filters."""
+    outside = tmp_path / "outside"
+    outside.write_bytes(b"EXTERNAL_CONTENT_MUST_NOT_ENTER_RESULTS")
+    before = outside.stat()
+    stream = io.BytesIO()
+    with tarfile.open(fileobj=stream, mode="w") as archive:
+        for name, kind, target in [
+            ("symbolic", tarfile.SYMTYPE, str(outside)),
+            ("hard", tarfile.LNKTYPE, "symbolic"),
+        ]:
+            entry = tarfile.TarInfo(name)
+            entry.type, entry.linkname, entry.mode, entry.mtime = kind, target, 0o777, 1
+            archive.addfile(entry)
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("Untrusted tar must not use extract/extractall")
+
+    monkeypatch.setattr(tarfile.TarFile, "extract", forbidden)
+    monkeypatch.setattr(tarfile.TarFile, "extractall", forbidden)
+    root = tmp_path / "root"
+    root.mkdir()
+    extraction = Extraction(root, Limits())
+    extraction.unpack(stream.getvalue(), tmp_path)
+    assert len(extraction.files) == 2
+    assert not list(root.iterdir())
+    assert outside.read_bytes() == b"EXTERNAL_CONTENT_MUST_NOT_ENTER_RESULTS"
+    assert outside.stat().st_mode == before.st_mode
+    assert outside.stat().st_mtime_ns == before.st_mtime_ns
+    assert all(file.preview is None for file in extraction.files)
+
+
 def test_duplicate_and_budget(tmp_path):
     root = tmp_path / "root"
     root.mkdir()

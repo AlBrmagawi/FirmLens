@@ -173,7 +173,7 @@ function UploadModal({
         headers: { "Idempotency-Key": crypto.randomUUID() },
         body: JSON.stringify({
           artifact_id: artifact.id,
-          label: label || file.name,
+          label: label || Array.from(file.name).slice(0, 100).join(""),
           options: {
             components,
             vulnerabilities: components && vulnerabilities,

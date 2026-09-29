@@ -6,7 +6,16 @@ export default defineConfig({
   workers: 1,
   timeout: 180000,
   expect: { timeout: 15000 },
-  reporter: [["list"], ["html", { open: "never" }]],
+  reporter: [
+    ["list"],
+    ["html", { open: "never" }],
+    ["json", { outputFile: "test-results/results.json" }],
+  ],
+  projects: [
+    { name: "chromium", use: { browserName: "chromium" } },
+    { name: "firefox", use: { browserName: "firefox" } },
+    { name: "webkit", use: { browserName: "webkit" } },
+  ],
   use: {
     baseURL: process.env.FL_BASE_URL ?? "http://localhost:8080",
     headless: true,

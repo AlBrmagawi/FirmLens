@@ -1,4 +1,5 @@
 import { chromium } from "@playwright/test";
+import assert from "node:assert/strict";
 import AxeBuilder from "@axe-core/playwright";
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -14,6 +15,8 @@ const context = await browser.newContext({
   viewport: { width: 1440, height: 1000 },
 });
 const page = await context.newPage();
+const errors = [];
+page.on("pageerror", (error) => errors.push(error.message));
 await page.goto("http://localhost:8080");
 await page.getByLabel("Local access token").fill(token);
 await page.getByRole("button", { name: "Open workbench" }).click();
@@ -93,7 +96,16 @@ await page.screenshot({
 });
 writeFileSync(
   "../exports/browser-audit.json",
-  JSON.stringify({ results, overflow }, null, 2),
+  JSON.stringify({ results, overflow, errors }, null, 2),
 );
-console.log(JSON.stringify({ results, overflow }, null, 2));
+console.log(JSON.stringify({ results, overflow, errors }, null, 2));
 await browser.close();
+assert(
+  results.every((view) => view.violations.length === 0),
+  "Accessibility violations found",
+);
+assert(
+  overflow.scrollWidth <= overflow.width,
+  "Mobile document overflows viewport",
+);
+assert.equal(errors.length, 0, "Browser runtime errors found");

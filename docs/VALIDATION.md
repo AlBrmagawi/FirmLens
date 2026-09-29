@@ -1,5 +1,7 @@
 # Validation record
 
+This is the original implementation validation. See the subsequent [release audit](RELEASE_READINESS.md) for expanded tests, updated runtime images and the outstanding container security gate.
+
 Validation date: 2026-09-29. This record describes local runs, not a hosted CI result. Machine-readable measured results are retained in [measured-results.json](validation/measured-results.json). Full generated reports and raw firmware remain excluded from Git.
 
 ## Environment

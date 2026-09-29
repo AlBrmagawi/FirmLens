@@ -60,7 +60,20 @@ docker compose start api supervisor
 
 Protect the backup: it contains original firmware and the local access credential. Restore into a fresh deployment with services stopped, matching application version, and the original `.env`. Restore the named-volume archive preserving ownership, then restore PostgreSQL with `pg_restore -U firmwarelens -d firmwarelens --clean --if-exists`. Start API/supervisor and run `doctor`. This is an operational recipe; destructive restore into an existing deployment is intentionally manual.
 
-## Retention
+## Upgrading an older PostgreSQL Bookworm deployment
+
+The audited Compose file now pins PostgreSQL 17.11 on Trixie. Existing 17.x data uses the same major-version format, but the operating-system collation libraries changed. Back up first and stop API/supervisor writes before changing the database image. After starting the updated database, rebuild indexes before refreshing collation metadata:
+
+```sh
+docker compose exec -T db psql -v ON_ERROR_STOP=1 -U firmwarelens -d firmwarelens -c 'REINDEX DATABASE firmwarelens'
+docker compose exec -T db psql -v ON_ERROR_STOP=1 -U firmwarelens -d firmwarelens -c 'ALTER DATABASE firmwarelens REFRESH COLLATION VERSION'
+```
+
+Apply the same order to `postgres` and `template1` when their recorded collation version differs, connecting to each database for its reindex. Then start the API/supervisor and verify readiness. The local upgrade exercised during the release audit retained a private metadata dump under `exports/backups/`, compared every application table before/after, and found no row changes. See PostgreSQL's [collation version guidance](https://www.postgresql.org/docs/17/sql-altercollation.html); refreshing the version alone does not rebuild indexes.
+
+An isolated restore can be exercised with `node scripts/verify_restore.mjs`. It stops writes briefly, restores into separate labelled resources, compares table contents and artifact hashes/ownership, removes only its own temporary resources, and restarts the application. This does not perform a destructive restore of the live deployment.
+
+## Retention commands
 
 Cancel active scans before deleting them or their project through the API/UI. Inputs shared with another project remain available. To preview old, unreferenced immutable artifacts:
 

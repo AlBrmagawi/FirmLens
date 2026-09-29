@@ -56,6 +56,11 @@ jobs:
           docker compose logs --tail 100 api supervisor
           exit 1
       - run: docker compose exec -T api firmwarelens doctor --json
+      - name: Prepare current advisory data outside analysis containers
+        run: |
+          docker compose stop supervisor
+          docker compose --profile tools run --rm intelligence update
+          docker compose start supervisor
       - run: docker compose --profile tools run --rm demo
       - run: node scripts/verify_reproducibility.mjs
       - run: docker compose exec -T api python scripts/demo_workflow.py
@@ -63,10 +68,21 @@ jobs:
       - run: docker compose cp api:/exports/. ./exports
       - name: Validate actual exports against official schemas
         run: docker run --rm --network none -v "$PWD/exports:/app/exports:ro" firmwarelens-checks python scripts/validate_exports.py
-      - run: npm ci && npx playwright install --with-deps chromium && npm run test:e2e
+      - run: npm ci && npx playwright install --with-deps chromium firefox webkit && npm run test:e2e
+        working-directory: frontend
+      - name: Inspect all views for accessibility and browser errors
+        run: node scripts/inspect.mjs
         working-directory: frontend
       - name: Verify persistence and active cancellation
         run: node scripts/verify_operations.mjs
+      - name: Verify concurrent uploads and idempotent submissions
+        run: node scripts/verify_concurrency.mjs
+      - name: Verify sandbox failure boundaries
+        run: node scripts/verify_sandbox_boundaries.mjs
+      - name: Restore an isolated backup copy
+        run: node scripts/verify_restore.mjs
+      - name: Audit runtime images (critical gate; retain all other advisories)
+        run: node scripts/verify_images.mjs
       - name: Logs on failure
         if: failure()
         run: docker compose logs --tail 100 api supervisor
@@ -78,5 +94,6 @@ jobs:
             frontend/playwright-report
             exports/*validation*.json
             exports/demo-results.json
+            exports/browser-audit.json
       - if: always()
         run: docker compose down

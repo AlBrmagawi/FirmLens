@@ -119,7 +119,7 @@ def scan(
     result = request(
         "POST",
         f"/projects/{project}/scans",
-        json={"artifact_id": artifact["id"], "label": label or image.name},
+        json={"artifact_id": artifact["id"], "label": label or image.name[:100]},
         headers={"Idempotency-Key": idempotency_key or str(uuid.uuid4())},
     ).json()
     if wait:

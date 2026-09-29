@@ -132,9 +132,19 @@ def main() -> None:
                 )
                 status: str = result.outcome
             except Cancelled:
-                status = "queued" if stopping else "cancelled"
+                status = (
+                    "queued"
+                    if stopping and scan.attempts < config.max_attempts
+                    else "failed"
+                    if stopping
+                    else "cancelled"
+                )
                 error = (
-                    "Worker shutdown; queued for recovery" if stopping else "Cancelled by analyst"
+                    "Worker shutdown; queued for recovery"
+                    if status == "queued"
+                    else "Worker shutdown; retry budget exhausted"
+                    if status == "failed"
+                    else "Cancelled by analyst"
                 )
             except Exception as exc:
                 status = "failed"
@@ -146,7 +156,9 @@ def main() -> None:
             with session() as db:
                 current = db.get(Scan, scan_id)
                 if current and current.lease_token == token:
-                    current.status = "cancelled" if current.cancel_requested else status
+                    if current.cancel_requested:
+                        status, error = "cancelled", "Cancelled by analyst"
+                    current.status = status
                     current.result = (
                         result.model_dump(mode="json")
                         if result and not current.cancel_requested
